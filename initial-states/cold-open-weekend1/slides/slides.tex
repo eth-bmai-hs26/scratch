@@ -1,0 +1,294 @@
+% CAS BMAI HS26, weekend 1: the cold open. "The Four Precepts".
+%
+% Light projection-first Metropolis with the Libertinus serif, inherited from
+% beamer-preamble.tex in this directory (copied from the lecture-slides skill
+% template and diffed against the skill before this file was written; the diff
+% is recorded at the head of that file).
+%
+% Engine: pdflatex, TWICE.
+% Build:  cd slides && pdflatex slides.tex && pdflatex slides.tex
+%
+% STAGING. Four frames, thirteen overlay pages.
+%   Pages 1 to 11 are the 08:00 opening, Friday 4 September 2026, inside the
+%   "Intro and onboarding" block, before anything administrative. About three
+%   minutes.
+%   Pages 12 and 13 are ONE frame shown at 16:00 the same day, at the front of
+%   the "Vapnik's statistical learning theory" lecture. About thirty seconds.
+%   Do not run past page 11 in the morning. The README has the page table.
+%
+% THE ARGUMENT. Descartes writes down four rules of method. Friday runs four
+% lectures. The room agrees with all four rules, and then the fourth turns out
+% to be the one rule a learning machine cannot obey: a model is fitted on the
+% cases somebody happened to collect and is then sold to customers who bring
+% cases nobody collected. So precept four is MUTED on frame 3, and the whole
+% 16:00 lecture is what you do instead of obeying it. Frame 4 lifts the mute.
+%
+% That is the Kant recycling move (the frame returns, the alert has moved)
+% performed inside ONE DAY instead of across three weekends, which is the only
+% version of that move a first weekend can perform: nobody has seen anything yet.
+% See COLD-OPEN-CANDIDATES.md section 7.
+%
+% HOUSE RULES OBEYED. Dry factual frame titles. Original language above the
+% English gloss. Source line in muted small type. One public-domain plate, on
+% frame 1 only, framed and captioned in one line. The mapping table is a whole
+% frame and carries no prose. NO CLOSING PUNCHLINE: the two closing thoughts
+% that are real content (the "He settled on four" line on frame 1 and the
+% "this hour is about the fourth" line on frame 4) are ordinary body text at the
+% foot of their frame, in ink, never centred and never in the accent colour.
+% ASCII punctuation only; there is no prose "---" and no prose "--" in this file.
+% See /Users/carloscotrini/Documents/git_fdd/projects/.claude/skills/lecture-slides/SKILL.md
+%
+% THE COLOUR CODE IS TAUGHT ON FRAME 2 AND SPENT ON FRAME 3. On frame 2 exactly
+% one clause of each precept is alerted, and those four clauses are literally the
+% four left-hand cells of frame 3. So by the time the mapping arrives the eye has
+% already learned that accent marks the load-bearing clause, without knowing it
+% was learning a code. On frame 3 rows 1 to 3 keep the accent and row 4 loses it.
+% The muted row therefore works by COLOUR CONTINUITY and not by "grey text",
+% which is how the AINIT Faust frame does it
+% (/Users/carloscotrini/Documents/git_ainit/rl-arcade/slides/rl-slides.tex, the
+% die Kraft row, lines 111 to 123). Do not add \alert anywhere else in this deck.
+%
+% PROVENANCE. The four precepts are pinned character for character against the
+% modernised critical text used in proposals/COLD-OPEN-CANDIDATES.md section 3.
+% Where this deck ABRIDGES a precept to fit the frame it marks the cut with
+% \ldots and the full unabridged French sits in a comment beside it, below.
+% The English gloss is a WORKING DRAFT written for the proposal. It is labelled
+% on frame 2 as this deck's own, so that nobody mistakes it for Veitch 1850 or
+% for Haldane and Ross. Carlos replaces or approves it before this is projected.
+% See the PROVENANCE table in ../README.md.
+%
+% IMAGES. img/ is deliberately EMPTY. The one plate this deck wants is recorded
+% in img/IMAGE-SOURCES.txt with its artist, licence and Commons URL, and the
+% \plateh macro draws a dashed box naming the missing file so the gap is visible
+% rather than silent. Nothing was downloaded, and no stand-in image was invented.
+
+\documentclass[aspectratio=169]{beamer}
+\input{beamer-preamble}
+
+\title{The Four Precepts}
+\subtitle{Cold open, weekend 1}
+\author{Carlos Cotrini}
+\date{Friday 4 September 2026}
+% No \maketitle on purpose: this deck is pasted in front of the intro and
+% onboarding block, which already carries the course title page. A second title
+% frame here would be the third title the room sees in ten minutes.
+
+\begin{document}
+
+% ================= 1. The plate and the placement =================
+% Static, one overlay page. A cold open MAY be static: the AINIT Faust opening is
+% three [plain] frames and three clicks with zero overlays, and SKILL.md hard
+% rule 5 is a teaching-CONTENT rule. This frame is placement, and the placement
+% is spoken over it.
+%
+% THIS IS THE FRAME TO CUT IF THE MORNING RUNS LATE. The four precepts work
+% without Descartes' face, and frame 3 is the frame the opening exists for.
+% Cutting it costs one page and about thirty seconds.
+%
+% The two lines on the right are this deck's OWN prose. Nothing is quoted on
+% this frame, deliberately: the sentence that introduces the four precepts in the
+% source ("je crus que j'aurais assez des quatre suivants") was read in the
+% proposal but was NOT re-pinned in the build session, and the house rule is that
+% unpinned material is cut rather than projected.
+\begin{frame}{Descartes, 1637: four rules of method}
+  \vspace{1mm}
+  \begin{columns}[c]
+    \column{0.34\textwidth}\centering
+      \plateh{4.1cm}{3.1cm}{img/descartes-hals.jpg}\\[3pt]
+      {\scriptsize\color{muted}Frans Hals, \textit{Ren\'e Descartes} (1649)}
+    \column{0.62\textwidth}
+      {\footnotesize A man who distrusted almost everything he had been taught,
+      setting out to write down the smallest set of rules he thought he could
+      get somewhere with.}\\[10pt]
+      {\footnotesize He settled on four.}\\[14pt]
+      {\scriptsize\color{muted}\textit{Discours de la m\'ethode}, seconde partie.
+      Leyde: Ian Maire, 1637.}
+  \end{columns}
+\end{frame}
+
+% ================= 2. The four precepts =================
+% Five overlay pages. Overlay 1 shows four numbered but empty rules, which is a
+% real beat: the room can count them before it can read them. Overlays 2 to 5
+% land one precept each. The frame ENDS on the fourth precept; no closing line.
+%
+% Every text slot is wrapped in \onslide (never \only), so the slot is reserved
+% on every overlay and no line moves when a later precept lands. That is the
+% no-shift rule, SKILL.md Pattern F.
+%
+% ABRIDGEMENT. Precepts 2 and 3 are cut to fit, and each cut is marked \ldots.
+% The full pinned French, for the record and for anyone who wants to restore it:
+%
+%  2. Le second, de diviser chacune des difficult\'es que j'examinerais, en
+%     autant de parcelles qu'il se pourrait, et qu'il serait requis pour les
+%     mieux r\'esoudre.
+%  3. Le troisi\`eme, de conduire par ordre mes pens\'ees, en commen\c{c}ant par
+%     les objets les plus simples et les plus ais\'es \`a conna\^{\i}tre, pour
+%     monter peu \`a peu, comme par degr\'es, jusques \`a la connaissance des
+%     plus compos\'es.
+%
+% Precepts 1 and 4 are whole and unabridged.
+%
+% THE FOUR ALERTED CLAUSES ARE LOAD BEARING. They are the four left-hand cells of
+% frame 3, in English above and in this same French below. If you edit one here,
+% edit it there in the same pass, and in frame 4 as well.
+\begin{frame}{The four precepts}
+  \vspace{-2mm}
+  {\footnotesize
+  % The numerals hang into the tabular's left pad in a zero-width \makebox, so
+  % each one sits on the FIRST LINE'S BASELINE of its precept by construction.
+  % An earlier build put them in their own r column and beamer's \onslide pushed
+  % every precept about 5pt below its numeral. Do not "simplify" this back.
+  % hyphenpenalty is set here, outside the cells, so the cell paragraphs inherit
+  % it: without it "qu'il se pourrait" breaks as "pour-rait" inside an \alert.
+  \hyphenpenalty=10000 \exhyphenpenalty=10000
+  \renewcommand{\arraystretch}{1.0}%
+  \begin{tabular}{@{\hspace{1.5em}}p{0.93\textwidth}@{}}
+    \makebox[0pt][r]{{\color{muted}1.}\hspace{0.5em}}\onslide<2->{Le premier \'etait de
+        \alert{ne recevoir jamais aucune chose pour vraie},
+        que je ne la connusse \'evidemment \^etre telle.\newline
+        {\scriptsize\color{muted}Never accept anything as true that I did not
+         evidently know to be such.}}\\[2pt]
+    \makebox[0pt][r]{{\color{muted}2.}\hspace{0.5em}}\onslide<3->{Le second, de diviser chacune des difficult\'es que
+        j'examinerais,
+        \alert{en autant de parcelles qu'il se pourrait}~\ldots\newline
+        {\scriptsize\color{muted}Divide each difficulty into as many parts as
+         I could, and as would be required to resolve it better.}}\\[2pt]
+    \makebox[0pt][r]{{\color{muted}3.}\hspace{0.5em}}\onslide<4->{Le troisi\`eme, de conduire par ordre mes pens\'ees, en
+        commen\c{c}ant par les objets les plus simples~\ldots\ pour
+        \alert{monter peu \`a peu, comme par degr\'es},
+        jusques \`a la connaissance des plus compos\'es.\newline
+        {\scriptsize\color{muted}Begin with the objects that are simplest and
+         climb by degrees to the knowledge of the most composite.}}\\[2pt]
+    \makebox[0pt][r]{{\color{muted}4.}\hspace{0.5em}}\onslide<5->{Et le dernier, de faire partout des d\'enombrements si
+        entiers, et des revues si g\'en\'erales,
+        \alert{que je fusse assur\'e de ne rien omettre}.\newline
+        {\scriptsize\color{muted}Everywhere make enumerations so complete, and
+         reviews so general, that I could be assured of omitting nothing.}}\\
+  \end{tabular}}
+
+  \vspace{1mm}
+  {\scriptsize\color{muted}\hspace*{0.2cm}Ren\'e Descartes,
+   \textit{Discours de la m\'ethode}, seconde partie (1637), modernised spelling.
+   English gloss: this deck's own.}
+\end{frame}
+
+% ================= 3. The mapping =================
+% Five overlay pages, one row per click. THE FRAME THE OPENING EXISTS FOR.
+% A whole frame, no prose, no closing line, exactly as the house grammar has it
+% (COLD-OPEN-CANDIDATES.md section 0, rule 4).
+%
+% ROW 4 IS THE MUTED ROW AND IT IS THE WHOLE REASON TO CHOOSE THIS TEXT.
+% It is muted the way the AINIT die Kraft row is muted: by ABSENCE of \alert on
+% both cells, plus one explicit {\color{muted}} on the right cell. Never a
+% strikethrough, never a deletion, never a caption. Rows 1 to 3 carry \alert on
+% both cells, so row 4 reads as a row that lost its colour rather than as grey
+% text, and the loss is legible because the colour was taught on frame 2.
+%
+% Row 4 names no time, on purpose. Rows 1 to 3 name 09:00, 11:00 and 14:00, so
+% the room supplies 16:00 by itself, and frame 4 keeps the promise.
+%
+% Row 1 is the softest row, and COLD-OPEN-CANDIDATES.md section 3 says so. The
+% spoken repair is one sentence: the morning's whole method is that a guess is
+% never accepted, it is squared and compared. If that does not land in rehearsal,
+% the honest fix is to drop to three rows and let 09:00 live under the placement
+% line on frame 1 instead. Do not repair it by adding prose to this frame.
+%
+% WIDTHS ARE MEASURED, not guessed: \textwidth is 398.3pt here, the widest left
+% cell is about 150pt and the widest right cell about 170pt, so the table clears
+% the margin with room to spare. If you lengthen a cell, re-render and check the
+% log for an Overfull \hbox before you ship it.
+\begin{frame}{Friday, read against the four precepts}
+  \vfill
+  \centering
+  \renewcommand{\arraystretch}{2.1}%
+  \begin{tabular}{r@{\enskip}c@{\enskip}l}
+    \onslide<2->{\shortstack[r]{%
+      \alert{Never accept anything as true}\\[2pt]
+      {\scriptsize\itshape\color{muted}ne recevoir jamais aucune chose pour vraie}}} &
+    \onslide<2->{\raisebox{2.1ex}{$\rightarrow$}} &
+    \onslide<2->{\shortstack[l]{%
+      \alert{09:00}\\[2pt]
+      {\footnotesize\color{accent}First-order approximation algorithms}}}\\
+    \onslide<3->{\shortstack[r]{%
+      \alert{Into as many parts as possible}\\[2pt]
+      {\scriptsize\itshape\color{muted}en autant de parcelles qu'il se pourrait}}} &
+    \onslide<3->{\raisebox{2.1ex}{$\rightarrow$}} &
+    \onslide<3->{\shortstack[l]{%
+      \alert{11:00}\\[2pt]
+      {\footnotesize\color{accent}Gradient descent}}}\\
+    \onslide<4->{\shortstack[r]{%
+      \alert{Climb little by little, by degrees}\\[2pt]
+      {\scriptsize\itshape\color{muted}monter peu \`a peu, comme par degr\'es}}} &
+    \onslide<4->{\raisebox{2.1ex}{$\rightarrow$}} &
+    \onslide<4->{\shortstack[l]{%
+      \alert{14:00}\\[2pt]
+      {\footnotesize\color{accent}Neural networks and universal approximation}}}\\
+    \onslide<5->{\shortstack[r]{%
+      Be assured of omitting nothing\\[2pt]
+      {\scriptsize\itshape\color{muted}que je fusse assur\'e de ne rien omettre}}} &
+    \onslide<5->{\raisebox{2.1ex}{$\rightarrow$}} &
+    \onslide<5->{\shortstack[l]{%
+      {\color{muted}The one precept}\\[2pt]
+      {\footnotesize\color{muted}a learning machine cannot obey}}}\\
+  \end{tabular}
+  \vfill
+\end{frame}
+
+% ================= 4. The mute lifted, at 16:00 =================
+% NOT SHOWN IN THE MORNING. Two overlay pages, about thirty seconds, at the front
+% of the "Vapnik's statistical learning theory" lecture on the same Friday.
+%
+% This is the same table with the alert moved: rows 1 to 3 go muted, row 4 takes
+% the accent, and row 4's right cell finally names a time. The room saw this
+% frame four hours ago and recognising it is free, which is the entire mechanism
+% (COLD-OPEN-CANDIDATES.md section 7). If frame 3 is edited, edit this one in the
+% same pass or the recognition breaks.
+%
+% The closing line is ORDINARY BODY TEXT at the foot of the frame, in ink, at
+% \footnotesize. It is not centred, it carries no \alert and no rule above it.
+% Do not promote it (SKILL.md, "No closing punchline").
+%
+% A paste-ready copy of this frame is in ../README.md, for dropping into the SLT
+% lecture deck rather than jumping back into this PDF.
+\begin{frame}{The fourth precept}
+  \vfill
+  {\centering
+  \renewcommand{\arraystretch}{2.1}%
+  \begin{tabular}{r@{\enskip}c@{\enskip}l}
+    \shortstack[r]{%
+      {\color{muted}Never accept anything as true}\\[2pt]
+      {\scriptsize\itshape\color{muted}ne recevoir jamais aucune chose pour vraie}} &
+    \raisebox{2.1ex}{$\rightarrow$} &
+    \shortstack[l]{%
+      {\color{muted}09:00}\\[2pt]
+      {\footnotesize\color{muted}First-order approximation algorithms}}\\
+    \shortstack[r]{%
+      {\color{muted}Into as many parts as possible}\\[2pt]
+      {\scriptsize\itshape\color{muted}en autant de parcelles qu'il se pourrait}} &
+    \raisebox{2.1ex}{$\rightarrow$} &
+    \shortstack[l]{%
+      {\color{muted}11:00}\\[2pt]
+      {\footnotesize\color{muted}Gradient descent}}\\
+    \shortstack[r]{%
+      {\color{muted}Climb little by little, by degrees}\\[2pt]
+      {\scriptsize\itshape\color{muted}monter peu \`a peu, comme par degr\'es}} &
+    \raisebox{2.1ex}{$\rightarrow$} &
+    \shortstack[l]{%
+      {\color{muted}14:00}\\[2pt]
+      {\footnotesize\color{muted}Neural networks and universal approximation}}\\
+    \shortstack[r]{%
+      \alert{Be assured of omitting nothing}\\[2pt]
+      {\scriptsize\itshape\color{muted}que je fusse assur\'e de ne rien omettre}} &
+    \raisebox{2.1ex}{$\rightarrow$} &
+    \shortstack[l]{%
+      \alert{16:00}\\[2pt]
+      {\footnotesize\color{accent}Vapnik's statistical learning theory}}\\
+  \end{tabular}\par}
+
+  \vspace{4mm}
+  {\footnotesize\onslide<2->{\hspace*{0.2cm}This morning we could obey three of
+   them. This hour is about the fourth.}}
+  \vfill
+\end{frame}
+
+\end{document}

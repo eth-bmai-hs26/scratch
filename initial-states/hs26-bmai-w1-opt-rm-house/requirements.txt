@@ -1,0 +1,13 @@
+# hs26-bmai-w1-opt-rm-house
+#
+# Google Colab already ships both of these, so a participant installs nothing.
+# The versions below are the ones the exercise was built and verified against on
+# 2026-08-26 with Python 3.11.1. Anything reasonably recent works: the code uses
+# numpy.random.default_rng and plain matplotlib, with no version specific API.
+#
+# numpy is required by the generator, the helper module and every notebook loop.
+# matplotlib is required only by the five figures in housetools.py, which are
+# imported inside the plotting functions, so the numeric path runs without it.
+
+numpy>=1.24
+matplotlib>=3.5

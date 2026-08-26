@@ -1,0 +1,68 @@
+/* ============================================================================
+   trace.css : the two plots.
+
+   trace   the guesses against the round number, one line per run
+   spark   the size of the loss, on a log scale, as a small strip
+
+   Both SVGs are locked in width and height here and the JS writes the same
+   numbers into the width and height attributes. A flex parent with the
+   default align-items: stretch silently inflates an SVG box, which renders
+   acceptably in a live browser and captures wrong under headless Chrome.
+   The course-viz never-do list has this as its longest entry.
+
+   Series colours are classes. Nothing in js/trace.js writes a colour.
+   ============================================================================ */
+
+/* THESE FOUR NUMBERS MUST MATCH js/trace.js EXACTLY.
+   They did not, once: the CSS said 560x300 while the JS wrote width="470"
+   height="250" into the attributes, so the viewBox scaled by 1.19 and the
+   plot overflowed its card and lost the right hand end of the truth label.
+   It rendered acceptably at a glance and captured wrong, which is the whole
+   reason the course-viz never-do list carries this item. If a scene needs a
+   different box, it gets its own class through Trace.create's opts.cls, and
+   the numbers are written down in one place there too. */
+.trace-svg {
+  width: 470px;
+  height: 250px;
+  flex: 0 0 auto;
+}
+
+.spark-svg {
+  width: 470px;
+  height: 130px;
+  flex: 0 0 auto;
+}
+
+/* A locked box cannot shrink, so on a narrow window it scrolls inside its
+   own container rather than pushing the page sideways. */
+.plot-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.trace-plot-frame { background: var(--sky); stroke: var(--rule); stroke-width: 1; fill: var(--sky); }
+
+.trace-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.trace-line.series-guess    { stroke: var(--purple); }
+.trace-line.series-target   { stroke: var(--blue); }
+.trace-line.series-refused  { stroke: var(--bad); stroke-dasharray: 4 3; }
+.trace-line.series-loss     { stroke: var(--purple); }
+
+.trace-dot { stroke: none; }
+.trace-dot.series-guess   { fill: var(--purple); }
+.trace-dot.series-refused { fill: var(--bad); }
+.trace-dot.series-loss    { fill: var(--purple); }
+
+/* the truth line. Scene 6 is the only caller of Trace.setTruthVisible(true). */
+.trace-truth     { stroke: var(--peak); stroke-width: 1.6; stroke-dasharray: 5 4; }
+.trace-truth-ink { fill: var(--peak); font-size: 11.5px; font-weight: 600; }
+
+.trace-zero { stroke: var(--rule-strong); stroke-width: 1; stroke-dasharray: 2 3; }
+
+.plot-caption {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 13px;
+  margin: 8px 0 0;
+}

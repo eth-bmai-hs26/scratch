@@ -1,0 +1,33 @@
+/* ============================================================================
+   scene3.css : the controls of the breaking scene.
+
+   Two controls and a verdict. The form switch is a segmented control, the
+   step size is a slider, and the verdict is one of the shared .verdict boxes
+   from css/style.css with its wording computed from what the run did.
+   ============================================================================ */
+
+.break-controls { display: grid; gap: 16px; }
+
+.form-proof {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 8px;
+}
+
+.script-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.run-summary {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+}

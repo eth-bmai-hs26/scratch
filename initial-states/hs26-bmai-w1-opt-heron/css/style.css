@@ -1,0 +1,661 @@
+/* ============================================================================
+   Squaring the rectangle : shared editorial styles.
+
+   Theme tokens (light default, dark via [data-theme] on <html>), the
+   click-step page shell, and the full class vocabulary the scenes draw with.
+   No inline colours anywhere in the JS: every fill and stroke routes through a
+   token defined here, which is what makes the theme swap free.
+
+   Token block adapted from /Users/carloscotrini/Documents/git_fdd/projects/
+   grasshopper/css/style.css. The shell below it is new, because grasshopper is
+   a single scrolling game page and this is a six scene click-step deck.
+
+   COLOUR IDENTITIES, fixed once here so nothing cross-talks:
+     blue   : the width theta, the side you control, and the update arrow
+     amber  : the height 2026/theta, the side the area forces on you,
+              and the bracket between the two
+     purple : the trail of widths already tried
+     green  : the square, and only once it has actually converged
+     red    : a guess that made the bracket wider
+
+   Nothing else may claim these. In particular "important" and "alert" do not
+   get red, because red already means a widened bracket.
+   ============================================================================ */
+
+/* === theme tokens : LIGHT (lecture default) === */
+:root,
+:root[data-theme="light"] {
+  --topbar-h:      60px;
+
+  --bg:            #f9f7f1;   /* warm cream */
+  --panel:         #fffdf8;   /* card surface */
+  --panel-2:       #f2efe6;   /* inset */
+  --panel-3:       #ece9df;   /* deepest inset */
+  --ink:           #1a1a1a;
+  --muted:         #6b6b6b;
+  --faint:         #9a9488;
+  --rule:          #d8d4ca;
+  --rule-strong:   #c4bfb2;
+
+  /* categorical palette, exactly the course-viz values */
+  --blue:   #2f6cb1;
+  --red:    #b8323a;
+  --amber:  #c08a3e;
+  --purple: #7a5c8c;
+  --green:  #4a8b6b;
+  --orange: #a05a2c;
+
+  /* drawing surface */
+  --paper:         #fdfcf7;   /* inside the plot frame */
+  --gridline:      #e6e2d7;
+  --axis:          #b3ada0;
+  --axis-ink:      #6b6b6b;
+
+  /* the rectangle */
+  --rect-fill:     #e4e0d3;
+  --rect-edge:     #33302a;
+  --width-side:    #2f6cb1;   /* blue, the side you own */
+  --height-side:   #c08a3e;   /* amber, the side the area forces */
+  --trail:         #7a5c8c;
+  --trail-faint:   #c3b3ce;
+  --square-mark:   #4a8b6b;
+
+  /* status */
+  --good:          #4a8b6b;
+  --good-bg:       #e2efe7;
+  --warn:          #c08a3e;
+  --warn-bg:       #f5ead6;
+  --bad:           #b8323a;
+  --bad-bg:        #f4e0e0;
+
+  /* controls */
+  --btn-bg:          #fffdf8;
+  --btn-ink:         #1a1a1a;
+  --btn-border:      #c4bfb2;
+  --btn-hover:       #f2efe6;
+  --btn-primary-bg:  #2f6cb1;
+  --btn-primary-ink: #ffffff;
+  --btn-primary-hov: #275b96;
+  --btn-disabled-bg: #f0ede4;
+  --btn-disabled:    #b7b2a6;
+  --slider-track:    #ddd8cc;
+  --slider-thumb:    #2f6cb1;
+  --focus:           #2f6cb1;
+}
+
+/* === theme tokens : DARK (solo study) === */
+:root[data-theme="dark"] {
+  --bg:            #181612;
+  --panel:         #201d18;
+  --panel-2:       #262219;
+  --panel-3:       #2d281e;
+  --ink:           #ece7d9;
+  --muted:         #8a8579;
+  --faint:         #6b6759;
+  --rule:          #383530;
+  --rule-strong:   #4a463f;
+
+  --blue:   #6fa3d8;
+  --red:    #d97b80;
+  --amber:  #d1a04c;
+  --purple: #a98cc0;
+  --green:  #6cae8b;
+  --orange: #c9824f;
+
+  --paper:         #1c1a15;
+  --gridline:      #2b2822;
+  --axis:          #4d4941;
+  --axis-ink:      #8a8579;
+
+  /* The fill sits ABOVE the paper here, not below it. In light the rectangle
+     is darker than the paper; mirroring "darker" into a dark theme moves the
+     fill towards the background and erases it, so the direction flips. */
+  --rect-fill:     #322e27;
+  --rect-edge:     #d9d3c3;
+  --width-side:    #6fa3d8;
+  --height-side:   #d1a04c;
+  --trail:         #a98cc0;
+  --trail-faint:   #574a63;
+  --square-mark:   #6cae8b;
+
+  --good:          #6cae8b;
+  --good-bg:       #21301f;
+  --warn:          #d1a04c;
+  --warn-bg:       #332a1b;
+  --bad:           #d97b80;
+  --bad-bg:        #34211f;
+
+  --btn-bg:          #262219;
+  --btn-ink:         #ece7d9;
+  --btn-border:      #4a463f;
+  --btn-hover:       #322d23;
+  --btn-primary-bg:  #3f6f9e;
+  --btn-primary-ink: #f2f6fa;
+  --btn-primary-hov: #4d80b2;
+  --btn-disabled-bg: #221f19;
+  --btn-disabled:    #56514a;
+  --slider-track:    #3a352d;
+  --slider-thumb:    #6fa3d8;
+  --focus:           #6fa3d8;
+}
+
+/* === reset-ish === */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em;
+}
+
+p { margin: 0 0 12px; }
+
+/* === topbar === */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--panel);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  flex: 0 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  flex: 0 0 auto;
+}
+
+.brand-mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--width-side);
+  display: inline-block;
+}
+
+.scene-title {
+  color: var(--muted);
+  font-size: 13.5px;
+  border-left: 1px solid var(--rule);
+  padding-left: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 0 0 auto;
+}
+
+.dot-pager { display: flex; gap: 7px; }
+.dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+  cursor: pointer;
+}
+.dot.active { background: var(--width-side); border-color: var(--width-side); }
+.dot:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.theme-toggle {
+  font: inherit;
+  font-size: 13px;
+  padding: 5px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--btn-hover); }
+
+/* === stage and scenes === */
+.stage {
+  flex: 1 1 auto;
+  position: relative;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 26px 28px 40px;
+}
+
+.scene {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.scene.mounted { display: block; }
+.scene.active { opacity: 1; }
+
+.scene-head { margin-bottom: 18px; max-width: 46em; }
+.scene-head h1 {
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.lede {
+  max-width: 40em;
+  color: var(--muted);
+  font-size: 16.5px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+/* two column working area: picture on the left, controls and readouts right */
+.split {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.split-main { flex: 0 0 auto; }
+.split-side { flex: 1 1 300px; min-width: 280px; max-width: 460px; }
+
+/* === cards === */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.card + .card { margin-top: 14px; }
+.card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 15px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--panel-2);
+}
+.card-title {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+.card-note {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.card-body { padding: 14px 15px 16px; }
+
+.caption {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+  margin: 10px 0 0;
+  max-width: 46em;
+}
+
+/* === buttons === */
+.btn {
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.btn:hover:not(:disabled) { background: var(--btn-hover); }
+.btn:disabled {
+  background: var(--btn-disabled-bg);
+  color: var(--btn-disabled);
+  border-color: var(--rule);
+  cursor: not-allowed;
+}
+.btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  border-color: var(--btn-primary-bg);
+  color: var(--btn-primary-ink);
+  font-weight: 600;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--btn-primary-hov);
+  border-color: var(--btn-primary-hov);
+}
+.btn-primary:disabled {
+  background: var(--btn-disabled-bg);
+  border-color: var(--rule);
+  color: var(--btn-disabled);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--rule);
+  color: var(--muted);
+  font-size: 13px;
+  padding: 6px 12px;
+}
+.btn-ghost:hover:not(:disabled) { background: var(--panel-2); color: var(--ink); }
+
+/* === controls === */
+.control-group { margin-bottom: 16px; }
+.control-group:last-child { margin-bottom: 0; }
+
+.control-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 7px;
+}
+.control-hint {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 7px;
+  line-height: 1.45;
+}
+
+.slider-row { display: flex; align-items: center; gap: 12px; }
+
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1 1 auto;
+  min-width: 120px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--slider-track);
+  outline: none;
+  margin: 8px 0;
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--slider-thumb);
+  cursor: pointer;
+  border: 2px solid var(--panel);
+}
+input[type="range"].slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--slider-thumb);
+  cursor: pointer;
+  border: 2px solid var(--panel);
+}
+input[type="range"].slider:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
+
+input[type="number"].num-input,
+input[type="text"].num-input {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13.5px;
+  width: 96px;
+  padding: 6px 8px;
+  border: 1px solid var(--btn-border);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--ink);
+  text-align: right;
+  flex: 0 0 auto;
+}
+input.num-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+/* === readouts === */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--panel-2);
+}
+.kpi-row.three { grid-template-columns: repeat(3, 1fr); }
+.kpi { padding: 9px 10px; text-align: center; }
+.kpi + .kpi { border-left: 1px solid var(--rule); }
+.kpi-value {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.kpi-value.width-ink  { color: var(--width-side); }
+.kpi-value.height-ink { color: var(--height-side); }
+.kpi-label {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 2px;
+}
+
+.verdict {
+  border: 1px solid var(--rule);
+  border-left-width: 3px;
+  border-radius: 3px;
+  padding: 11px 13px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.verdict-title {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+.verdict.good { background: var(--good-bg); border-left-color: var(--good); }
+.verdict.good .verdict-title { color: var(--good); }
+.verdict.warn { background: var(--warn-bg); border-left-color: var(--warn); }
+.verdict.warn .verdict-title { color: var(--warn); }
+.verdict.bad  { background: var(--bad-bg);  border-left-color: var(--bad); }
+.verdict.bad .verdict-title { color: var(--bad); }
+
+/* === tables === */
+.data-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13.5px;
+}
+.data-table th {
+  text-align: right;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--faint);
+  border-bottom: 1px solid var(--rule-strong);
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+.data-table td {
+  text-align: right;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--rule);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.data-table td.text-cell {
+  font-family: inherit;
+  text-align: left;
+}
+.data-table tr:last-child td { border-bottom: 0; }
+.data-table td.pending { color: var(--faint); }
+.data-table .width-ink  { color: var(--width-side); }
+.data-table .height-ink { color: var(--height-side); }
+.table-scroll { overflow-x: auto; }
+
+/* === inline mono === */
+.mono {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92em;
+}
+.width-ink  { color: var(--width-side); }
+.height-ink { color: var(--height-side); }
+
+/* === shared SVG vocabulary === */
+svg { display: block; }
+svg text { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif; }
+
+.paper      { fill: var(--paper); }
+.plot-frame { fill: none; stroke: var(--rule); stroke-width: 1; }
+.gridline   { stroke: var(--gridline); stroke-width: 1; }
+.axis-line  { stroke: var(--axis); stroke-width: 1; }
+.axis-ink   { fill: var(--axis-ink); font-size: 11px; }
+.axis-title { fill: var(--muted); font-size: 11px; letter-spacing: 0.06em; }
+
+.rect-body  { fill: var(--rect-fill); }
+.rect-edge  { fill: none; stroke: var(--rect-edge); stroke-width: 1.4; }
+.side-width  { stroke: var(--width-side);  stroke-width: 3.2; stroke-linecap: round; }
+.side-height { stroke: var(--height-side); stroke-width: 3.2; stroke-linecap: round; }
+.side-width-ink  { fill: var(--width-side);  font-size: 12.5px; font-weight: 600; }
+.side-height-ink { fill: var(--height-side); font-size: 12.5px; font-weight: 600; }
+
+.area-ink {
+  fill: var(--muted);
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 17px;
+}
+
+.trail-rect { fill: none; stroke: var(--trail-faint); stroke-width: 1; }
+.trail-dot  { fill: var(--trail); fill-opacity: 0.55; }
+
+.square-guide { stroke: var(--square-mark); stroke-width: 1.4; stroke-dasharray: 4 4; fill: none; }
+.square-ink   { fill: var(--square-mark); font-size: 12px; font-weight: 600; }
+
+.label-ink { fill: var(--muted); font-size: 11.5px; }
+
+/* === stub scenes === */
+.stub {
+  border: 1px dashed var(--rule-strong);
+  border-radius: 4px;
+  background: var(--panel-2);
+  padding: 18px 20px;
+  max-width: 52em;
+}
+.stub-flag {
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--warn);
+  border: 1px solid var(--warn);
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin-bottom: 12px;
+}
+.stub h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.stub ol, .stub ul { margin: 0 0 12px; padding-left: 22px; }
+.stub li { margin-bottom: 6px; font-size: 14.5px; line-height: 1.5; }
+.stub-owner {
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  padding-top: 11px;
+  margin-top: 4px;
+}
+
+/* === footer === */
+.page-footer {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--rule);
+  background: var(--panel);
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer-sep { width: 12px; }
+.footer-dot { color: var(--faint); }
+.footer-hint { margin-left: auto; color: var(--faint); font-size: 12.5px; }
+kbd {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  border: 1px solid var(--rule-strong);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 1px 5px;
+  background: var(--panel-2);
+  color: var(--ink);
+}
+
+/* === katex sizing === */
+.katex { font-size: 1.02em; }
+.katex-display { margin: 0.6em 0; }
+.formula-block {
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin: 12px 0;
+}
+
+/* === narrow viewports === */
+@media (max-width: 1080px) {
+  .split-side { max-width: none; }
+}
+
+/* === the rectangle stage ===
+   Locked in both dimensions, matching the width and height ATTRIBUTES set in
+   js/rectview.js exactly. Without this the flex parent's default
+   align-items: stretch inflates the layout box: the page still looks right
+   interactively, because Chrome's main renderer reflows generously, and
+   captures as a squashed slice under --headless. */
+.rect-stage {
+  width: 620px;
+  height: 400px;
+  flex: 0 0 auto;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--panel);
+}

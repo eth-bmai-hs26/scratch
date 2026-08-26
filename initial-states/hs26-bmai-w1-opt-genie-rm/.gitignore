@@ -1,0 +1,8 @@
+# Python bytecode from importing exercise/genie.py
+__pycache__/
+*.pyc
+
+# headless screenshots land in /private/tmp; only docs/screenshot-table.png is
+# committed, as the one image the README points at
+docs/*.png
+!docs/screenshot-table.png

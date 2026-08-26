@@ -1,0 +1,11 @@
+/* scene1 : The table. */
+
+/* Carlos's five columns are the whole point, so the table gets the full width
+   under the split rather than being squeezed into the side panel. */
+.scene[data-scene="1"] .data-table { min-width: 640px; }
+.scene[data-scene="1"] .data-table th:first-child,
+.scene[data-scene="1"] .data-table td:first-child { padding-left: 2px; }
+
+/* the Update cell is the discovery gate: it is the widest column and it is
+   left visibly empty until step 5 */
+.scene[data-scene="1"] .data-table td:last-child { min-width: 240px; }

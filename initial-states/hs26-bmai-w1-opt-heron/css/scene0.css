@@ -1,0 +1,10 @@
+/* scene0 : The rectangle. The scene uses only the shared vocabulary from
+   css/style.css. This file exists so that the per-scene stylesheet slot in
+   index.html is real, and so that scene specific rules have a home the moment
+   one is needed. */
+
+.scene[data-scene="0"] .split-side .card + .card { margin-top: 14px; }
+
+/* the readout row is hidden by visibility rather than display, so that
+   revealing it at step 1 does not reflow the panel underneath it */
+.scene[data-scene="0"] .kpi-row { min-height: 56px; }

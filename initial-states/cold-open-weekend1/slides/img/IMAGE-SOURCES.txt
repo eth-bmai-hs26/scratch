@@ -1,0 +1,91 @@
+Images for the CAS BMAI HS26 weekend-1 cold open ("The Four Precepts").
+
+READ THIS FIRST
+  This directory is EMPTY on purpose. Nothing was downloaded during the build,
+  and no stand-in image was invented. The deck compiles and projects as it
+  stands: \plateh in ../beamer-preamble.tex draws a dashed box naming the
+  missing file wherever a plate belongs, so the gap is visible rather than
+  silent. Drop the file in with the exact name below and recompile twice.
+
+  The house rule that makes this file necessary: FILENAMES LIE. Open and look at
+  every candidate before you promise it, and record "opened and inspected before
+  use" here once that is actually true. Commons carries near-identical names for
+  different objects, different crops and different derivative works.
+
+  Rights rule for this course: Switzerland is 70 years post mortem auctoris.
+  A pre-1900 painting is free; the photograph OF it may not be, and a modern
+  translation of an old text usually is not.
+
+
+descartes-hals.jpg   THE ONLY IMAGE THIS DECK USES. Frame 1, left column,
+  included at height 4.1cm inside the hairline frame.
+
+  Subject   Rene Descartes (1596 to 1650), portrait
+  Artist    Frans Hals (c. 1582 to 1666)
+  Title     Portrait of Rene Descartes
+  Year      1649
+  Licence   Public domain (Hals died 1666, so the painting is free by age
+            everywhere; the Commons file records the licence as "Public domain")
+  Commons   https://commons.wikimedia.org/wiki/File%3AFrans_Hals%2C_Portrait_of_Ren%C3%A9_Descartes.jpg
+  Recorded  2178 x 2958 pixels, credited to RKD image 181019
+  Status    NOT DOWNLOADED. NOT OPENED. NOT INSPECTED.
+            Everything above is Commons metadata read during the proposal pass
+            (proposals/COLD-OPEN-CANDIDATES.md section 3) and re-quoted here.
+
+  TRAP, recorded during the proposal pass and NOT resolved. Commons carries at
+  least six variants under similar names, including a Statens Museum for Kunst
+  version, a "cleaned up" version and one labelled "digitally modified
+  derivative". The attribution history of the Hals Descartes portraits is
+  contested in the art literature. So:
+    1. Open the file you download and look at it before you use it.
+    2. Prefer the plain, unmodified scan over anything labelled cleaned up,
+       retouched or derivative.
+    3. The slide caption reads "Frans Hals, Rene Descartes (1649)" and makes no
+       claim about which museum holds which canvas. Keep it that way. Do not
+       "improve" the caption with a collection name without re-checking the
+       Commons file, and do not name a museum at all if the variants disagree.
+    4. Record the exact Commons file name and the download date on the "Status"
+       line above once it is done, replacing the three NOTs.
+
+  Aspect ratio note. At 2178 x 2958 the portrait is 0.736 wide for 1 high, so at
+  height 4.1cm the real plate is about 3.0cm wide. The placeholder box currently
+  drawn is a little wider than that, because it has to hold the filename, so the
+  first frame shifts slightly when the real image lands. Re-render frame 1 and
+  look at it after you drop the file in.
+
+
+NO OTHER IMAGE BELONGS IN THIS DECK, and that is a design decision rather than
+an omission. Frames 2, 3 and 4 carry no plate:
+
+  Frame 2 is the quotation frame and frames 3 and 4 are mapping tables. The
+  house grammar gives the mapping table a whole frame that carries no prose, and
+  the precedent it is built on carries no plate on that frame either: the AINIT
+  Faust opening puts Rembrandt on frame 1 and Stieler on frame 2 and gives its
+  mapping frame nothing but the table
+  (/Users/carloscotrini/Documents/git_ainit/rl-arcade/slides/rl-slides.tex,
+  lines 111 to 123).
+
+  One plate in the whole deck is also why frame 1 is the frame to cut if the
+  morning runs late: cutting it removes the only image dependency the deck has.
+
+
+IMAGES CONSIDERED AND NOT USED
+
+  No portrait of Heron of Alexandria exists, and the Metrica has no Commons
+  image the proposal pass could find; the Heron candidate would have projected a
+  page of the 1903 Teubner scan instead. Most Commons images filed under "Zeno"
+  show Zeno of Citium, the Stoic, three generations after Zeno of Elea. The
+  Commons record for the "Blind monks examining an elephant" print gives an
+  artist who died in 1724 and a date of 1888, which cannot both be right. All
+  three belong to candidates this deck did not build; they are recorded here so
+  the next person does not re-discover them. See
+  ../../COLD-OPEN-CANDIDATES.md sections 2, 4 and 10.
+
+  If the 16:00 lecture later adds the Hume frame that section 8 of the menu
+  recommends, it needs one more plate: Allan Ramsay, "David Hume, 1711 to 1776.
+  Historian and philosopher" (1766), public domain, 3365 x 4001 pixels,
+  https://commons.wikimedia.org/wiki/File%3AAllan_Ramsay_-_David_Hume%2C_1711_-_1776._Historian_and_philosopher_-_Google_Art_Project.jpg
+  The National Galleries of Scotland hold the painting and Commons carries
+  several scans under near-identical names with different accession numbers
+  (PG 1057, PG 3521). Pick one, record its accession number here, and open it
+  before promising it.

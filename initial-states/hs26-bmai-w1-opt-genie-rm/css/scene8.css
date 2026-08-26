@@ -1,0 +1,59 @@
+/* ============================================================================
+   scene8.css : the mapping table.
+
+   The whole scene is the table. The AINIT deck's version is a [plain] frame
+   with no title, no prose and no closing line, and the sharpest thing on it
+   is one muted row.
+
+   THE MUTED ROW. Both cells drop every ounce of emphasis and the right cell
+   alone drops to the secondary token, which is exactly what the deck does
+   (three rows are \alert on both sides, the refused row has no \alert
+   anywhere, and its right cell carries a single {\color{muted}}). No
+   strikethrough, no deletion, no caption. The reader has to notice.
+   ============================================================================ */
+
+.map-wrap {
+  overflow-x: auto;
+  margin: 8px 0 0;
+  max-width: 62em;
+}
+
+table.map-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+}
+
+table.map-table th {
+  text-align: left;
+  padding: 8px 18px 10px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-size: 11.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--faint);
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+table.map-table td {
+  padding: 14px 18px 14px 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  line-height: 1.5;
+  vertical-align: top;
+}
+
+table.map-table td.map-left {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13.5px;
+  white-space: nowrap;
+  padding-right: 34px;
+}
+
+table.map-table tr:last-child td { border-bottom: none; }
+
+/* the one row the course refuses */
+table.map-table tr.muted-row td.map-left  { color: var(--muted); }
+table.map-table tr.muted-row td.map-right { color: var(--muted); }

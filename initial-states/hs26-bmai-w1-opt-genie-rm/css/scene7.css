@@ -1,0 +1,90 @@
+/* ============================================================================
+   scene7.css : the code stub and the quiz.
+
+   The three blanks are inputs sitting inside a monospace block, so the
+   participant types into the code rather than into a form beside it. That is
+   the AINIT darts arrangement and it is the reason the exercise reads as
+   writing a program.
+
+   ok and bad on a blank are always accompanied by the sentence in the genie
+   line under the block, which names which blanks are still wrong. Colour is
+   never the only channel here either.
+   ============================================================================ */
+
+pre.stub-code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.75;
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin: 0;
+  overflow-x: auto;
+  color: var(--ink);
+}
+
+pre.stub-code .code-line { white-space: pre; min-height: 1.75em; }
+
+input.code-blank {
+  font: inherit;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  width: 24ch;
+  padding: 1px 6px;
+  border: none;
+  border-bottom: 1.5px solid var(--rule-strong);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 2px 2px 0 0;
+}
+input.code-blank:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+input.code-blank.ok  { border-bottom-color: var(--good); background: var(--good-bg); }
+input.code-blank.bad { border-bottom-color: var(--bad);  background: var(--bad-bg); }
+
+.hint-list {
+  margin: 4px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 42em;
+}
+.hint-list li { margin-bottom: 6px; }
+
+/* --- the quiz --- */
+.quiz-question {
+  font-size: 15.5px;
+  line-height: 1.5;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+label.quiz-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 11px;
+  margin-bottom: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--panel-2);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+label.quiz-opt:hover { background: var(--panel-3); }
+label.quiz-opt input { margin-top: 3px; flex: 0 0 auto; }
+label.quiz-opt.is-correct { border-color: var(--good); background: var(--good-bg); }
+label.quiz-opt.is-wrong   { border-color: var(--bad);  background: var(--bad-bg); }
+
+.quiz-note {
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin: 0 0 10px;
+  min-height: 1.2em;
+  color: var(--muted);
+}
+.quiz-note.good { color: var(--good); }
+.quiz-note.warn { color: var(--warn); }

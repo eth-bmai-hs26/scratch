@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Notebook checkpoints and the copies a participant's runtime writes next to the
+# notebook. housetools.py and houses.csv are committed at the top level and in
+# data/. The copies the setup cell writes into a runtime working directory are not.
+.ipynb_checkpoints/
+
+# Figures rendered during verification are not artifacts of the exercise.
+qa-shots/

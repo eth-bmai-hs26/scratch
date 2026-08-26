@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# LaTeX build artifacts (slides.pdf IS committed; these are regenerable)
+*.aux
+*.log
+*.nav
+*.snm
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# macOS
+.DS_Store

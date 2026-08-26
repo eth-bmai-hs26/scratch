@@ -1,0 +1,151 @@
+% ===== CAS BMAI HS26, weekend 1 cold open: shared Beamer preamble =====
+% Light, projection-first Metropolis with the Libertinus serif.
+%
+% PROVENANCE. Copied from
+%   /Users/carloscotrini/Documents/git_fdd/projects/.claude/skills/lecture-slides/templates/beamer-preamble.tex
+% on 2026-08-26, then diffed against
+%   /Users/carloscotrini/Documents/git_fdd/projects/.claude/skills/lecture-slides/SKILL.md
+% before a single frame was written, which is what that skill instructs
+% ("When you inherit a preamble, diff its section page and title page templates
+% against what this skill prescribes, and strip anything extra before writing a
+% single frame").
+%
+% WHAT THE DIFF FOUND, and what was done about it:
+%   1. \takeaway            ABSENT from the template already. Still absent here,
+%                           deliberately. See the closing comment block.
+%   2. \sectionsub, \cursub ABSENT from the template already. Still absent.
+%                           These are the "running question" mechanism that the
+%                           skill records creeping back into decks by wholesale
+%                           preamble copying. Do not add them.
+%   3. section page,
+%      title page templates The template defines NEITHER, because plain Metropolis
+%                           supplies both and this deck calls neither: it has no
+%                           \section and no \maketitle. Nothing to strip.
+%   4. good / bad colours   The template already ships Okabe-Ito blue #0072B2 and
+%                           vermillion #D55E00. Kept verbatim. No red/green pair
+%                           exists in this file, and this deck uses neither colour.
+%   5. muted                Kept at black!55, the legible floor. Do not lighten it:
+%                           the muted row of the mapping table is the whole point
+%                           of this deck and it has to survive a projector.
+%
+% ADDED FOR THIS DECK, and nothing else (each addition is marked ADDED below):
+%   \plateh    a framed plate that degrades to a visible placeholder box naming
+%              the file, so the deck compiles with an empty img/ directory.
+%   \framedimgh  the hairline image frame the plate uses, lifted from
+%              /Users/carloscotrini/Documents/git_fdd/projects/mandatory-weekends-opening/slides/beamer-preamble.tex
+%
+% Engine: pdflatex, twice. No fontspec, no lualatex. The cold open quotes French
+% only, so nothing here needs a Unicode engine. (A Greek candidate would have:
+% see COLD-OPEN-CANDIDATES.md section 0.)
+%
+% Each deck does:
+%   \documentclass[aspectratio=169]{beamer}
+%   \input{beamer-preamble}
+% and is compiled FROM the directory that holds this file so \input resolves.
+%
+% House rule: ASCII punctuation only. No prose "---" (renders an em dash) and
+% no prose "--" (renders an en dash). The ONLY allowed "--" is a TikZ line
+% segment, e.g. \draw (a) -- (b). Use a comma, colon, parentheses, or "to".
+
+\usepackage[T1]{fontenc}
+\usepackage{libertinus}   % Libertinus Serif + Biolinum + matching Libertinus Math
+\usefonttheme{serif}      % body, headings, and math all in the serif
+
+\usetheme{metropolis}
+\metroset{
+  sectionpage=progressbar,
+  numbering=fraction,
+  progressbar=foot,
+  block=fill
+}
+
+% --- accents for a LIGHT canvas (same names; retune hues per course) ---
+\definecolor{accent}{HTML}{0369A1}    % deep sky blue (primary accent)
+\definecolor{accent2}{HTML}{B45309}   % dark amber (secondary highlight)
+\definecolor{good}{HTML}{0072B2}   % Okabe-Ito blue: a win, the chosen option
+\definecolor{bad}{HTML}{D55E00}    % Okabe-Ito vermillion. NO red/green: see SKILL.md
+\colorlet{panel}{black!8}             % a panel slightly darker than the bg
+
+% MANDATORY: white background, near-black text (the projection-first default).
+\setbeamercolor{normal text}{fg=black!87, bg=white}
+\setbeamercolor{alerted text}{fg=accent}
+\setbeamercolor{progress bar in head/foot}{fg=accent}
+\setbeamercolor{progress bar in section page}{fg=accent}
+\setbeamercolor{title separator}{fg=accent}
+% MANDATORY: frametitle as a pale panel strip with near-black text.
+\setbeamercolor{frametitle}{fg=black!88, bg=panel}
+\setbeamercolor{frametitle right}{fg=black!88, bg=panel}
+
+% --- math: Libertinus already supplies it; amssymb/dsfont for extras ---
+\usepackage{amsmath, amssymb}
+\usepackage{dsfont}   % \mathds{1} indicator (amssymb has no blackboard-bold digit 1)
+
+% --- TikZ, styled dark-on-light so every diagram reads on a projector ---
+\usepackage{tikz}
+% overlay-beamer-styles provides "visible on=<n->", which the no-shift rule
+% (SKILL.md Pattern F) requires instead of wrapping a node in \only. Without it
+% every deck built from this template fails with "I do not know the key
+% '/tikz/visible on'".
+\usetikzlibrary{arrows.meta, positioning, calc, backgrounds, fit, shapes.geometric,
+                overlay-beamer-styles}
+\tikzset{>={Stealth[round]}}
+\colorlet{fg}{black!85}
+% MANDATORY: keep muted DARK enough on the light background. black!55 is the
+% legible floor; anything lighter washes out under a projector. Do not raise it.
+\colorlet{muted}{black!55}
+\tikzset{
+  every node/.style={text=fg, font=\footnotesize},
+  edge/.style={draw=fg, thick, ->},
+  dimedge/.style={draw=muted, thick, ->},
+  nodebox/.style={draw=fg, thick, rounded corners=2pt, inner sep=5pt, text=fg},
+  accentbox/.style={draw=accent, line width=1pt, rounded corners=2pt, inner sep=5pt, text=fg},
+  gridcell/.style={draw=muted, minimum size=1.05cm, anchor=center, text=fg},
+  treenode/.style={circle, draw=fg, thick, minimum size=0.9cm, inner sep=1pt, text=fg},
+  good fill/.style={fill=good!14!white, draw=good, text=fg},
+  bad fill/.style={fill=bad!12!white, draw=bad, text=fg},
+  acc fill/.style={fill=accent!13!white, draw=accent, text=fg},
+  % ADDED: the dashed slot a missing plate leaves behind.
+  plateslot/.style={draw=muted, dashed, line width=0.8pt, rounded corners=4pt,
+                    align=center, text=muted, font=\scriptsize, inner sep=6pt},
+}
+
+% ---------------------------------------------------------------------------
+% ADDED for this deck: framed plate, height constrained.
+% Lifted from mandatory-weekends-opening/slides/beamer-preamble.tex, where it is
+% called \framedimgh and used for the Kant and Friedrich plates.
+% ---------------------------------------------------------------------------
+\newcommand{\framedimgh}[2]{%
+  \tikz{\node[inner sep=0pt, draw=black!18, line width=0.8pt, rounded corners=4pt]%
+        {\includegraphics[height=#1]{#2}};}}
+
+% ---------------------------------------------------------------------------
+% ADDED for this deck: \plateh{<height>}{<placeholder width>}{<path>}
+%
+% If the file is present, this is exactly \framedimgh. If it is ABSENT, it draws
+% a dashed box of the same height naming the file that belongs there, so the deck
+% compiles and projects with an empty img/ directory and the gap is visible
+% rather than silent.
+%
+% This exists because no image is downloaded into this repository: the licences
+% are recorded in img/IMAGE-SOURCES.txt and the files are fetched by hand, once,
+% by whoever is going to project the deck. Do not "fix" this by committing a
+% stand-in image; a placeholder that looks like a picture is worse than a box
+% that says a picture is missing.
+% ---------------------------------------------------------------------------
+\newcommand{\plateh}[3]{%
+  \IfFileExists{#3}{\framedimgh{#1}{#3}}{%
+    \tikz{\node[plateslot, minimum height=#1, minimum width=#2]%
+          {Plate not present\\[2pt]\texttt{#3}\\[2pt] See \texttt{img/IMAGE-SOURCES.txt}};}}}
+
+% --- No closing-punchline helper here, on purpose: a frame ends on its final
+%     reveal. Do not add one; a macro in the preamble reads as an instruction.
+%
+%     DELIBERATELY NOT DEFINED: \takeaway. The Weekend 1 FDD preamble that the
+%     mandatory-weekends opening was copied from defines a centred amber-ruled
+%     pull quote, and it predates the rule. Carlos, 2026-08-11: the big centred
+%     blue punchline is out. A frame ends on its final reveal, and a closing
+%     thought that is real content is the last ordinary line, in body text.
+%     See .claude/skills/lecture-slides/SKILL.md, "No closing punchline".
+%     The two closing thoughts in this deck (the placement line on frame 1 and
+%     the "this hour is about the fourth" line on frame 4) are \footnotesize
+%     body text at the foot of their frame, in ink, never in accent. ---

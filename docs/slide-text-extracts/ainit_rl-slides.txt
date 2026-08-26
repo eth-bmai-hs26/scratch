@@ -1,0 +1,3161 @@
+Reinforcement Learning
+from one delivery van to the Bellman equation
+
+
+
+Carlos Cotrini, ETH Zurich
+                                      Faust, alone in his study, is translating the opening of
+                                                the Gospel of John, from the Greek:
+
+                                                    Ἐν ἀρχῇ ἦν ὁ λόγος
+                                                 “In the beginning was the logos.”
+
+                                      One Greek word, logos, with no single match: it can
+                                      mean Word, and also Thought, Reason, Power, the
+                                                            Deed.
+
+                                        So he writes a rendering, strikes it out, and tries
+                                                             again:
+Rembrandt, Faust (etching, c. 1652)
+                                ’Tis written: “In the Beginning was the Word.”
+                                 Here am I balked: who, now, can help afford?
+                                    The Word? Impossible so high to rate it;
+                                        And otherwise must I translate it,
+                                         If by the Spirit I am truly taught.
+                               Then thus: “In the Beginning was the Thought.”
+                                     This first line let me weigh completely,
+                                   Lest my impatient pen proceed too fleetly.
+                               Is it the Thought which works, creates, indeed?
+                                    “In the Beginning was the Power,” I read.
+                                      Yet, as I write, a warning is suggested,
+                                  That I the sense may not have fairly tested.
+                                     The Spirit aids me: now I see the light!
+J. K. Stieler, Goethe (1828)         “In the Beginning was the Act,” I write.
+
+                                   Goethe, Faust I (1808), trans. Bayard Taylor
+  the Word (das Wort)    → week one: observing, LLMs
+
+the Thought (der Sinn)   → week two: thinking
+
+ the Power (die Kraft) → the false summit: raw compute
+
+      the Act (die Tat) → week three: acting, today
+                                                        The plan
+
+                                                 How do we pick the best call?
+
+
+                                                        the one with the
+                                                    largest long-run reward
+
+
+                                                How do we know that reward?
+
+                                                      the Bellman equa-
+MDP maze    bandit arcade   Bellman’s house
+                                                      tion gives 𝑄 ⋆ (𝑠, 𝑎)
+
+
+                                                And when the odds are hidden?
+
+
+                                                learn it from experience: SARSA
+
+
+
+
+           SARSA maze       darts in the dark
+Motivation
+One van, one call a week
+
+
+
+
+             the van
+
+
+   every week: exactly one call
+
+
+
+
+                                  6/43
+One van, one call a week
+
+                                        collect the week’s profit
+                                  RUN
+                                        risk: breakdown, wear
+
+
+
+             the van
+
+
+   every week: exactly one call
+
+
+
+
+                                                                    6/43
+One van, one call a week
+
+                                            collect the week’s profit
+                                   RUN
+                                            risk: breakdown, wear
+
+
+
+                                              a week in the shop
+             the van              SERVICE
+                                              fails less often afterwards
+
+   every week: exactly one call
+
+
+
+
+                                                                            6/43
+One van, one call a week
+
+                                            collect the week’s profit
+                                   RUN
+                                            risk: breakdown, wear
+
+
+
+                                              a week in the shop
+             the van              SERVICE
+                                              fails less often afterwards
+
+   every week: exactly one call
+                                              a large expense
+                                  REPLACE
+                                              a fresh start
+
+
+
+
+                                                                            6/43
+One van, one call a week
+
+                                                 collect the week’s profit
+                                         RUN
+                                                 risk: breakdown, wear
+
+
+
+                                                   a week in the shop
+             the van                   SERVICE
+                                                   fails less often afterwards
+
+   every week: exactly one call
+                                                   a large expense
+                                       REPLACE
+                                                   a fresh start
+
+
+
+
+      short-term cost against long-term payoff, chance at every step
+                                                                                 6/43
+Markov decision processes
+                                                   you are here
+
+                                                   What are we decid-
+                                                 ing, and against what?
+
+
+
+                                                 one call a week (run, ser-
+                                                  vice, replace) in a world
+                                                that answers at random: a
+MDP maze    bandit arcade   Bellman’s house
+                                                 Markov decision process
+
+
+
+
+           SARSA maze       darts in the dark
+The model: four ingredients
+
+
+
+
+         𝑆: states
+
+         four wear
+           levels
+
+
+
+
+                              8/43
+The model: four ingredients
+
+
+
+
+         𝑆: states        𝐴: actions
+
+         four wear            three
+           levels              calls
+
+
+
+
+                                       8/43
+The model: four ingredients
+
+
+
+
+         𝑆: states        𝐴: actions    𝑇: dynamics
+
+         four wear            three    how the world
+           levels              calls      reacts
+
+
+
+
+                                                       8/43
+The model: four ingredients
+
+
+
+
+         𝑆: states        𝐴: actions    𝑇: dynamics       𝛾 = 0.9
+
+         four wear            three    how the world   how much the
+           levels              calls      reacts       future counts
+
+
+
+
+                                                                       8/43
+The model: four ingredients
+
+
+
+
+         𝑆: states        𝐴: actions               𝑇: dynamics       𝛾 = 0.9
+
+         four wear            three               how the world   how much the
+           levels              calls                 reacts       future counts
+
+
+
+
+                                   (𝑠 ′ , 𝑟) = 𝑇 (𝑠, 𝑎)
+
+
+
+
+                                                                                  8/43
+The model: four ingredients
+
+
+
+
+         𝑆: states        𝐴: actions               𝑇: dynamics          𝛾 = 0.9
+
+         four wear            three               how the world      how much the
+           levels              calls                 reacts          future counts
+
+
+
+                     (        𝑠⏟′      ,     𝑟⏟       ) = 𝑇 (𝑠, 𝑎)
+                     the state next week the reward
+
+
+
+
+                                                                                     8/43
+Same pair in, different output
+
+
+
+
+          (     ,   )            𝑇
+
+
+
+
+                                     9/43
+Same pair in, different output
+
+
+
+                                     (   , +72)   one week
+
+
+
+          (     ,   )            𝑇
+
+
+
+
+                                                             9/43
+Same pair in, different output
+
+
+
+                                     (   , +72)    one week
+
+
+
+          (     ,   )            𝑇
+
+
+                                     (   , −208)   another week
+
+
+
+
+                                                                  9/43
+Same pair in, different output
+
+
+
+                                               (    , +72)   one week
+
+
+
+          (     ,   )            𝑇
+
+
+                                               (   , −208)   another week
+
+
+
+
+          same input, different output: the dynamics 𝑇 is random
+
+                                                                            9/43
+The fleet sheet
+
+
+
+
+                  HEALTHY
+
+        profit    +95
+    breakdown     2%
+
+
+
+
+                            10/43
+The fleet sheet
+
+
+
+
+                        wear slips
+
+                  HEALTHY             WORN
+
+        profit    +95                +72
+    breakdown     2%                 8%
+
+
+
+
+                                             10/43
+The fleet sheet
+
+
+
+
+                        wear slips
+
+                  HEALTHY             WORN    SHAKY
+
+        profit    +95                +72     +40
+    breakdown     2%                 8%      28%
+
+
+
+
+                                                      10/43
+The fleet sheet
+
+
+
+
+                        wear slips
+
+                  HEALTHY             WORN    SHAKY   FAILING
+
+        profit    +95                +72     +40      +16
+    breakdown     2%                 8%      28%      55%
+
+
+
+
+                                                                10/43
+The fleet sheet
+
+
+                   breakdown under     : one net reward, profit minus 280
+                               from       : 95 − 280 = −185
+
+
+                          wear slips
+
+                  HEALTHY                 WORN                      SHAKY   FAILING
+
+        profit    +95                   +72                       +40       +16
+    breakdown     2%                     8%                       28%       55%
+
+
+
+
+                                                                                      10/43
+The fleet sheet
+
+
+                   breakdown under      : one net reward, profit minus 280
+                               from        : 95 − 280 = −185
+
+
+                          wear slips
+
+                  HEALTHY                  WORN                      SHAKY             FAILING
+
+        profit    +95                    +72                       +40                 +16
+    breakdown     2%                      8%                       28%                 55%
+
+                   : −50, a week in the shop (       back to        95% of the time)
+
+
+
+
+                                                                                                 10/43
+The fleet sheet
+
+
+                   breakdown under      : one net reward, profit minus 280
+                               from        : 95 − 280 = −185
+
+
+                          wear slips
+
+                  HEALTHY                  WORN                        SHAKY             FAILING
+
+        profit    +95                    +72                         +40                 +16
+    breakdown     2%                      8%                         28%                 55%
+
+                   : −50, a week in the shop (        back to         95% of the time)
+
+                                : −130, a brand-new             next week
+
+
+                                                                                                   10/43
+Policies and trajectories
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+
+
+
+                                                                                 11/43
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+             →                          →                                   →             →
+
+                               each week: 𝑎𝑖 = 𝜋(𝑠𝑖 ), then (𝑠𝑖+1 , 𝑟𝑖 ) = 𝑇 (𝑠𝑖 , 𝑎𝑖 )
+
+
+
+
+                                                                                              11/43
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+             →                          →                                   →             →
+
+                               each week: 𝑎𝑖 = 𝜋(𝑠𝑖 ), then (𝑠𝑖+1 , 𝑟𝑖 ) = 𝑇 (𝑠𝑖 , 𝑎𝑖 )
+
+
+          wk 1
+             ,
+           +95
+
+
+
+
+                                                                                              11/43
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+             →                          →                                   →             →
+
+                               each week: 𝑎𝑖 = 𝜋(𝑠𝑖 ), then (𝑠𝑖+1 , 𝑟𝑖 ) = 𝑇 (𝑠𝑖 , 𝑎𝑖 )
+
+
+          wk 1                 wk 2
+             ,                    ,
+           +95                  −50
+
+
+
+
+                                                                                              11/43
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+             →                          →                                   →             →
+
+                               each week: 𝑎𝑖 = 𝜋(𝑠𝑖 ), then (𝑠𝑖+1 , 𝑟𝑖 ) = 𝑇 (𝑠𝑖 , 𝑎𝑖 )
+
+
+          wk 1                 wk 2                             wk 3
+             ,                    ,                                ,
+           +95                  −50                              +95
+
+
+
+
+                                                                                              11/43
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+             →                          →                                   →                    →
+
+                               each week: 𝑎𝑖 = 𝜋(𝑠𝑖 ), then (𝑠𝑖+1 , 𝑟𝑖 ) = 𝑇 (𝑠𝑖 , 𝑎𝑖 )
+
+
+          wk 1                 wk 2                             wk 3                      wk 4
+             ,                    ,                                ,                        ,
+           +95                  −50                              +95                      +95
+
+
+
+
+                                                                                                     11/43
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+             →                          →                                   →                       →
+
+                               each week: 𝑎𝑖 = 𝜋(𝑠𝑖 ), then (𝑠𝑖+1 , 𝑟𝑖 ) = 𝑇 (𝑠𝑖 , 𝑎𝑖 )
+
+
+          wk 1                 wk 2                             wk 3                         wk 4       wk 5
+             ,                    ,                                ,                           ,
+           +95                  −50                              +95                         +95
+
+                    the trajectory: 𝑠1 , 𝑎1 , 𝑟1 , 𝑠2 , 𝑎2 , 𝑟2 , … one week per step, forever
+
+
+
+
+                                                                                                               11/43
+Playbook in, tape out
+
+
+                        a policy (the playbook): 𝜋 ∶ 𝑆 → 𝐴, one call per state
+
+             →                             →                                   →                          →
+
+                                  each week: 𝑎𝑖 = 𝜋(𝑠𝑖 ), then (𝑠𝑖+1 , 𝑟𝑖 ) = 𝑇 (𝑠𝑖 , 𝑎𝑖 )
+
+
+          wk 1                     wk 2                            wk 3                            wk 4       wk 5
+             ,                        ,                               ,                              ,
+           +95                      −50                             +95                            +95
+
+                        the trajectory: 𝑠1 , 𝑎1 , 𝑟1 , 𝑠2 , 𝑎2 , 𝑟2 , … one week per step, forever
+
+                 the tape is random; another run, same start: (                  ,     , −185) →
+
+
+
+
+                                                                                                                     11/43
+The goal: accumulating reward
+The return: one number per tape
+
+
+
+                                  𝐺1 = 𝑟 1
+
+
+
+              +95
+
+
+
+
+                                             12/43
+The return: one number per tape
+
+
+                             𝐺1 = 𝑟⏟1 + 𝛾⏟
+                                         𝑟2
+                                  in full   at 90%
+
+
+
+
+              +95
+
+                                                     each week shrunk
+                                                     by 𝛾 = 0.9
+
+
+
+
+                     −45
+
+
+                                                                        12/43
+The return: one number per tape
+
+
+                           𝐺1 = 𝑟⏟1 + 𝛾⏟     2𝑟 + ⋯
+                                       𝑟2 + 𝛾⏟ 3
+                                in full     at 90%      at 81%
+
+
+
+
+              +95
+                              +76.95      +69.255
+                                                                 each week shrunk
+                                                                 by 𝛾 = 0.9
+                                                    ⋯
+
+
+
+                     −45
+
+
+                                                                                    12/43
+The return: one number per tape
+
+
+                               𝐺1 = 𝑟⏟1 + 𝛾⏟     2𝑟 + ⋯
+                                           𝑟2 + 𝛾⏟ 3
+                                    in full     at 90%      at 81%
+
+       𝐺1 = 95 + 0.9 (−50) + 0.81 ⋅ 95 + 0.729 ⋅ 95 + ⋯ = 95 − 45 + 76.95 + 69.255 + ⋯
+
+               +95
+                                  +76.95      +69.255
+                                                                     each week shrunk
+                                                                     by 𝛾 = 0.9
+                                                        ⋯
+
+
+
+                         −45
+
+
+                                                                                         12/43
+The return: one number per tape
+
+
+                               𝐺1 = 𝑟⏟1 + 𝛾⏟     2𝑟 + ⋯
+                                           𝑟2 + 𝛾⏟ 3
+                                    in full     at 90%      at 81%
+
+       𝐺1 = 95 + 0.9 (−50) + 0.81 ⋅ 95 + 0.729 ⋅ 95 + ⋯ = 95 − 45 + 76.95 + 69.255 + ⋯
+
+               +95
+                                  +76.95      +69.255
+                                                                     each week shrunk
+                                                                     by 𝛾 = 0.9
+                                                        ⋯
+
+                                                                     the shrinking factors keep
+                                                                     the never-ending sum finite
+                         −45
+
+
+                                                                                                   12/43
+The recurrence
+
+
+
+                   𝐺𝑖 = 𝑟𝑖 + 𝛾 𝑟𝑖+1 + 𝛾 2 𝑟𝑖+2 + ⋯
+
+
+            𝑟𝑖   𝑟𝑖+1         𝑟𝑖+2         ⋯
+
+
+
+
+                                                     13/43
+The recurrence
+
+
+
+                  𝐺𝑖 = 𝑟𝑖 + 𝛾( 𝑟𝑖+1 + 𝛾 𝑟𝑖+2 + ⋯)
+
+
+            𝑟𝑖   𝑟𝑖+1              𝑟𝑖+2               ⋯
+
+
+                        𝐺𝑖+1 , discounted once by 𝛾
+
+
+
+
+                                                          13/43
+The recurrence
+
+
+                  𝐺𝑖 =         𝑟⏟𝑖      +𝛾            𝐺
+                                                      ⏟ 𝑖+1
+                           this week         everything after
+
+
+
+            𝑟𝑖   𝑟𝑖+1                𝑟𝑖+2               ⋯
+
+
+                        𝐺𝑖+1 , discounted once by 𝛾
+
+
+
+
+                                                                13/43
+The recurrence
+
+
+                     𝐺𝑖 =         𝑟⏟𝑖      +𝛾            𝐺
+                                                         ⏟ 𝑖+1
+                              this week         everything after
+
+
+
+            𝑟𝑖      𝑟𝑖+1                𝑟𝑖+2               ⋯
+
+
+                           𝐺𝑖+1 , discounted once by 𝛾
+
+
+
+
+                 this week’s reward + 𝛾 × all the rest
+                                                                   13/43
+The return is random
+
+
+
+
+            same policy 𝜋, same start   : run the weeks again and again
+
+
+
+
+                                                                          𝐺1
+
+                    a thin run                        a lucky run
+
+
+
+
+                                                                               14/43
+The return is random
+
+
+
+            same policy 𝜋, same start       : run the weeks again and again
+
+
+
+
+                                                                              𝐺1
+
+                    a thin run                             a lucky run
+
+
+
+
+               which 𝐺1 is the policy’s quality, if it changes every run?
+
+
+                                                                                   14/43
+The return is random
+
+
+
+            same policy 𝜋, same start          : run the weeks again and again
+
+                                         𝔼[𝐺1 ]
+
+
+                                                                                 𝐺1
+
+                    a thin run                               a lucky run
+
+                                        the average
+
+
+               which 𝐺1 is the policy’s quality, if it changes every run?
+
+
+                                                                                      14/43
+The return is random
+
+            same policy 𝜋, same start          : run the weeks again and again
+
+                                         𝔼[𝐺1 ]
+
+
+                                                                                 𝐺1
+
+                    a thin run                               a lucky run
+
+                                        the average
+
+
+               which 𝐺1 is the policy’s quality, if it changes every run?
+
+
+         average 𝐺1 over many runs: one honest number, 𝔼[𝐺1 ]
+                                                                                      14/43
+Maximize the average
+
+
+                               𝐺1(1)
+
+                               𝐺1(2)
+
+                               𝐺1(3)
+
+
+         each run gives its own 𝐺1
+
+
+
+
+                                       15/43
+Maximize the average
+
+
+                               𝐺1(1)
+
+                                                𝔼[𝐺1 ]
+                               𝐺1(2)
+                                             the average
+
+                               𝐺1(3)
+                                       over a sufficiently large
+                                          set of trajectories
+         each run gives its own 𝐺1
+
+
+
+
+                                                                   15/43
+Maximize the average
+
+
+                               𝐺1(1)
+
+                                                𝔼[𝐺1 ]             one plain
+                               𝐺1(2)
+                                             the average            number
+
+                               𝐺1(3)
+                                       over a sufficiently large
+                                          set of trajectories
+         each run gives its own 𝐺1
+
+
+
+
+                                                                               15/43
+Maximize the average
+
+
+                               𝐺1(1)
+
+                                                   𝔼[𝐺1 ]             one plain
+                               𝐺1(2)
+                                                the average            number
+
+                               𝐺1(3)
+                                          over a sufficiently large
+                                             set of trajectories
+         each run gives its own 𝐺1
+
+
+
+
+              the goal: find the policy 𝜋 that maximizes 𝔼[𝐺1 ]
+
+                                                                                  15/43
+Exploration and exploitation
+                                                     you are here
+
+                                                    Which call do we try
+                                                    while still learning?
+
+
+
+                                                mostly the best one so far, but
+                                                explore now and then, or you
+MDP maze    bandit arcade   Bellman’s house     never learn what you skipped
+
+
+
+
+           SARSA maze       darts in the dark
+Explore or exploit?
+
+            to pile up reward you must keep choosing a call, week after week, but which?
+
+
+
+
+                                                                                           17/43
+Explore or exploit?
+
+            to pile up reward you must keep choosing a call, week after week, but which?
+
+
+
+                    EXPLOIT          take the call you currently believe is best
+
+
+
+
+                                                                                           17/43
+Explore or exploit?
+
+            to pile up reward you must keep choosing a call, week after week, but which?
+
+
+
+                    EXPLOIT          take the call you currently believe is best
+
+
+
+                    EXPLORE          try another, to learn what it is worth
+
+
+
+
+                                                                                           17/43
+Explore or exploit?
+
+            to pile up reward you must keep choosing a call, week after week, but which?
+
+
+
+                    EXPLOIT          take the call you currently believe is best
+
+
+
+                    EXPLORE          try another, to learn what it is worth
+
+
+
+             the tension: you cannot pile up reward on what you have never measured
+
+
+
+
+                                                                                           17/43
+Explore or exploit?
+
+            to pile up reward you must keep choosing a call, week after week, but which?
+
+
+
+                    EXPLOIT          take the call you currently believe is best
+
+
+
+                    EXPLORE          try another, to learn what it is worth
+
+
+
+             the tension: you cannot pile up reward on what you have never measured
+
+
+
+
+   always     the van (best now), or now and then                             or   just to learn
+                                                                                                   17/43
+The 𝜀-greedy rule
+
+                    one simple knob, here set to 𝜀   =   0.15
+
+
+
+
+                                                                18/43
+The 𝜀-greedy rule
+
+                          one simple knob, here set to 𝜀   =    0.15
+
+
+
+                                        a share 1 − 𝜀 = 0.85: take the best-known call (ex-
+                    most weeks
+                                        ploit)
+
+
+
+
+                                                                                              18/43
+The 𝜀-greedy rule
+
+                           one simple knob, here set to 𝜀   =    0.15
+
+
+
+                                         a share 1 − 𝜀 = 0.85: take the best-known call (ex-
+                    most weeks
+                                         ploit)
+
+
+                                         a small chance 𝜀 = 0.15: take a random call instead
+                    now and then
+                                         (explore)
+
+
+
+
+                                                                                               18/43
+The 𝜀-greedy rule
+
+                           one simple knob, here set to 𝜀     =    0.15
+
+
+
+                                          a share 1 − 𝜀 = 0.85: take the best-known call (ex-
+                    most weeks
+                                          ploit)
+
+
+                                          a small chance 𝜀 = 0.15: take a random call instead
+                    now and then
+                                          (explore)
+
+                          a call never tried is never learned: you cannot
+                         learn the value of servicing if you never service
+
+
+
+
+                                                                                                18/43
+The 𝜀-greedy rule
+
+                           one simple knob, here set to 𝜀     =    0.15
+
+
+
+                                          a share 1 − 𝜀 = 0.85: take the best-known call (ex-
+                    most weeks
+                                          ploit)
+
+
+                                          a small chance 𝜀 = 0.15: take a random call instead
+                    now and then
+                                          (explore)
+
+                          a call never tried is never learned: you cannot
+                         learn the value of servicing if you never service
+
+
+
+             𝜀 is the dial that balances explore against exploit
+                                                                                                18/43
+The 𝑄-function and the Bellman
+equation
+                                                      you are here
+
+
+                                                Which call wins in the long run?
+
+
+
+
+                                                the one with the highest cumula-
+                                                tive reward; the Bellman equation
+MDP maze    bandit arcade   Bellman’s house         pins down its value 𝑄 ⋆ (𝑠, 𝑎)
+
+
+
+
+           SARSA maze       darts in the dark
+START
+
+
+
+ 5      3   8   2    6
+
+
+ 2      9   4   7    3
+
+
+ 7      1   6   3    8
+
+
+ 4      8   2   9    5
+
+
+ 6      3   7   1    4
+                    EXIT
+The scorecard 𝑄 ⋆
+
+
+                    𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖 = 𝑠, 𝑎𝑖 = 𝑎 ]
+
+
+
+
+                                                            21/43
+The scorecard 𝑄 ⋆
+
+                    𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                            =⏟
+                                             𝑠, 𝑎𝑖⏟
+                                                  =⏟𝑎 ]
+                                  in 𝑠, play 𝑎, optimal afterwards
+
+
+
+
+                                                                     21/43
+The scorecard 𝑄 ⋆
+
+                    𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                            =⏟
+                                             𝑠, 𝑎𝑖⏟
+                                                  =⏟𝑎 ]
+                                      in 𝑠, play 𝑎, optimal afterwards
+
+
+
+
+                     311.0    229.9         149.9
+
+
+
+
+                                                                         21/43
+The scorecard 𝑄 ⋆
+
+                    𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                            =⏟
+                                             𝑠, 𝑎𝑖⏟
+                                                  =⏟𝑎 ]
+                                      in 𝑠, play 𝑎, optimal afterwards
+
+
+
+
+                     311.0    229.9         149.9
+
+                     203.4    226.1         149.9
+
+
+
+
+                                                                         21/43
+The scorecard 𝑄 ⋆
+
+                    𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                            =⏟
+                                             𝑠, 𝑎𝑖⏟
+                                                  =⏟𝑎 ]
+                                      in 𝑠, play 𝑎, optimal afterwards
+
+
+
+
+                     311.0    229.9         149.9
+
+                     203.4    226.1         149.9
+
+                     96.5     126.4         149.9
+
+
+
+
+                                                                         21/43
+The scorecard 𝑄 ⋆
+
+                    𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                            =⏟
+                                             𝑠, 𝑎𝑖⏟
+                                                  =⏟𝑎 ]
+                                      in 𝑠, play 𝑎, optimal afterwards
+
+
+
+
+                     311.0    229.9         149.9
+
+                     203.4    226.1         149.9
+
+                     96.5     126.4         149.9
+
+                     −3.1     86.9          149.9
+
+
+
+
+                                                                         21/43
+The scorecard 𝑄 ⋆
+
+                           𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                                   =⏟
+                                                    𝑠, 𝑎𝑖⏟
+                                                         =⏟𝑎 ]
+                                               in 𝑠, play 𝑎, optimal afterwards
+
+                    𝜋 ⋆ : read each row, keep the call with the largest value
+
+
+                            311.0      229.9         149.9      row by row: the kept call
+
+                            203.4      226.1         149.9
+
+                             96.5      126.4         149.9
+
+                             −3.1       86.9         149.9
+
+
+
+
+                                                                                            21/43
+The scorecard 𝑄 ⋆
+
+                           𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                                   =⏟
+                                                    𝑠, 𝑎𝑖⏟
+                                                         =⏟𝑎 ]
+                                               in 𝑠, play 𝑎, optimal afterwards
+
+                    𝜋 ⋆ : read each row, keep the call with the largest value
+
+
+                            311.0      229.9         149.9      row by row: the kept call
+
+                            203.4      226.1         149.9
+
+                             96.5      126.4         149.9      149.9 beats 126.4 by 23.5
+
+                             −3.1       86.9         149.9
+
+
+
+
+                                                                                            21/43
+The scorecard 𝑄 ⋆
+
+                            𝑄 ⋆ (𝑠, 𝑎) = 𝔼[ 𝐺𝑖 | 𝑠𝑖⏟⏟
+                                                    =⏟
+                                                     𝑠, 𝑎𝑖⏟
+                                                          =⏟𝑎 ]
+                                                  in 𝑠, play 𝑎, optimal afterwards
+
+                    𝜋 ⋆ : read each row, keep the call with the largest value
+
+
+                             311.0        229.9         149.9      row by row: the kept call
+
+                             203.4        226.1         149.9
+
+                              96.5        126.4         149.9      149.9 beats 126.4 by 23.5
+
+                              −3.1         86.9         149.9
+
+                    the optimal playbook replaces a van that still starts every morning
+
+                                                                                               21/43
+The Bellman equation
+
+
+
+                        𝐺𝑖 = 𝑟𝑖 + 𝛾 𝐺𝑖+1      (every single week)
+
+
+
+
+                                    pays 𝑟𝑖
+                 (𝑠𝑖 , 𝑎𝑖 )                           (𝑠𝑖+1 , 𝑎𝑖+1 )   counted at 𝛾
+
+
+
+
+                                                                                      22/43
+The Bellman equation
+
+
+
+               𝑄 ⋆ (𝑠𝑖 , 𝑎𝑖 ) = 𝔼[ 𝑟𝑖 + 𝛾 𝐺𝑖+1 ]   (average both sides)
+
+
+
+
+                                    pays 𝑟𝑖
+                  (𝑠𝑖 , 𝑎𝑖 )                         (𝑠𝑖+1 , 𝑎𝑖+1 )   counted at 𝛾
+
+
+
+
+                                                                                     22/43
+The Bellman equation
+
+
+               𝑄 ⋆ (𝑠𝑖 , 𝑎𝑖 ) = 𝔼[          𝑟⏟𝑖         +𝛾 𝑄
+                                                           ⏟⏟
+                                                             ⋆ (𝑠 , 𝑎 ) ]
+                                                                ⏟⏟
+                                                                 𝑖+1  ⏟
+                                                                     𝑖+1
+                                     this week’s cash      next week’s value
+
+
+          replacing 𝐺𝑖+1 by its average 𝑄 ⋆ (𝑠𝑖+1 , 𝑎𝑖+1 ): averaging in two rounds
+
+                                        pays 𝑟𝑖
+                   (𝑠𝑖 , 𝑎𝑖 )                              (𝑠𝑖+1 , 𝑎𝑖+1 )   counted at 𝛾
+
+
+
+
+                                                                                           22/43
+The Bellman equation
+
+
+               𝑄 ⋆ (𝑠𝑖 , 𝑎𝑖 ) = 𝔼[          𝑟⏟𝑖         +𝛾 𝑄
+                                                           ⏟⏟
+                                                             ⋆ (𝑠 , 𝑎 ) ]
+                                                                ⏟⏟
+                                                                 𝑖+1  ⏟
+                                                                     𝑖+1
+                                     this week’s cash      next week’s value
+
+
+          replacing 𝐺𝑖+1 by its average 𝑄 ⋆ (𝑠𝑖+1 , 𝑎𝑖+1 ): averaging in two rounds
+
+                                        pays 𝑟𝑖
+                   (𝑠𝑖 , 𝑎𝑖 )                              (𝑠𝑖+1 , 𝑎𝑖+1 )   counted at 𝛾
+
+
+
+
+       one equation per cell: twelve equations pin down the table
+
+                                                                                           22/43
+Learning a number in the dark:
+Robbins-Monro
+                                                       you are here
+
+
+                                                Why does nudging ever settle down?
+
+
+
+
+                                                it is a running average of noisy ev-
+                                                idence; Robbins and Monro proved
+MDP maze    bandit arcade   Bellman’s house     small shrinking steps find the truth
+
+
+
+
+           SARSA maze       darts in the dark
+                                              Lost in the desert, you rub a lamp. The genie will
+                                                     set you free, on one condition: solve
+
+                                                                           1
+                                                                𝑄 =1+
+                                                                           𝑄
+                                                 No computer, no formula, only arithmetic.
+                                                        How do you even begin?
+
+                                               Guess a number, then let the equation correct
+                                                               your guess.
+
+Maxfield Parrish, The Arabian Nights (1909)
+Guess, check, correct
+
+
+                𝑄 (guess)   target = 1 + 𝑄1   loss = 𝑄 − target
+                    1              2                 −1
+
+
+
+
+                                                                  25/43
+Guess, check, correct
+
+
+                𝑄 (guess)                  target = 1 + 𝑄1   loss = 𝑄 − target
+                     1                            2                 −1
+                 next guess = the target
+                     2                            3
+                                                  2                 + 12
+
+
+
+
+                                                                                 25/43
+Guess, check, correct
+
+
+                𝑄 (guess)                  target = 1 + 𝑄1   loss = 𝑄 − target
+                     1                            2                 −1
+                 next guess = the target
+                     2                            3
+                                                  2                 + 12
+                     3
+                     2
+                                                  5
+                                                  3
+                                                                    − 16
+
+
+
+
+                                                                                 25/43
+Guess, check, correct
+
+
+                𝑄 (guess)                  target = 1 + 𝑄1   loss = 𝑄 − target
+                     1                            2                 −1
+                 next guess = the target
+                     2                            3
+                                                  2                 + 12
+                     3
+                     2
+                                                  5
+                                                  3
+                                                                    − 16
+                     5
+                     3
+                                                  8
+                                                  5                 + 151
+
+
+
+
+                                                                                 25/43
+Guess, check, correct
+
+
+                𝑄 (guess)                  target = 1 + 𝑄1   loss = 𝑄 − target
+                     1                            2                 −1
+                 next guess = the target
+                     2                            3
+                                                  2                 + 12
+                     3
+                     2
+                                                  5
+                                                  3
+                                                                    − 16
+                     5
+                     3
+                                                  8
+                                                  5                 + 151
+                     8
+                     5
+                                                 13
+                                                  8                 − 401
+
+
+
+
+                                                                                 25/43
+Guess, check, correct
+
+
+                𝑄 (guess)                  target = 1 + 𝑄1   loss = 𝑄 − target
+                     1                            2                 −1
+                 next guess = the target
+                     2                            3
+                                                  2                 + 12
+                     3
+                     2
+                                                  5
+                                                  3
+                                                                    − 16
+                     5
+                     3
+                                                  8
+                                                  5                 + 151
+                     8
+                     5
+                                                 13
+                                                  8                 − 401
+                     13                          21                   1
+                      8                          13                + 104
+
+
+
+
+                                                                                 25/43
+Guess, check, correct
+
+
+                𝑄 (guess)                   target = 1 + 𝑄1   loss = 𝑄 − target
+                      1                            2                 −1
+                  next guess = the target
+                      2                            3
+                                                   2                 + 12
+                      3
+                      2
+                                                   5
+                                                   3
+                                                                     − 16
+                      5
+                      3
+                                                   8
+                                                   5                 + 151
+                      8
+                      5
+                                                  13
+                                                   8                 − 401
+                      13                          21                   1
+                       8                          13                + 104
+
+
+      the loss shrinks toward 0, so 𝑄 → 1.618 … = 𝜑. guess equals target: solved.
+
+
+                                                                                    25/43
+The same idea, written as an algorithm
+
+
+      Q := 1                               any first guess
+      repeat:
+      target := 1 + 1/Q        what the equation demands
+      loss     := Q - target        how far off, with sign
+      Q        := Q - loss            step onto the target
+      until loss is (almost) 0
+
+
+
+
+                                                             26/43
+The same idea, written as an algorithm
+
+
+      Q := 1                               any first guess   a full step lands on the
+                                                             target. Noisy or unsure?
+      repeat:
+                                                             take only a fraction:
+      target := 1 + 1/Q        what the equation demands
+      loss     := Q - target        how far off, with sign
+                                                             Q := Q - 𝛼⋅loss
+      Q        := Q - loss            step onto the target
+      until loss is (almost) 0
+
+
+
+
+                                                                                        26/43
+The same idea, written as an algorithm
+
+
+      Q := 1                               any first guess   a full step lands on the
+                                                             target. Noisy or unsure?
+      repeat:
+                                                             take only a fraction:
+      target := 1 + 1/Q        what the equation demands
+      loss     := Q - target        how far off, with sign
+                                                             Q := Q - 𝛼⋅loss
+      Q        := Q - loss            step onto the target
+      until loss is (almost) 0
+
+
+
+     make the target a noisy sample and let the step 𝛼 shrink: that is
+                             Robbins-Monro
+
+                                                                                        26/43
+The Robbins-Monro iteration
+              to value a call we must average noisy weekly evidence, but the average is
+             never handed to us; it arrives one week at a time. Robbins and Monro (1951)
+                   gave the recipe, and the game “darts in the dark” is its picture.
+        find the number 𝑥 ⋆ that equals the average of noisy samples, one at a time
+
+
+
+
+                                                                                           27/43
+The Robbins-Monro iteration
+              to value a call we must average noisy weekly evidence, but the average is
+             never handed to us; it arrives one week at a time. Robbins and Monro (1951)
+                   gave the recipe, and the game “darts in the dark” is its picture.
+        find the number 𝑥 ⋆ that equals the average of noisy samples, one at a time
+
+
+                               𝑥 ← 𝑥 + 𝛼𝑛 (sample − 𝑥)
+
+
+
+
+                                                                                           27/43
+The Robbins-Monro iteration
+              to value a call we must average noisy weekly evidence, but the average is
+             never handed to us; it arrives one week at a time. Robbins and Monro (1951)
+                   gave the recipe, and the game “darts in the dark” is its picture.
+        find the number 𝑥 ⋆ that equals the average of noisy samples, one at a time
+
+                             𝑥 ← 𝑥 + 𝛼⏟𝑛 (sample
+                                         ⏟⏟⏟⏟⏟   − 𝑥)
+                                            step 𝑛        the miss
+
+
+
+
+                                                                                           27/43
+The Robbins-Monro iteration
+              to value a call we must average noisy weekly evidence, but the average is
+             never handed to us; it arrives one week at a time. Robbins and Monro (1951)
+                   gave the recipe, and the game “darts in the dark” is its picture.
+        find the number 𝑥 ⋆ that equals the average of noisy samples, one at a time
+
+                             𝑥 ← 𝑥 + 𝛼⏟𝑛 (sample
+                                         ⏟⏟⏟⏟⏟   − 𝑥)
+                                            step 𝑛        the miss
+
+                𝛼1 + 𝛼2 + 𝛼3 + ⋯ unbounded            (can travel from any start)
+
+
+
+
+                                                                                           27/43
+The Robbins-Monro iteration
+              to value a call we must average noisy weekly evidence, but the average is
+             never handed to us; it arrives one week at a time. Robbins and Monro (1951)
+                   gave the recipe, and the game “darts in the dark” is its picture.
+        find the number 𝑥 ⋆ that equals the average of noisy samples, one at a time
+
+                             𝑥 ← 𝑥 + 𝛼⏟𝑛 (sample
+                                         ⏟⏟⏟⏟⏟   − 𝑥)
+                                            step 𝑛        the miss
+
+                𝛼1 + 𝛼2 + 𝛼3 + ⋯ unbounded            (can travel from any start)
+                 𝛼12 + 𝛼22 + 𝛼32 + ⋯ finite      (the noise eventually cancels)
+
+
+
+
+                                                                                           27/43
+The Robbins-Monro iteration
+              to value a call we must average noisy weekly evidence, but the average is
+             never handed to us; it arrives one week at a time. Robbins and Monro (1951)
+                   gave the recipe, and the game “darts in the dark” is its picture.
+        find the number 𝑥 ⋆ that equals the average of noisy samples, one at a time
+
+                             𝑥 ← 𝑥 + 𝛼⏟𝑛 (sample
+                                         ⏟⏟⏟⏟⏟   − 𝑥)
+                                            step 𝑛        the miss
+
+                𝛼1 + 𝛼2 + 𝛼3 + ⋯ unbounded            (can travel from any start)
+                 𝛼12 + 𝛼22 + 𝛼32 + ⋯ finite      (the noise eventually cancels)
+                               𝛼𝑛 = 1/𝑛 satisfies both demands
+
+
+                                                                                           27/43
+The Robbins-Monro iteration
+              to value a call we must average noisy weekly evidence, but the average is
+             never handed to us; it arrives one week at a time. Robbins and Monro (1951)
+                   gave the recipe, and the game “darts in the dark” is its picture.
+        find the number 𝑥 ⋆ that equals the average of noisy samples, one at a time
+
+                             𝑥 ← 𝑥 + 𝛼⏟𝑛 (sample
+                                         ⏟⏟⏟⏟⏟   − 𝑥)
+                                            step 𝑛        the miss
+
+                𝛼1 + 𝛼2 + 𝛼3 + ⋯ unbounded            (can travel from any start)
+                 𝛼12 + 𝛼22 + 𝛼32 + ⋯ finite      (the noise eventually cancels)
+                               𝛼𝑛 = 1/𝑛 satisfies both demands
+
+        this is exactly the nudge SARSA will use next, cell by cell
+                                                                                           27/43
+SARSA: learning from the logbook
+                                                       you are here
+
+
+                                                What if nobody hands us the odds?
+
+
+
+
+                                                   read the logbook: after each
+                                                    lived week, nudge one cell
+MDP maze    bandit arcade   Bellman’s house        toward what it actually paid
+
+
+
+
+           SARSA maze       darts in the dark
+No map, only the walking
+
+
+
+
+                                         Caminante, no hay camino,
+                                          se hace camino al andar.
+                                    (trans.) Wanderer, there is no road; the road is made by walking.
+                                             Antonio Machado, Proverbios y cantares (1912)
+
+
+
+
+         drawing by L. Oroz, 1925
+No map, only the walking
+
+
+
+
+                                         Caminante, no hay camino,
+                                          se hace camino al andar.
+                                    (trans.) Wanderer, there is no road; the road is made by walking.
+                                             Antonio Machado, Proverbios y cantares (1912)
+
+                                             nobody prints the odds, so there is no map;
+                                        a good policy is a road that exists only once we walk it.
+
+         drawing by L. Oroz, 1925
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (   ,   ) card from lived weeks
+
+            (        ,    ) pays     +72
+
+                   Overwriter
+                                      72
+                card = last week
+                 Filing cabinet
+                                      72
+    true average of every week
+
+                         Nudger
+   move 15% toward the week,          72
+  a footstep correcting the road
+
+
+
+
+                                                                                                  30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (   ,   ) card from lived weeks
+
+            (        ,    ) pays     +72          +72
+
+                   Overwriter
+                                      72           72
+                card = last week
+                 Filing cabinet
+                                      72           72
+    true average of every week
+
+                         Nudger
+   move 15% toward the week,          72           72
+  a footstep correcting the road
+
+
+
+
+                                                                                                  30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (    ,   ) card from lived weeks
+
+            (        ,    ) pays     +72          +72          +72
+
+                   Overwriter
+                                      72           72          72
+                card = last week
+                 Filing cabinet
+                                      72           72          72
+    true average of every week
+
+                         Nudger
+   move 15% toward the week,          72           72          72
+  a footstep correcting the road
+
+
+
+
+                                                                                                   30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (    ,     ) card from lived weeks
+
+            (        ,    ) pays     +72          +72          +72       −208
+
+                   Overwriter
+                                      72           72          72        −208
+                card = last week
+                 Filing cabinet
+                                      72           72          72         2
+    true average of every week
+
+                         Nudger
+   move 15% toward the week,          72           72          72         30
+  a footstep correcting the road
+
+
+
+
+                                                                                                     30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (    ,     ) card from lived weeks
+
+            (        ,    ) pays     +72          +72          +72       −208       +72
+
+                   Overwriter
+                                      72           72          72        −208       72
+                card = last week
+                 Filing cabinet
+                                      72           72          72         2         16
+    true average of every week
+
+                         Nudger
+   move 15% toward the week,          72           72          72         30       36.3
+  a footstep correcting the road
+
+
+
+
+                                                                                                     30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (    ,     ) card from lived weeks
+
+            (        ,    ) pays     +72          +72          +72       −208       +72
+
+                   Overwriter
+                                      72           72          72        −208       72       hysterical
+                card = last week
+                 Filing cabinet                                                              right, but stores
+                                      72           72          72         2         16
+    true average of every week                                                               every card
+
+                         Nudger
+                                                                                             calm, and
+   move 15% toward the week,          72           72          72         30       36.3
+                                                                                             no cabinet
+  a footstep correcting the road
+
+
+
+
+                                                                                                                 30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (    ,     ) card from lived weeks
+
+            (        ,    ) pays     +72          +72          +72       −208        +72
+
+                   Overwriter
+                                      72           72          72        −208        72      hysterical
+                card = last week
+                 Filing cabinet                                                              right, but stores
+                                      72           72          72         2          16
+    true average of every week                                                               every card
+
+                         Nudger
+                                                                                             calm, and
+   move 15% toward the week,          72           72          72         30        36.3
+                                                                                             no cabinet
+  a footstep correcting the road
+
+
+            𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖 , 𝑎𝑖 ) + 𝛼[ 𝑟𝑖 − 𝑞(𝑠𝑖 , 𝑎𝑖 ) ]                  (the Nudger, written down)
+
+
+
+                                                                                                                 30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (           ,     ) card from lived weeks
+
+            (        ,    ) pays      +72         +72          +72              −208       +72
+
+                   Overwriter
+                                       72          72          72               −208       72       hysterical
+                card = last week
+                 Filing cabinet                                                                     right, but stores
+                                       72          72          72                2         16
+    true average of every week                                                                      every card
+
+                         Nudger
+                                                                                                    calm, and
+   move 15% toward the week,           72          72          72                30       36.3
+                                                                                                    no cabinet
+  a footstep correcting the road
+
+                                   𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖
+                                                 ⏟    , 𝑎𝑖 ) + 𝛼⏟ [⏟⏟⏟⏟⏟
+                                                                    𝑟𝑖 − 𝑞(𝑠𝑖 , 𝑎𝑖 ) ]
+                                                    the card         0.15
+                                                                                  the surprise
+
+
+
+                                                                                                                        30/43
+Three bookkeepers, one bad week
+
+                         the odds are still hidden, so fill the (           ,     ) card from lived weeks
+
+            (        ,    ) pays      +72         +72          +72              −208       +72
+
+                   Overwriter
+                                       72          72          72               −208       72       hysterical
+                card = last week
+                 Filing cabinet                                                                     right, but stores
+                                       72          72          72                2         16
+    true average of every week                                                                      every card
+
+                         Nudger
+                                                                                                    calm, and
+   move 15% toward the week,           72          72          72                30       36.3
+                                                                                                    no cabinet
+  a footstep correcting the road
+
+                                   𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖
+                                                 ⏟    , 𝑎𝑖 ) + 𝛼⏟ [⏟⏟⏟⏟⏟
+                                                                    𝑟𝑖 − 𝑞(𝑠𝑖 , 𝑎𝑖 ) ]
+                                                    the card         0.15
+                                                                                  the surprise
+
+         nudge, never overwrite: one bad week must not erase a year
+                                                                                                                        30/43
+The alpha knob
+                 same five weeks, three step sizes
+
+
+
+
+                                                     31/43
+The alpha knob
+                               same five weeks, three step sizes
+                            𝛼 = 0.9
+
+                               72
+      the −208 week lands
+
+                             −180
+
+           then +72 lands
+
+                              46.8
+
+                            whiplash
+
+
+
+
+                                                                   31/43
+The alpha knob
+                               same five weeks, three step sizes
+                            𝛼 = 0.9                                  𝛼 = 0.05
+
+                               72                                       72
+      the −208 week lands
+
+                             −180                                       58
+
+           then +72 lands
+
+                              46.8                                      58.7
+
+                            whiplash                               barely notices
+
+
+
+
+                                                                                    31/43
+The alpha knob
+                               same five weeks, three step sizes
+                            𝛼 = 0.9                 𝛼 = 0.15         𝛼 = 0.05
+
+                               72                      72               72
+      the −208 week lands
+
+                             −180                      30               58
+
+           then +72 lands
+
+                              46.8                    36.3              58.7
+
+                            whiplash            the calm middle    barely notices
+
+
+
+
+                                                                                    31/43
+The alpha knob
+                                    same five weeks, three step sizes
+                                 𝛼 = 0.9                 𝛼 = 0.15         𝛼 = 0.05
+
+                                   72                       72               72
+      the −208 week lands
+
+                                  −180                      30               58
+
+           then +72 lands
+
+                                  46.8                     36.3              58.7
+
+                                whiplash             the calm middle    barely notices
+
+
+
+                            small steady steps, never overwrite
+
+                                                                                         31/43
+The planner’s Monday
+
+
+         Monday forecast: 100
+
+
+
+
+                                32/43
+The planner’s Monday
+
+
+         Monday forecast: 100
+
+
+
+
+                            the week sells: 80
+
+
+
+
+                                                 32/43
+The planner’s Monday
+
+
+         Monday forecast: 100
+
+
+                                                  the miss
+                                                 80 − 100 = −20
+
+
+
+
+                            the week sells: 80
+
+
+
+
+                                                                  32/43
+The planner’s Monday
+
+
+         Monday forecast: 100                                     next Monday: 97
+
+
+                                                  the miss
+                                                 80 − 100 = −20
+
+
+
+
+                            the week sells: 80              100 + 0.15 × (−20) = 97
+
+
+
+
+                                                                                      32/43
+The planner’s Monday
+
+          Monday forecast: 100                                     next Monday: 97
+
+
+                                                   the miss
+                                                  80 − 100 = −20
+
+
+
+
+                             the week sells: 80              100 + 0.15 × (−20) = 97
+
+
+
+                   new forecast = old forecast + 0.15 × miss
+
+
+
+
+                                                                                       32/43
+The planner’s Monday
+
+          Monday forecast: 100                                     next Monday: 97
+
+
+                                                   the miss
+                                                  80 − 100 = −20
+
+
+
+
+                             the week sells: 80              100 + 0.15 × (−20) = 97
+
+                  new forecast = ⏟
+                                 old
+                                   ⏟⏟forecast
+                                         ⏟⏟ + 0.15
+                                              ⏟ × miss
+                                                   ⏟
+                                                        𝑞(𝑠𝑖 , 𝑎𝑖 )             𝛼      𝑟𝑖 −𝑞(𝑠𝑖 ,𝑎𝑖 )
+
+
+
+
+                                                                                                        32/43
+The planner’s Monday
+
+          Monday forecast: 100                                     next Monday: 97
+
+
+                                                   the miss
+                                                  80 − 100 = −20
+                                                                                        the planner’s name:
+                                                                                        exponential smoothing
+
+                             the week sells: 80              100 + 0.15 × (−20) = 97
+
+                  new forecast = ⏟
+                                 old
+                                   ⏟⏟forecast
+                                         ⏟⏟ + 0.15
+                                              ⏟ × miss
+                                                   ⏟
+                                                        𝑞(𝑠𝑖 , 𝑎𝑖 )             𝛼      𝑟𝑖 −𝑞(𝑠𝑖 ,𝑎𝑖 )
+
+
+
+
+                                                                                                                32/43
+The planner’s Monday
+
+          Monday forecast: 100                                     next Monday: 97
+
+
+                                                   the miss
+                                                  80 − 100 = −20
+                                                                                        the planner’s name:
+                                                                                        exponential smoothing
+
+                             the week sells: 80              100 + 0.15 × (−20) = 97
+
+                  new forecast = ⏟
+                                 old
+                                   ⏟⏟forecast
+                                         ⏟⏟ + 0.15
+                                              ⏟ × miss
+                                                   ⏟
+                                                        𝑞(𝑠𝑖 , 𝑎𝑖 )             𝛼      𝑟𝑖 −𝑞(𝑠𝑖 ,𝑎𝑖 )
+
+
+
+  SARSA forecasts the value of a call the way a planner forecasts sales
+
+                                                                                                                32/43
+The cash-only ledger lies
+
+               the nudger judged each call by one thing: the money it pays this week
+
+
+
+
+                                                                                       33/43
+The cash-only ledger lies
+
+               the nudger judged each call by one thing: the money it pays this week
+
+                    by cash alone
+
+                         : pay 130
+                         : pay 50
+                     the two worst
+                   calls on the sheet
+
+
+
+
+                                                                                       33/43
+The cash-only ledger lies
+
+               the nudger judged each call by one thing: the money it pays this week
+
+                    by cash alone                             yet 𝑄 ⋆ crowned them
+
+                         : pay 130                          : best at        ,         (149.9)
+
+                         : pay 50                                : best at        (226.1)
+                     the two worst
+                                                                  the two best calls
+                   calls on the sheet
+
+
+
+
+                                                                                                 33/43
+The cash-only ledger lies
+
+               the nudger judged each call by one thing: the money it pays this week
+
+                    by cash alone                             yet 𝑄 ⋆ crowned them
+
+                         : pay 130         same calls       : best at        ,         (149.9)
+
+                         : pay 50                                : best at        (226.1)
+                     the two worst
+                                                                  the two best calls
+                   calls on the sheet
+
+
+
+
+                                                                                                 33/43
+The cash-only ledger lies
+
+               the nudger judged each call by one thing: the money it pays this week
+
+                    by cash alone                             yet 𝑄 ⋆ crowned them
+
+                         : pay 130         same calls       : best at        ,         (149.9)
+
+                         : pay 50                                : best at        (226.1)
+                     the two worst
+                                                                  the two best calls
+                   calls on the sheet
+
+
+
+
+      the worst-paying calls are the best calls, so cash cannot be the
+                               whole story
+                                                                                                 33/43
+Why? A call also leaves you a van
+
+            a call does two things: it pays cash now, and it leaves you a van for next week
+
+
+
+
+                                                                                              34/43
+Why? A call also leaves you a van
+
+            a call does two things: it pays cash now, and it leaves you a van for next week
+
+
+                          earn +95 now , but the van ends a week more worn, a thinner future
+                          (and a breakdown leaves         )
+
+
+
+
+                                                                                               34/43
+Why? A call also leaves you a van
+
+            a call does two things: it pays cash now, and it leaves you a van for next week
+
+
+                          earn +95 now , but the van ends a week more worn, a thinner future
+                          (and a breakdown leaves         )
+
+
+
+                          pay −130 now , but next Monday a brand-new             , a future full
+                          of profit
+
+
+
+
+                                                                                                   34/43
+Why? A call also leaves you a van
+
+            a call does two things: it pays cash now, and it leaves you a van for next week
+
+
+                          earn +95 now , but the van ends a week more worn, a thinner future
+                          (and a breakdown leaves         )
+
+
+
+                          pay −130 now , but next Monday a brand-new             , a future full
+                          of profit
+
+                             loses cash, yet the      it leaves is worth far
+                       more than 130 down the road: that is why it is crowned
+
+
+
+
+                                                                                                   34/43
+Why? A call also leaves you a van
+
+            a call does two things: it pays cash now, and it leaves you a van for next week
+
+
+                          earn +95 now , but the van ends a week more worn, a thinner future
+                          (and a breakdown leaves         )
+
+
+
+                          pay −130 now , but next Monday a brand-new             , a future full
+                          of profit
+
+                             loses cash, yet the      it leaves is worth far
+                       more than 130 down the road: that is why it is crowned
+
+
+
+             a call’s worth: its cash, plus the van it leaves you
+                                                                                                   34/43
+Grade the week like a trade-in
+
+                       S         A    R     S     A
+                       𝑠𝑖        𝑎𝑖   𝑟𝑖   𝑠𝑖+1   𝑎𝑖+1   one logbook line
+
+
+
+
+                                                                            35/43
+Grade the week like a trade-in
+
+                       S         A    R              S               A
+                       𝑠𝑖        𝑎𝑖    𝑟𝑖           𝑠𝑖+1            𝑎𝑖+1           one logbook line
+
+                                      cash        the pair you land on
+
+                                             trade-in price: 𝛾 × 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )
+
+
+
+
+                                                                                                      35/43
+Grade the week like a trade-in
+                       S         A      R               S               A
+                       𝑠𝑖        𝑎𝑖      𝑟𝑖            𝑠𝑖+1            𝑎𝑖+1           one logbook line
+
+                                        cash         the pair you land on
+
+                                                trade-in price: 𝛾 × 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )
+
+
+               the week’s worth = 𝑟⏟𝑖 +              𝛾⏟𝑞(𝑠
+                                                       ⏟𝑖+1
+                                                         ⏟  , 𝑎⏟⏟)
+                                                               𝑖+1
+                                      cash     trade-in, at your own price
+
+
+
+
+                                                                                                         35/43
+Grade the week like a trade-in
+                         S         A         R             S               A
+                         𝑠𝑖        𝑎𝑖        𝑟𝑖           𝑠𝑖+1            𝑎𝑖+1           one logbook line
+
+                                            cash        the pair you land on
+
+                                                   trade-in price: 𝛾 × 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )
+
+
+                   the better target = 𝑟𝑖⏟⏟
+                                          + ⏟⏟⏟
+                                            𝛾 𝑞(𝑠𝑖+1 , 𝑎⏟⏟
+                                                         𝑖+1 )
+                                            cash, plus the van you keep
+
+               the surprise was your guess against cash: now aim it at this
+
+
+
+
+                                                                                                            35/43
+Grade the week like a trade-in
+                         S         A         R             S               A
+                         𝑠𝑖        𝑎𝑖        𝑟𝑖           𝑠𝑖+1            𝑎𝑖+1           one logbook line
+
+                                            cash        the pair you land on
+
+                                                   trade-in price: 𝛾 × 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )
+
+
+                   the better target = 𝑟𝑖⏟⏟
+                                          + ⏟⏟⏟
+                                            𝛾 𝑞(𝑠𝑖+1 , 𝑎⏟⏟
+                                                         𝑖+1 )
+                                            cash, plus the van you keep
+
+               the surprise was your guess against cash: now aim it at this
+
+
+          upgrade the target: from cash alone to cash + trade-in
+
+                                                                                                            35/43
+Price it from your own book
+
+             wait: you price the leftover van with 𝑞, the very book you are still learning
+
+
+
+
+                                                                                             36/43
+Price it from your own book
+
+             wait: you price the leftover van with 𝑞, the very book you are still learning
+
+
+                   a dealer’s price book                         prices today’s trade-in
+              this month, still being revised                   from that book, anyway
+
+
+
+
+                                                                                             36/43
+Price it from your own book
+
+             wait: you price the leftover van with 𝑞, the very book you are still learning
+
+
+                   a dealer’s price book                         prices today’s trade-in
+              this month, still being revised                   from that book, anyway
+
+
+                      nobody refuses to price a car because the book is not final
+
+
+
+
+                                                                                             36/43
+Price it from your own book
+
+             wait: you price the leftover van with 𝑞, the very book you are still learning
+
+
+                   a dealer’s price book                           prices today’s trade-in
+              this month, still being revised                     from that book, anyway
+
+
+                      nobody refuses to price a car because the book is not final
+
+                         week 0                                 many weeks
+                                       each nudge: less wrong
+                            0                                     ≈ 𝑄⋆
+
+
+
+
+                                                                                             36/43
+Price it from your own book
+
+             wait: you price the leftover van with 𝑞, the very book you are still learning
+
+
+                   a dealer’s price book                           prices today’s trade-in
+              this month, still being revised                     from that book, anyway
+
+
+                      nobody refuses to price a car because the book is not final
+
+                         week 0                                 many weeks
+                                       each nudge: less wrong
+                            0                                     ≈ 𝑄⋆
+
+
+
+
+   the book is wrong today, and that is fine: every nudge makes it less
+                                 wrong
+                                                                                             36/43
+Write the line yourself
+
+
+                  cash    value where you land    what you believed
+                   𝑟𝑖         𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )        𝑞(𝑠𝑖 , 𝑎𝑖 )
+
+
+
+
+                                                                      37/43
+Write the line yourself
+
+
+                  cash        value where you land    what you believed
+                   𝑟𝑖             𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )        𝑞(𝑠𝑖 , 𝑎𝑖 )
+
+
+
+
+         new guess = old guess + 𝛼[           +𝛾            −             ]
+
+
+
+
+                                                                              37/43
+Write the line yourself
+
+
+                   cash                value where you land        what you believed
+                    𝑟𝑖                     𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )            𝑞(𝑠𝑖 , 𝑎𝑖 )
+
+
+
+
+             𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖 , 𝑎𝑖 ) + 𝛼[ 𝑟𝑖 + 𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 ) − 𝑞(𝑠𝑖 , 𝑎𝑖 ) ]
+
+
+
+
+                                                                                       37/43
+Write the line yourself
+
+
+                    cash                  value where you land        what you believed
+                     𝑟𝑖                       𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )            𝑞(𝑠𝑖 , 𝑎𝑖 )
+
+
+
+
+          𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖 , 𝑎𝑖 ) + 𝛼        𝑟𝑖 +⏟𝛾⏟
+                                             [⏟⏟     𝑞(𝑠
+                                                      ⏟𝑖+1 , 𝑎𝑖+1 ) −
+                                                         ⏟⏟⏟        ⏟𝑞(𝑠
+                                                                      ⏟⏟ 𝑖 ,⏟⏟
+                                                                            𝑎𝑖 ) ]
+                                          the surprise: upgraded target minus your guess
+
+
+
+
+                                                                                           37/43
+Write the line yourself
+
+
+                         cash                      value where you land                what you believed
+                          𝑟𝑖                           𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )                    𝑞(𝑠𝑖 , 𝑎𝑖 )
+
+
+
+
+            𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖 , 𝑎𝑖 ) + 𝛼                𝑟𝑖 +⏟𝛾⏟
+                                                       [⏟⏟     𝑞(𝑠
+                                                                ⏟𝑖+1 , 𝑎𝑖+1 ) −
+                                                                   ⏟⏟⏟        ⏟𝑞(𝑠
+                                                                                ⏟⏟ 𝑖 ,⏟⏟
+                                                                                      𝑎𝑖 ) ]
+                                                  the surprise: upgraded target minus your guess
+
+
+       𝛼 = 0.15, constant ⋅ 𝜀 = 0.15: a random call in 15% of weeks ⋅ 𝑎𝑖+1 : the call you actually make, never a max
+
+
+
+
+                                                                                                                       37/43
+Write the line yourself
+
+
+                         cash                      value where you land                what you believed
+                          𝑟𝑖                           𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )                    𝑞(𝑠𝑖 , 𝑎𝑖 )
+
+
+
+
+            𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖 , 𝑎𝑖 ) + 𝛼                𝑟𝑖 +⏟𝛾⏟
+                                                       [⏟⏟     𝑞(𝑠
+                                                                ⏟𝑖+1 , 𝑎𝑖+1 ) −
+                                                                   ⏟⏟⏟        ⏟𝑞(𝑠
+                                                                                ⏟⏟ 𝑖 ,⏟⏟
+                                                                                      𝑎𝑖 ) ]
+                                                  the surprise: upgraded target minus your guess
+
+
+       𝛼 = 0.15, constant ⋅ 𝜀 = 0.15: a random call in 15% of weeks ⋅ 𝑎𝑖+1 : the call you actually make, never a max
+
+
+
+
+                      you did not memorize SARSA: you wrote it
+
+                                                                                                                       37/43
+Bellman becomes SARSA
+
+
+
+
+                    𝑄 ⋆ (𝑠𝑖 , 𝑎𝑖 ) = 𝔼[ 𝑟𝑖 + 𝛾 𝑄 ⋆ (𝑠𝑖+1 , 𝑎𝑖+1 ) ]
+
+
+             start from Bellman: an average over all the weeks that could happen
+
+
+
+
+                                                                                   38/43
+Bellman becomes SARSA
+
+
+
+              𝑄 ⋆ (𝑠𝑖 , 𝑎𝑖 ) ≈              + 𝛾 𝑄 ⋆ (𝑠𝑖+1 , 𝑎𝑖+1 )
+                                         𝑟𝑖⏟⏟⏟⏟⏟⏟⏟
+                                 the one week that arrived, not the average
+
+
+
+                erase the average: keep the single week that actually arrived
+
+
+
+
+                                                                                38/43
+Bellman becomes SARSA
+
+
+
+
+             𝑞(𝑠𝑖 , 𝑎𝑖 ) ≈ 𝑟𝑖 + 𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 )        (your book, not 𝑄 ⋆ )
+
+
+
+
+              erase the unknown truth 𝑄 ⋆ : look the value up in your own book 𝑞
+
+
+
+
+                                                                                   38/43
+Bellman becomes SARSA
+
+
+
+
+           𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖 , 𝑎𝑖 ) + 𝛼[ 𝑟𝑖 + 𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 ) − 𝑞(𝑠𝑖 , 𝑎𝑖 ) ]
+
+
+                  wrap it in the nudge: step toward the target, never jump to it
+
+
+
+
+                                                                                   38/43
+Bellman becomes SARSA
+
+
+
+
+           𝑞(𝑠𝑖 , 𝑎𝑖 ) ← 𝑞(𝑠𝑖 , 𝑎𝑖 ) + 𝛼[ 𝑟𝑖 + 𝛾 𝑞(𝑠𝑖+1 , 𝑎𝑖+1 ) − 𝑞(𝑠𝑖 , 𝑎𝑖 ) ]
+
+
+                  wrap it in the nudge: step toward the target, never jump to it
+
+
+
+
+     Bellman, with the expectation replaced by an arriving average
+
+
+                                                                                   38/43
+One week, one nudge
+
+
+
+
+            twelve guesses, all start at 0   0   0   0
+
+                                             0   0   0
+
+                                             0   0   0
+
+                                             0   0   0
+
+
+
+
+                                                         39/43
+One week, one nudge
+
+                    week one in the logbook: (   ,   , +95,   ,   )
+
+
+
+
+            twelve guesses, all start at 0           0        0       0
+
+                                                     0        0       0
+
+                                                     0        0       0
+
+                                                     0        0       0
+
+
+
+
+                                                                          39/43
+One week, one nudge
+
+                    week one in the logbook: (       ,    , +95,        ,    )
+
+                        evidence = 𝑟𝑖 + 𝛾 𝑞(     ,   ) = 95 + 0.9 × 0 = 95
+
+
+
+
+            twelve guesses, all start at 0                 0            0        0
+
+                                                           0            0        0
+
+                                                           0            0        0
+
+                                                           0            0        0
+
+
+
+
+                                                                                     39/43
+One week, one nudge
+
+                    week one in the logbook: (              ,    , +95,        ,    )
+
+                        evidence = 𝑟𝑖 + 𝛾 𝑞(            ,   ) = 95 + 0.9 × 0 = 95
+
+                                         surprise = 95 − 0 = 95
+
+                                   nudge: + 0.15 × 95
+
+
+            twelve guesses, all start at 0                        0            0        0
+
+                                                                  0            0        0
+
+                                                                  0            0        0
+
+                                                                  0            0        0
+
+
+
+
+                                                                                            39/43
+One week, one nudge
+
+                    week one in the logbook: (              ,    , +95,        ,    )
+
+                        evidence = 𝑟𝑖 + 𝛾 𝑞(            ,   ) = 95 + 0.9 × 0 = 95
+
+                                         surprise = 95 − 0 = 95
+
+                                   nudge: + 0.15 × 95
+
+
+            twelve guesses, all start at 0                      14.25          0        0
+
+           one cell moves, eleven stay put                        0            0        0
+
+                                                                  0            0        0
+
+                                                                  0            0        0
+
+
+
+
+                                                                                            39/43
+One week, one nudge
+
+                    week one in the logbook: (              ,    , +95,        ,    )
+
+                        evidence = 𝑟𝑖 + 𝛾 𝑞(            ,   ) = 95 + 0.9 × 0 = 95
+
+                                         surprise = 95 − 0 = 95
+
+                                   nudge: + 0.15 × 95
+
+
+            twelve guesses, all start at 0                      14.25          0        0
+
+           one cell moves, eleven stay put                        0            0        0
+
+                                                                  0            0        0
+            a few hundred weeks later:
+              the three bands emerge,
+                                                                  0            0        0
+                the road underfoot
+
+
+
+
+                                                                                            39/43
+One week, one nudge
+
+                    week one in the logbook: (              ,    , +95,        ,    )
+
+                        evidence = 𝑟𝑖 + 𝛾 𝑞(            ,   ) = 95 + 0.9 × 0 = 95
+
+                                          surprise = 95 − 0 = 95
+
+                                   nudge: + 0.15 × 95
+
+
+            twelve guesses, all start at 0                      14.25          0        0
+
+           one cell moves, eleven stay put                        0            0        0
+
+                                                                  0            0        0
+             a few hundred weeks later:
+               the three bands emerge,
+                                                                  0            0        0
+                 the road underfoot
+          the cells settle below 𝑄 ⋆ and keep jittering, but each row keeps the right call
+
+
+                                                                                             39/43
+SARSA, all together
+
+       1   you are in a state (the van’s wear level:   );
+
+
+
+
+                                                            40/43
+SARSA, all together
+
+       1   you are in a state (the van’s wear level:                          );
+
+           choose a call: usually the best you know (exploit), sometimes a random one (ex-
+       2   plore): 𝜀-greedy;
+
+
+
+
+                                                                                             40/43
+SARSA, all together
+
+       1   you are in a state (the van’s wear level:                          );
+
+           choose a call: usually the best you know (exploit), sometimes a random one (ex-
+       2   plore): 𝜀-greedy;
+
+       3   act; collect the week’s reward; the van lands in a new state;
+
+
+
+
+                                                                                             40/43
+SARSA, all together
+
+       1   you are in a state (the van’s wear level:                            );
+
+           choose a call: usually the best you know (exploit), sometimes a random one (ex-
+       2   plore): 𝜀-greedy;
+
+       3   act; collect the week’s reward; the van lands in a new state;
+
+           nudge your estimate of that call a little toward (this week’s reward + 𝛾 × your esti-
+       4   mate of the next call): the Robbins-Monro nudge toward the Bellman target;
+
+
+
+
+                                                                                                   40/43
+SARSA, all together
+
+       1   you are in a state (the van’s wear level:                             );
+
+           choose a call: usually the best you know (exploit), sometimes a random one (ex-
+       2   plore): 𝜀-greedy;
+
+       3   act; collect the week’s reward; the van lands in a new state;
+
+           nudge your estimate of that call a little toward (this week’s reward + 𝛾 × your esti-
+       4   mate of the next call): the Robbins-Monro nudge toward the Bellman target;
+
+
+       5   repeat, week after week; the estimates settle and the best call per state emerges.
+
+
+
+
+                                                                                                   40/43
+SARSA, all together
+
+       1   you are in a state (the van’s wear level:                               );
+
+           choose a call: usually the best you know (exploit), sometimes a random one (ex-
+       2   plore): 𝜀-greedy;
+
+       3   act; collect the week’s reward; the van lands in a new state;
+
+           nudge your estimate of that call a little toward (this week’s reward + 𝛾 × your esti-
+       4   mate of the next call): the Robbins-Monro nudge toward the Bellman target;
+
+
+       5   repeat, week after week; the estimates settle and the best call per state emerges.
+
+
+               this brings together the MDP (states, calls), explore/exploit (step 2), Bell-
+                 man (the target in step 4), and Robbins-Monro (the nudge in step 4)
+
+
+                                                                                                   40/43
+SARSA’s cousin: Q-learning
+
+
+
+                                   the call you actually take next
+
+                             SARSA: learn the road you walk (on-policy)
+            where you
+              stand
+
+
+
+
+                                                                          41/43
+SARSA’s cousin: Q-learning
+
+
+
+                                    the call you actually take next
+
+                             SARSA: learn the road you walk (on-policy)
+            where you
+              stand
+
+
+                                   the best call you could take next
+
+                             Q-learning: learn the ideal road (off-policy)
+
+
+
+
+                                                                             41/43
+SARSA’s cousin: Q-learning
+
+
+
+                                                  the call you actually take next
+
+                                           SARSA: learn the road you walk (on-policy)
+                 where you
+                   stand
+
+
+                                                 the best call you could take next
+
+                                           Q-learning: learn the ideal road (off-policy)
+
+
+   Same nudge, one word changed: SARSA aims at the call it will really make next; Q-learning aims at the best
+                                 call on offer, even while it wanders elsewhere.
+
+                                                                                                                41/43
+SARSA’s cousin: Q-learning
+
+
+
+                                                  the call you actually take next
+
+                                           SARSA: learn the road you walk (on-policy)
+                 where you
+                   stand
+
+
+                                                 the best call you could take next
+
+                                           Q-learning: learn the ideal road (off-policy)
+
+
+   Same nudge, one word changed: SARSA aims at the call it will really make next; Q-learning aims at the best
+                                 call on offer, even while it wanders elsewhere.
+
+                  the road you walk, or the best road you can see                                               41/43
+The whole story
+
+             MDP            playbook
+          (𝑆, 𝐴, 𝑇 , 𝛾 )   𝜋 ∶𝑆→𝐴
+
+
+
+
+                                       42/43
+The whole story
+
+             MDP            playbook        tape          return
+          (𝑆, 𝐴, 𝑇 , 𝛾 )   𝜋 ∶𝑆→𝐴      𝑠1 , 𝑎1 , 𝑟1 , …     𝐺1
+
+
+
+
+                                                                   42/43
+The whole story
+
+             MDP            playbook          tape          return
+          (𝑆, 𝐴, 𝑇 , 𝛾 )   𝜋 ∶𝑆→𝐴        𝑠1 , 𝑎1 , 𝑟1 , …     𝐺1
+
+
+
+
+           average         scorecard
+            𝔼[𝐺1 ]          𝑄 ⋆ (𝑠, 𝑎)
+
+
+
+
+                                                                     42/43
+The whole story
+
+             MDP            playbook          tape              return
+          (𝑆, 𝐴, 𝑇 , 𝛾 )   𝜋 ∶𝑆→𝐴        𝑠1 , 𝑎1 , 𝑟1 , …         𝐺1
+
+
+
+
+           average         scorecard      Bellman              SARSA
+            𝔼[𝐺1 ]          𝑄 ⋆ (𝑠, 𝑎)    equation          nudge by nudge
+
+
+
+
+                                                                             42/43
+The whole story
+
+             MDP            playbook          tape              return
+          (𝑆, 𝐴, 𝑇 , 𝛾 )   𝜋 ∶𝑆→𝐴        𝑠1 , 𝑎1 , 𝑟1 , …         𝐺1
+
+
+
+
+           average         scorecard      Bellman              SARSA
+            𝔼[𝐺1 ]          𝑄 ⋆ (𝑠, 𝑎)    equation          nudge by nudge
+
+
+
+
+       SARSA solves the Bellman equation by averaging evidence
+                 instead of computing expectations
+
+
+                                                                             42/43
+The whole story
+
+              MDP            playbook              tape              return
+           (𝑆, 𝐴, 𝑇 , 𝛾 )   𝜋 ∶𝑆→𝐴            𝑠1 , 𝑎1 , 𝑟1 , …         𝐺1
+
+
+
+
+            average          scorecard         Bellman              SARSA
+             𝔼[𝐺1 ]           𝑄 ⋆ (𝑠, 𝑎)       equation          nudge by nudge
+
+
+
+
+       SARSA solves the Bellman equation by averaging evidence
+                 instead of computing expectations
+
+      play it: https://eth-ainit-fs26.github.io/rl-arcade/repair-or-replace/
+
+                                                                                  42/43
+Appendix: why the nudge works
+The running average
+
+
+                 𝐴𝑛 : the average of the first 𝑛 observations 𝑥1 , … , 𝑥𝑛
+
+
+
+
+                                                                            43/43
+The running average
+
+
+                 𝐴𝑛 : the average of the first 𝑛 observations 𝑥1 , … , 𝑥𝑛
+
+
+                          𝐴𝑛 = 𝐴𝑛−1 + 1𝑛 (𝑥𝑛 − 𝐴𝑛−1 )
+
+
+
+
+                                                                            43/43
+The running average
+
+
+                 𝐴𝑛 : the average of the first 𝑛 observations 𝑥1 , … , 𝑥𝑛
+
+                  𝐴𝑛 =       𝐴⏟
+                              𝑛−1          + 1𝑛       (𝑥
+                                                      ⏟𝑛 − 𝐴⏟
+                                                        ⏟⏟    ⏟)
+                                                            𝑛−1
+                          average so far          one share of the surprise
+
+
+
+
+                                                                              43/43
+The running average
+
+
+                  𝐴𝑛 : the average of the first 𝑛 observations 𝑥1 , … , 𝑥𝑛
+
+                   𝐴𝑛 =       𝐴⏟
+                               𝑛−1          + 1𝑛       (𝑥
+                                                       ⏟𝑛 − 𝐴⏟
+                                                         ⏟⏟    ⏟)
+                                                             𝑛−1
+                           average so far          one share of the surprise
+
+             hold 𝛼 constant instead of 1/𝑛: each old week fades by (1 − 𝛼)
+
+
+
+
+                                                                               43/43
+The running average
+
+
+                  𝐴𝑛 : the average of the first 𝑛 observations 𝑥1 , … , 𝑥𝑛
+
+                   𝐴𝑛 =       𝐴⏟
+                               𝑛−1          + 1𝑛       (𝑥
+                                                       ⏟𝑛 − 𝐴⏟
+                                                         ⏟⏟    ⏟)
+                                                             𝑛−1
+                           average so far          one share of the surprise
+
+             hold 𝛼 constant instead of 1/𝑛: each old week fades by (1 − 𝛼)
+
+
+
+          SARSA is a running average of the weekly evidence
+
+
+                                                                               43/43
+

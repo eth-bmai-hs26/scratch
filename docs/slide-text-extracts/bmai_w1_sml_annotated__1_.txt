@@ -1,0 +1,1258 @@
+                                                    D-INFK Lehre
+
+
+
+
+Statistical machine learning
+
+Carlos Cotrini, Konstantinos Chasiotis, Dimitrios
+Dekas, Alper Karadeniz, Mattia de Martino
+Building ML/AI applications
+2026
+Plan for this weekend
+The scientific method
+1       Knowledge
+        discovery
+
+           Observe
+
+
+         Hypothesize
+
+
+         Loss function
+
+    Model / Hypothesis class
+
+       Training algorithm
+
+
+      Predict and validate
+AI   1       Knowledge
+2            discovery
+
+                Observe
+
+
+              Hypothesize
+
+
+              Loss function
+
+         Model / Hypothesis class
+
+            Training algorithm
+
+
+           Predict and validate
+AI   ML   1       Knowledge
+2                 discovery
+     3
+                     Observe
+
+
+                   Hypothesize
+
+
+                   Loss function
+
+              Model / Hypothesis class
+
+                 Training algorithm
+
+
+                Predict and validate
+AI   ML    Vapnik’s
+                        1       Knowledge
+2         statistical           discovery
+     3     learning
+                                   Observe
+              4
+
+                                 Hypothesize
+
+
+                                 Loss function
+
+                            Model / Hypothesis class
+
+                               Training algorithm
+
+
+                              Predict and validate
+AI   ML    Vapnik’s
+                                                     1       Knowledge
+2         statistical                                        discovery
+     3     learning
+                                                                Observe
+              4
+
+                                                              Hypothesize
+
+
+                                                              Loss function
+
+                                                         Model / Hypothesis class
+                                                 5
+                                                            Training algorithm
+
+
+                         Gradient descent as               Predict and validate
+                        the training algorithm
+AI   ML    Vapnik’s
+                                                       1       Knowledge
+2         statistical                                          discovery
+     3     learning
+                                                                  Observe
+              4
+                                                   6            Hypothesize
+
+
+                                                                Loss function
+                        Neural networks as models
+
+                                                           Model / Hypothesis class
+                                                   5
+                                                              Training algorithm
+
+
+                           Gradient descent as               Predict and validate
+                          the training algorithm
+AI   ML    Vapnik’s
+                                                              1       Knowledge
+2         statistical                                                 discovery
+     3     learning
+                                                                         Observe
+              4
+                                                          6            Hypothesize
+                   Mini
+                  travel
+                  agent                                                Loss function
+                           7   Neural networks as models
+
+                                                                  Model / Hypothesis class
+                                                          5
+                 Mini                                                Training algorithm
+               meeting
+               assistant
+                                  Gradient descent as               Predict and validate
+                           8     the training algorithm
+AI   ML    Vapnik’s                                        Knowledge
+          statistical                                      discovery
+           learning
+                                                              Observe
+
+
+                                                            Hypothesize
+                 Mini
+                travel
+                agent                                       Loss function
+                           Neural networks as models
+
+                                                       Model / Hypothesis class
+
+                 Mini                                     Training algorithm
+               meeting
+               assistant
+                              Gradient descent as        Predict and validate
+                             the training algorithm
+(Surprising) dependencies on
+data
+Human learning (the scientific method)
+
+
+
+                         Observe
+
+
+
+
+                        Hypothesize
+
+
+
+
+                         Validate
+
+
+
+
+         D-INFK Lehre                    19.02.2026   13
+The main goal of machine learning
+
+
+
+                                 Observe
+
+
+
+
+                                Hypothesize
+
+
+
+
+Side note: Agentic AI follows    Validate
+ from this pipeline extended
+    with a fourth step: Act
+The first ML application in history
+
+
+• J. A. C. Brown, H. S. Houthakker, and S. J.
+  Prais (1953), “Electronic Computation in
+  Economic Statistics,” Journal of the
+  American Statistical Association, 48(263):
+  414–428.
+
+
+• A computer was used to discover an equation
+  that would explain how families spend money
+  on specific goods based on certain
+  measurements like income, age, location,
+  etc…
+
+
+
+
+             D-INFK Lehre                       19.02.2026   15
+A leap forward: the machine discovers trackers on its own
+
+
+• Predict CDC flu surveillance data weeks in
+  advance.
+• A basic model appeared to "understand"
+  epidemiology.
+• It discovered on its own search terms
+  that people type in search engines when
+  they are about to get the flu.
+• With Google search logs, institutions can
+  anticipate flu trends at a faster pace than
+  waiting for hospital records.
+
+
+
+
+              D-INFK Lehre                                  19.02.2026   16
+Going beyond: diagnosing Alzheimer before visible symptoms appear
+
+
+
+
+                                       • A ML algorithm that tells if a person has Parkinson
+                                         disease (PD) based on their interactions with a
+                                         website.
+
+
+
+
+                          Paper: https://onlinelibrary.wiley.com/doi/full/10.1002/acn3.50945
+
+
+
+         D-INFK Lehre                                                              19.02.2026   17
+Going beyond: diagnosing Alzheimer before visible symptoms appear
+
+
+
+
+                                    • Mouse pointer’s location.
+                                    • Keyboard features.
+                                      − Number of typos.
+                                      − Time between results shown and keyboard
+                                        use.
+                                    • …
+                                    • These features are not related to Parkinson nor
+                                      to Bing.
+
+
+
+
+         D-INFK Lehre                                                      19.02.2026   18
+So what is an ML application?
+
+
+
+Any computer application that consumes data…
+
+
+
+
+…computes a model from that data…
+
+
+
+
+…makes predictions using that model.
+
+
+
+
+             D-INFK Lehre                      19.02.2026   19
+More modern applications: (large) language models
+
+
+
+
+:
+                                         In likes -
+Alice likes oranges
+                              YesAlice                   oranges
+                                                      - fruits
+Bob likes fruits
+Bob likes cake                I          23   Likes
+Bob eats cake
+                              sie Bot                 brake
+                                         e eats -
+
+
+
+
+               D-INFK Lehre                                    19.02.2026   20
+More modern applications: (large) language models
+
+                              1/4   Alice         likes          oranges
+Alice likes oranges
+Bob likes fruits                            1/2            1/2
+                              3/4   Bob           likes           fruits
+Bob likes cake
+Bob eats cake                                             1/2
+                                            1/2
+                                                  eats            cake
+
+
+
+
+               D-INFK Lehre                                                19.02.2026   21
+More modern applications: (large) language models
+
+                                          1/4       Alice               likes                   oranges
+Alice likes oranges
+Bob likes fruits                                            1/2                     1/2
+                                          3/4       Bob                 likes                    fruits
+Bob likes cake
+Bob eats cake                                                                   1/2
+                                                            1/2
+                                                                        eats                     cake
+
+
+                   A B L          E C F O                         A       B     L         E       C       F              O
+                   0    0     0   0   0    0    0                 1/4    3/4    0         0       0       0              0
+                   1    0     0   0   0    0    0                 0       0     1         0       0       0              0
+                   1    0     1   0   0    0    0                 0       0     0         0       0       0              1
+                   0    1     0   0   0    0    0                 0       0     1/2       1/2     0       0              0
+                   0    1     1   0   0    0    0                 0       0     0         0      1/2      1/2            0
+                   0    1     0   1   0    0    0                 0       0     0         1       0       0              0
+
+               D-INFK Lehre                                                                                 19.02.2026       22
+D-INFK Lehre   19.02.2026   23
+What about agentic AI?
+
+
+
+   I need to book flights to
+    Tenerife. Then I need to
+ organize car rental. Finally, I
+      need to book hotel.
+
+
+
+
+                      Book flights
+
+
+                           Car rental   Agentic AI requires to decompose a plan into concrete
+                                        actions and those actions need to be translated into
+                       Book hotel       syntactically correct calls to specialized computer
+                                        applications. This translation is a specialized ML
+                                        application.
+            D-INFK Lehre                                                           19.02.2026   24
+                 D-INFK Lehre
+
+
+
+
+Vapnik’s statistical learning
+theory
+AI   ML    Vapnik’s
+                        1       Knowledge
+2         statistical           discovery
+     3     learning
+                                   Observe
+              4
+
+                                 Hypothesize
+
+
+                                 Loss function
+
+                            Model / Hypothesis class
+
+                               Training algorithm
+
+
+                              Predict and validate
+ML as dependence estimation
+
+
+                              • In 1982, Vladimir Vapnik established empirical
+                                risk minimization: the main strategy behind
+                                many modern ML applications.
+         prediction
+ House
+           -
+             L                                   $
+                              >
+                              -
+                 -
+                 W                                     $$
+             area-grooms
+                   location
+                   -
+
+
+
+
+1) Observe       (5 $)    ,
+                                           ( *, $$)   ...   (*, $$$)
+                     Xn
+
+                                       wa later sthereplace
+                              Yo                            In
+                                                                 Yn
+2)   Hypothesize          Y
+                                   -
+
+
+
+                                       ↑     ↑        wIbetter
+
+3) Predict   &     validate                  3
+   step
+First
+                                                       How do we
+                                                                    ???
+Given        (x ,    y) & ERXIR
+                                                                    estimate w ?
+Assure                   O
+                         wx   unknown
+                 y
+                     =
+
+
+                                                       X 234=
+
+
+Ist
+      algo       guess                                 y=789
+                     ↓
+-
+
+
+
+
+       X                                                                       ↑
+                                                     Wo = 900
+                                              loss
+                 i                                                  S
+y     >
+      -
+
+
+        >⑫tatj
+             y   + 2x
+                         -
+                              E    I                        : Wor =
+
+                                                            -600
+                                                     wi = 350
+                          ?     Program                 n
+                                                                    w, x =   811900
+                                                        Yo
+                                                                =
+
+
+
+
+                                                     We -850
+                                                        =
+
+
+
+                               We = 849 S .
+
+                                                                E
+                                                        Yz 198 , 900
+                                                                =
+     algorithm
+Fixed-step
+Given
+         wiy
+Guess    = $                     Robbins-Monro
+do
+                                     update
+        =                             ↓
+ I eben
+     Y         1        you
+                            choose
+
+
+
+   -E   if              E
+                   -
+
+
+
+
+             in + w X
+                   -
+                              zu - n + -
+        else    - n +
+til IllE
+-
+        -
+ Multi-dim
+        RM
+                                        y
+                                            =
+                                                wx + b
+                                                p
+Gien                 (x ,    y)              area   base
+ Guess                   ,       b
+ do
+ -
+
+
+
+
+                 ex + +
+        ~
+
+
+        Y
+             =
+
+                             -
+
+        l
+                     y       y
+                 =       -
+
+
+
+
+                             in based on I
+        update
+             = x +5
+        ~
+
+
+        Yl
+                 y y
+             =       -
+
+
+
+
+        update               -   based onl
+until   /11E
+Batch
+-
+  MDRM algo
+Gien        (x , y)      .
+                             .   .
+                                      (n yn),
+
+
+
+
+Guess    for        ,b                           x = 234
+
+do                                                       y   =
+                                                                 198789
+
+
+
+Entfjanii
+                      =               + t
+                                 xj             Wo   =   890 -    y   =   190 000
+                                                                             .
+
+
+
+
+  lj Eyj-yj     =
+
+                                                     yy
+                                                         -
+                                                             =
+                                                                  89
+  l=
+         [lj
+         jen
+   update   .
+
+
+
+
+until   IllE
+ Multi-variate model
+                                              -
+      (x ,, y )             (niYn)             W
+               ,
+                                                     d
+                   ...
+
+
+
+
+ Guess t                                      KEIR
+                                                   (i1 Eiz ,
+                   ,
+                                          Xi   =                           Vid)
+ do                                                          ,        ....
+
+
+                                                    ↑   ↑
+
+
+
+Tampule e
+       pre di c t i o n
+           -
+
+
+                                                   area          frooms
+      compute      losses            M
+
+
+
+
+                                               E
+                                     yi
+                                          =
+                                               WXil
+                                                I
+                                                    +
+                                                      Wa Nizt                   ...
+
+
+
+
+                                                      Wdid + b
+
+                                          =    witb
+                                              d
+                                          w=       (Wi       Wa ,         Wd)
+until Ill
+                                                         ,          ...
+ RM      algorith
+             &
+                                                                        -
+
+                                                                        W =   (w A
+                                                                              1
+
+                                                                                 Wa We
+                                                                                  ,,
+                                                                                       na
+
+                                                                                        ,
+                                                                                                 1
+
+                                                                                            , ...,   Wa
+Given      (y) (2)                                        (Xn yn)             =    -
+                                                                                                     -
+
+
+
+
+                                                                              &
+                                                    ...
+                                                             ,
+
+
+
+          M
+                                                           -
+              -
+           -
+
+                                                                        = wTx
+                                                                          -
+                                                                              +b
+                                                                               -
+                                                            Model
+         (X ,,                          Xa)                             Y
+                                                                    :
+
+
+          ---
+             * ,B
+               12               ...
+
+
+
+
+Guess     ,5
+do
+-
+
+
+
+     for jed        :
+
+
+
+
+           for jan
+
+
+
+     I
+                                    :
+
+                            -Ti + 5
+                   Eg   ;
+                                            A
+                    li      =
+                                yi          Yi
+                                        -
+
+
+
+
+           l   =
+                   ↳ Fili
+
+          #
+          compule
+          M
+                    -
+
+                                                &
+
+          w7w                    .
+                                        +   al
+untel E
+                                S
+About loss functions
+l   =
+
+
+        y
+            -
+
+
+
+                y                  l   =
+                                           (y y)
+                                            -
+                                                    l
+                                                        y)2
+                                                        =
+        Huber loss                     &            l   =
+
+                                                            (y y)3
+                                                             -
+
+
+
+
+                                                            (y y)9
+                S               ly -yl          5   C
+                    E(y y)z
+                                                        =     -
+
+
+                       -
+
+
+
+
+                    5((y y) Eb) ly yl
+                           -
+                               -
+                                       5    -
+                                                >
+    Classification                     Regression
+   x - y - (0 .         13             ~   -
+                                                 YER
+My first-to-go
+  -
+  cross-entropy loss fun               ↓
+X- Py    ⑧ -y                              Squared   error
+
+              &
+                     prob   .   that
+                      latel is
+  loss                            y.
+         -
+
+
+
+
+             log P
+How
+ optimize any       loss function ?
+
+
+
+
+   I
+                               2(w)         w2 6w + 10
+
+               -
+                                       =            -
+
+
+                                            -
+                                            -
+
+
+
+
+                   onee
+                     se
+
+
+
+
+Q
+       ↑
+
+                                ↓ (w)
+                                                ?
+                                                    &w + 7
+Gle)       ↑
+                                        =   e   -
+
+
+
+
+  #
+                                            -
+
+
+
+
+                                      i                 ((ü)
+                                      12                103
+               *
+                                  -
+                                      1                 12
+
+                                      3                 9
+              competethe f
+ w to                               window
+                                                   l       w
+~
+
+
+
+
+                                      window
+                                        &
+                                            your
+                                                       =           -
+
+
+
+
+                                                                       2
+L(w)           -
+                                                   = 2
+
+
+
+
+       I
+                                    ((r) = b
+                                                               +
+               J
+                                ⑧
+
+
+
+
+                - =       L()
+                      ⑧
+                                                   a=      2(l)
+                   &&
+
+                                               in
+       a= 2   (1) #
+               O
+                                ↑
+
+
+
+
+                                      -
+                                       scope       b   =   2 (r)
+                                                       b
+               e                                                       V,L(n)
+ -2                                                        -
+                                                               a
+                                                                   =
+                                                       -
+    * #
+      -
+                            t
+                                                            .
+
+
+
+
+          t
+Desired   -                 -
+                            >
+                                           F         e
+ update
+                           small          small       big
+slope      big
+                                          positive
+          negative         negative                  positive
+                                          Vsffü)
+&                     =               2
+                                          sope
+                     Gradient   descent up date
+m
+ULE)
+Es
+       UCle)
+       Ez
+                    ↓
+               5 %(2)
+                ,
+                         ...
+                               E   =
+                                       0
+                                           ↓
+                                       VLlü)
+  57)               Es
+           descent
+Gradient
+
+
+ 5
+do
+
+
+
+
+       S         +       xVL()
+                     -
+
+
+
+
+             &
+
+with   Ill
+In       practice        EEIR9
+                        En   =    ( , Er,         Erd)
+                                            ...
+
+
+
+
+                                                                        S
+Er   ,
+              I     ,
+                         v
+                              I
+                                       a
+                                            ,
+                                                    b
+                                                        ,
+                                                            slope ,Lw)
+Er             l2            Er         92           be     slope   .   VL)
+ i
+                                                                        es ist
+                                                                        Ve
+
+                        ddbdSlope
+üd            Id
+                    su
+Models
+
+j
+
+#. .
+         .
+    -
+
+
+
+
+                                                       M
+
+
+
+
+·
+                                                  time
+                         Universal e
+                                   wa
+                         -
+
+
+
+                                                       !
+                    1) Polynomial                  d
+                                     wo + wiX + w- X+
+                             y
+                                 =
+
+
+
+
+                    2) NNs               + Wett
+-
+                                                           ...
+
+
+
+
+             time
+What is                              NN
+                                                   layers   L
+
+
+
+
+·
+X   =   (x   ,
+                 ,
+                     .   .   .
+                                 d)
+                                 ,
+                                          &
+
+
+
+
+                                              da
+⑪
+
+= plaj
+                  We + wezet ...wied
+        Dij   =
+
+
+
+
+          M
+:
+    e
+        what      is   this ?
+
+
+
+I
+                           ar
+
+
+
+        -
+Empirical risk minimization (ERM)
+
+
+Suppose that a phenomenon of interest (e.g. house prices) is governed by an unknown mathematical
+function 𝑓 ∗ that takes as input a list 𝑥 of features (e.g. house measurements) and outputs a target 𝑦
+(e.g. house price).
+Furthermore, suppose that
+                                                𝑦 = 𝑓 ∗ 𝑥 + 𝜖,
+where 𝜖 is a random value that on average is 0. More precisely, 𝜖 ∼ 𝒩 0, 𝜎 2 , with unknown 𝜎 2 .
+
+
+We don’t have access to 𝑓 ∗ . Instead, we have only a set of observations 𝑥1 , 𝑦1 , 𝑥2 , 𝑦2 , … , 𝑥𝑛 , 𝑦𝑛 . How
+can we build an estimator 𝑓መ of 𝑓 ∗ ?
+
+
+
+
+              D-INFK Lehre                                                                          19.02.2026   28
+Empirical risk minimization (ERM)
+
+
+Vapnik proposed empirical risk minimization
+
+
+1. Collect observations: 𝑥1 , 𝑦1 , 𝑥2 , 𝑦2 , … , 𝑥𝑛 , 𝑦𝑛 .
+2. Propose a model ℋ comprising of all mathematical functions of a particular form. Examples:
+   1. Linear functions: 𝑦𝑖 = 𝑓 𝑥𝑖 = 𝑤 𝑥𝑖 + 𝑏.
+                                                                           𝑗
+  2. Polynomial functions: 𝑦𝑖 = 𝑓 𝑥𝑖 = 𝑤0 + 𝑤1 𝑥𝑖 + 𝑤2 𝑥𝑖2 + ⋯ + 𝑤𝑗 𝑥𝑖 + ⋯
+  3. …
+3. Compute the empirical risk minimizer
+                                        𝑓መ = 𝑎𝑟𝑔𝑚𝑖𝑛𝑓∈ℋ ෍ ℒ 𝑦𝑖 , 𝑓 𝑥𝑖   .
+                                                             𝑖≤𝑛
+
+Here, ℒ is a function that measures differences between targets and estimates.
+Vapnik elaborates in his book why this is the most reasonable approach. As of today, this remains the best
+strategy for estimating dependencies from data!
+
+               D-INFK Lehre                                                                     19.02.2026   29
+Example
+
+
+• Suppose we observe only one house with area 𝑥1 and price 𝑦1 .
+• We hypothesize that 𝑦 = 𝑓 𝑥 = 𝑤𝑥 for some unknown 𝑤. Mathematically, this means that we choose
+  ℋ as the set of all linear functions.
+• We can define ℒ 𝑦, 𝑦ො = |𝑦 − ො
+                               𝑦|.
+• Our mission is then to find
+                                𝑓መ = 𝑎𝑟𝑔𝑚𝑖𝑛𝑓∈ℋ ℒ 𝑦1 , 𝑓 𝑥1   = 𝑦1 − 𝑤𝑥1 .
+
+
+
+
+              D-INFK Lehre                                                              19.02.2026   30
+Example
+
+
+• Suppose we observe only one house with area 𝑥1 and price 𝑦1 .
+• We hypothesize that 𝑦 = 𝑤𝑥 for some unknown 𝑤. Mathematically, this means that we choose ℋ as
+  the set of all linear functions.
+• We can define ℒ 𝑦, 𝑦ො = |𝑦 − ො
+                               𝑦|.
+• Our mission is then to find
+                           𝑓መ = 𝑎𝑟𝑔𝑚𝑖𝑛𝑓∈ℋ ℒ 𝑦1 , 𝑓 𝑥1   = 𝑎𝑟𝑔𝑚𝑖𝑛𝑤∈ℝ 𝑦1 − 𝑤𝑥1 .
+• This can be solved using the Robbins-Monro algorithm!
+
+
+
+
+              D-INFK Lehre                                                              19.02.2026   31
+Robbins-Monro algorithm
+
+
+Given 𝑥1 and 𝑦1 , find 𝑤 such that 𝑦1 − 𝑤𝑥1 = 0. That is, such that 𝑦1 = 𝑤𝑥1 .
+1. Make a guess 𝑤
+                ෥
+2. As long 𝑦1 − ෥ 𝑤𝑥1 is unacceptably large, repeat the following
+   1. If 𝑦1 < ෥
+              𝑤𝑥1 , then decrease ෥
+                                  𝑤.
+   2. If 𝑦1 > ෥
+              𝑤𝑥1 , then increase ෥
+                                  𝑤.
+
+
+
+
+              D-INFK Lehre                                                       19.02.2026   32
+A bit more advanced example
+
+
+• Suppose we observe only one house with area 𝑥1 and price 𝑦1 .
+• We hypothesize that 𝑦 = 𝑤𝑥 + 𝑏 for some unknown 𝑤 and 𝑏. Mathematically, this means that we
+  choose ℋ as the set of all linear functions.
+• We can define ℒ 𝑦, 𝑦ො = |𝑦 − ො
+                               𝑦|.
+• Our mission is then to find
+                                𝑓መ = 𝑎𝑟𝑔𝑚𝑖𝑛𝑓∈ℋ ℒ 𝑦1 , 𝑓 𝑥1   = 𝑦1 − 𝑤𝑥1 − 𝑏 .
+• This can be solved using the Robbins-Monro algorithm! The loop alternates between updating 𝑤 and 𝑏.
+
+
+
+
+              D-INFK Lehre                                                                  19.02.2026   33
+How about multiple houses?
+
+
+• In practice, we have many houses available: 𝑥1 , 𝑦1 , 𝑥2 , 𝑦2 , … , 𝑥𝑛 , 𝑦𝑛 .
+• Our goal then becomes
+                              𝑓መ = 𝑎𝑟𝑔𝑚𝑖𝑛𝑓∈ℋ ෍ ℒ 𝑦𝑖 , 𝑓 𝑥𝑖    = ෍ |𝑦𝑖 − 𝑤𝑥𝑖 − 𝑏| .
+                                             𝑖≤𝑛                𝑖≤𝑛
+
+• This can be solved using the alternating Robbins-Monro algorithm!
+
+
+
+
+               D-INFK Lehre                                                          19.02.2026   34
+What if we also have the area, number of rooms, age, and other features
+of a house?
+
+• In practice, the measurement 𝑥𝑖 = (𝑥𝑖1 , 𝑥𝑖2 , … , 𝑥𝑖𝑑 ) is a vector.
+• Our hypothesis changes to 𝑦𝑖 = 𝑤1 𝑥𝑖1 + 𝑤2 𝑥𝑖2 + ⋯ + 𝑤𝑑 𝑥𝑖𝑑 + 𝑏 = 𝑤 ⊤ 𝑥 + 𝑏 for some unknown
+  𝑤 = (𝑤1 , … , 𝑤𝑑 ) and 𝑏.
+• Our goal then becomes
+                              𝑓መ = 𝑎𝑟𝑔𝑚𝑖𝑛𝑓∈ℋ ෍ ℒ 𝑦𝑖 , 𝑓 𝑥𝑖      = ෍ |𝑦𝑖 − 𝑤 ⊤ 𝑥 − 𝑏| .
+                                               𝑖≤𝑛                 𝑖≤𝑛
+
+• This can be solved using the altenating Robbins-Monro algorithm!
+
+
+
+
+               D-INFK Lehre                                                                      19.02.2026   35
+               ERM today
+
+
+
+
+D-INFK Lehre               19.02.202636
+Well… many popular modern ML applications follow the same principles!
+
+
+
+                                     1982                                Today
+
+
+Learning strategy         Empirical risk minimization          Empirical risk minimization
+
+                                                             Thousands of high-dimensional
+      Data          Dozens of low-dimensional observations
+                                                                    observations
+
+                                                              Additive combinations of loss
+  Loss function              Simple loss functions
+                                                                        functions
+
+     Model /
+                                Linear models                    Deep neural networks
+   hypothesis
+
+    Training
+                           Robbins-Monro algorithm            Stochastic gradient descent
+   algorithm
+Use gradients
+
+
+• The Robbins-Monro update rule uses only the difference between target and estimation.
+• A more efficient update rule uses the gradient of the loss function.
+
+
+
+
+              D-INFK Lehre                                                                19.02.2026   38
+Use neural networks instead of linear models
+
+
+• Neural networks are universal approximators. They can approximate arbitrarily well any continuous
+  function on a compact domain!
+Use batches instead of the entire dataset
+
+
+• At each iteration of the update loop, don’t recompute the loss on the entire data; use only a “batch” (i.e.,
+  a subset of the dataset)
+• Integrating all these improvements yields stochastic gradient descent, one of the most powerful
+  modern algorithms for estimating dependencies on data.
+
+
+
+
+              D-INFK Lehre                                                                          19.02.2026   40
+               Kahoot! contest
+
+
+               https://create.kahoot.it/details/46f33a94-f324-419d-8c59-5bd9248d8b4d
+
+
+
+
+D-INFK Lehre                                                                           19.02.202641
+

@@ -1,0 +1,53 @@
+ Scientifie           Observe                            Hypothesize                          Validate
+  method
+
+                                                                                  orithm
+ ML   Component      Train data                Model               Loss
+                                                                            Alg                Test Data
+
+                                                                       1
+                                                    WX
+                      (y)ERXIR Y                                           Fixed-step
+                                                           l
+                                                                                    -
+
+                                                               =
+
+                                                                   y-y
+                                                =
+
+
+
+                                                                           (w + w = x)
+
+
+                  -
+                              ↓
+
+
+
+                                                    ↓
+                                                                                d
+Sbbins-Marro                                                               Robbins-Monro
+                  (X ,, y )         (fniyn)                                (nf n + xl)
+                              ...
+
+                         .
+
+
+                                                                   d
+
+
+
+
+n
+                                                          l
+                                                              =
+                                              i
+
+
+                     S                        Neural          70of               dese
+                                                                           Gradient
+                                                                            -       -
+                                                                                        xVl
+

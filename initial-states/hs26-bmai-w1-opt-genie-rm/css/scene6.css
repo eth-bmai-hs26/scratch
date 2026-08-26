@@ -1,0 +1,16 @@
+/* ============================================================================
+   scene6.css : the reveal.
+
+   The digits get the amber of revealed truth, which appears here for the
+   first time in the whole viz and never before. That is the one thing this
+   file is for.
+   ============================================================================ */
+
+.reveal-digits {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0.01em;
+  color: var(--peak);
+  margin: 14px 0 4px;
+}
