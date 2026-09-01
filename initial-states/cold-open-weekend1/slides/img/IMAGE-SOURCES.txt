@@ -1,6 +1,15 @@
 Images for the CAS BMAI HS26 weekend-1 cold open ("The Four Precepts").
 
 READ THIS FIRST
+  UPDATED 2026-09-01: THIS DIRECTORY IS NO LONGER EMPTY AND THIS DECK IS NOW
+  COMPLETE. descartes-hals.jpg was fetched, licence-checked at the source,
+  opened, inspected and committed. The deck rebuilds to 13 pages with zero
+  dashed placeholder boxes, zero LaTeX errors and zero overfull or underfull
+  boxes, and page 1 was rendered and read after the plate landed.
+
+  The paragraph below is kept as written, because it is the contract that
+  applies to any FUTURE plate added to this deck.
+
   This directory is EMPTY on purpose. Nothing was downloaded during the build,
   and no stand-in image was invented. The deck compiles and projects as it
   stands: \plateh in ../beamer-preamble.tex draws a dashed box naming the
@@ -28,9 +37,21 @@ descartes-hals.jpg   THE ONLY IMAGE THIS DECK USES. Frame 1, left column,
             everywhere; the Commons file records the licence as "Public domain")
   Commons   https://commons.wikimedia.org/wiki/File%3AFrans_Hals%2C_Portrait_of_Ren%C3%A9_Descartes.jpg
   Recorded  2178 x 2958 pixels, credited to RKD image 181019
-  Status    NOT DOWNLOADED. NOT OPENED. NOT INSPECTED.
-            Everything above is Commons metadata read during the proposal pass
-            (proposals/COLD-OPEN-CANDIDATES.md section 3) and re-quoted here.
+  Status    DOWNLOADED, OPENED AND INSPECTED BEFORE USE, 2026-09-01.
+            Fetched from the Commons file named above via the MediaWiki API,
+            which returned LicenseShortName "Public domain", UsageTerms
+            "Public domain", AttributionRequired "false", artist Frans Hals,
+            date 1649, credit RKD image 181019, original 2178 x 2958. The
+            licence was therefore verified at the source rather than trusted
+            from the proposal pass.
+            Committed file: the 1280 px wide rendition, 1280 x 1738, 506 KB,
+            which is ample for a plate 4.1cm high and keeps the repository
+            light. No crop, no retouching, no colour change.
+            INSPECTED: opened and looked at. It is the plain unretouched scan,
+            with the craquelure and the canvas weave clearly visible and no
+            sign of cleaning or digital reconstruction, which is what the trap
+            note below asks for. Half-length, dark coat, white collar, facing
+            slightly to his right. It is Descartes and it is the Hals.
 
   TRAP, recorded during the proposal pass and NOT resolved. Commons carries at
   least six variants under similar names, including a Statens Museum for Kunst
