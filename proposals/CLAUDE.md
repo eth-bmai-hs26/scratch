@@ -31,6 +31,9 @@ initial-states/   what is actually built        (code, TA-ready or in progress)
 proposals/
   CLAUDE.md                        this file
   COLD-OPEN-CANDIDATES.md          the philosophical opening for the weekend, a menu
+  COLD-OPEN-FUNNY-CANDIDATES.md    the same slot in a comic register, a second menu
+  LECTURE-DEMOS-MENTALISM.md       stage demos INSIDE the 09:00 and 11:00 lectures, a third menu
+  lecture-demos-mentalism-reference.py   runnable reference for every number in that menu
   viz-heron.md                     hs26-bmai-w1-opt-heron
   viz-heron-reference.py           runnable reference for the numbers in viz-heron.md
   viz-genie-robbins-monro.md       hs26-bmai-w1-opt-genie-rm
@@ -43,6 +46,9 @@ proposals/
 | File | Lines | Slug | TAs | Proposed format | Built as |
 |---|---|---|---|---|---|
 | `COLD-OPEN-CANDIDATES.md` | 1106 | no slug, Friday 08:00 intro block | Carlos | Beamer cold open, 3 frames plus 1 at 16:00 | `initial-states/cold-open-weekend1/` |
+| `COLD-OPEN-FUNNY-CANDIDATES.md` | 364 | no slug, Friday 08:00 intro block | Carlos | Eight comic openings, most of them projector-free | nothing built |
+| `LECTURE-DEMOS-MENTALISM.md` | 739 | no slug, inside the 09:00 and 11:00 lectures | Carlos | Eight stage demos, every one a question-and-answer loop | nothing built. Act 3 has a home in `hs26-bmai-w1-opt-genie-rm` scenes 4 and 5 |
+| `lecture-demos-mentalism-reference.py` | 627 | supports the above | | Python, standard library only | |
 | `viz-heron.md` | 1153 | `hs26-bmai-w1-opt-heron` | Jinlei, Daniele, Ivan | Multi-file `course-viz` page, click-step, 6 scenes | `initial-states/hs26-bmai-w1-opt-heron/` |
 | `viz-heron-reference.py` | 340 | supports the above | | Python, standard library only | |
 | `viz-genie-robbins-monro.md` | 1212 | `hs26-bmai-w1-opt-genie-rm` | Jinlei, Suei-Wen | Multi-file `course-viz` page, click-step, 9 scenes | `initial-states/hs26-bmai-w1-opt-genie-rm/` |
@@ -93,6 +99,106 @@ verified" in section 13 are cleared, in particular the Greek of both ancient can
 Descartes candidate assumes the mapping table's rows are Friday's four lectures; if Carlos wants the
 rows to be the course's weekends, the weekend list has to come from somewhere, because this
 repository holds weekend 1 only.
+
+## `COLD-OPEN-FUNNY-CANDIDATES.md`, the same slot in a comic register
+
+Written 2026-09-01 on a one-line brief from Carlos: brainstorm funny ways to start the course, using
+what is already here. It competes with `COLD-OPEN-CANDIDATES.md` for Friday 08:00 and it composes
+with it, so section 9 gives the three arrangements and what each one costs.
+
+Eight candidates, ranked, each scored on whether cutting the joke would also cut a piece of content.
+Seven of the eight need **nothing built**. The five that matter:
+
+1. **"You are my validation set."** Two philosophical decks are built and Carlos has to pick one, so
+   the room votes and the winner is played. The vote is then named as model selection on a
+   validation set of thirty, which is the Saturday 10:30 lecture arriving on Friday morning.
+2. **The off-by-one year.** `45^2 = 2025` inside a box of area `2026`, so the first guess of the
+   course misses by exactly one year. Verified arithmetic, forty seconds, from Carlos's own
+   handwritten page 1.
+3. **Crash the lander live.** Mission 1 of `Minimum Lander Exploration.html` flown by hand and
+   crashed on purpose, then handed to gradient descent at 14:00.
+4. **The worst genie in fiction.** The AINIT genie's terms read as a service-level agreement, with
+   the golden ratio falling out of six rounds of arithmetic as an optional second beat.
+5. **Higher, lower, then how much.** A guessing game played twice, where round two answers with the
+   size of the miss and finishes in a third of the guesses. This stages the exact conflict recorded
+   in `docs/summaries/04`, that the printed deck and the handwriting give the Robbins-Monro name to
+   different rules and the handwriting boxes the proportional one.
+
+Section 0 records the five constraints comedy has to survive at 08:00, including the standing house
+ban on a centred punchline line and the rule that the target is always the lecturer, the material or
+the schedule. Section 10 rejects five bits, among them the AI-generated-intro gag and a live model
+failing at arithmetic. **Section 11 is what only Carlos can decide**, six items, three of which are
+questions about his own comfort rather than about design. Section 12 is the verification ledger and
+records that the handwritten JPGs were read through summary 04 rather than opened as images.
+
+## `LECTURE-DEMOS-MENTALISM.md`, stage demos inside the lectures
+
+Written 2026-09-01 on a brief from Carlos: a magic trick or surprising demo that follows the
+first-order iterative methods, in the shape of a mentalist naming a secret number or card after a
+few questions. **Different in kind from the two cold-open menus.** These go inside the 09:00 and
+11:00 lectures rather than in front of them, and four of the five need no software at all.
+
+The five acts, and the piece of lecture each one is the method for:
+
+1. **Fourteen questions, then one.** Bisection on a secret number, escalated to the continuum, then
+   collapsed to a single question once the answer carries the size of the miss. This is handwritten
+   page 30's crossed-out rule against its boxed one, performed before the slide is shown.
+2. **The six cards.** Six fixed yes-or-no questions, asked simultaneously by six people who never
+   speak to each other, and the number falls out of an addition. This is stage 5, "Each grasshopper
+   only needs to work on its own dimension", and it is the best pure effect on the page.
+3. **Lie to me.** A blindfolded search where the volunteer may lie, converging anyway because the
+   step shrinks as `c/n`, against a constant step that orbits forever and a `c/n^2` step that runs
+   out of travel. Staged, this is the AINIT title "Learning a number in the dark".
+4. **The sealed envelope.** Everyone picks two numbers freely, adds fourteen times, and reads out
+   1.618, because the ratio recursion is the genie's own map. Then the dark twist: the same
+   experiment with Heron on 2026 splits the room into `+45.011` and `-45.011` by starting sign,
+   which is mission 7 of the lander performed on the audience.
+5. **The mental square root.** One Heron step in the head, with the digit doubling shown afterwards.
+
+**The second batch was written twice, and the first version was cut.** A first attempt offered four
+self-working card principles, the Kruskal count, Kaprekar's 6174, Hummer's cut-and-turn-over and the
+faro cycle. Carlos rejected them on 2026-09-01: in all four the spectator makes free choices and the
+structure wins with **no question-and-answer loop anywhere**, so they demonstrate a property of the
+map rather than a property of the algorithm. They survive in the menu's "Cut on the 2026-09-01
+redirect" section with their verified numbers, so any of them can go on a slide without re-deriving
+anything. **Do not restore one to the running order without reading why it went.**
+
+The batch that replaced them keeps only the acts that ask, listen and revise:
+
+6. **Twenty-one cards.** Three deals into three columns, three answers, and the card is eleventh
+   from the top. Verified as a shrinking bracket: 21 possible positions, then 7 spanning `[8,14]`,
+   then 3 spanning `[10,12]`, then 1. Also verified: it wastes 22 percent of the information it
+   collects, since three ternary answers distinguish 27 things, and **one lie names the wrong card
+   in 60 of 63 cases**. It exists to be broken by act 7.
+7. **The liar.** The centrepiece. Three rounds with one volunteer on a row of 52 cards: bisection
+   with honest answers, bisection with one lie, then the same search done by nudging a single guess
+   with a step of `13/n`. Verified at 30 questions over 20000 trials per row: with honest answers
+   both methods are perfect, at one lie in ten the excluding rule gets 0.540 and the correcting rule
+   **0.852**, and at one lie in five the median error is 3 cards against **0**. **Read the median
+   and worst-error columns**, which are where the argument actually lives.
+8. **Warmer and colder.** The performer runs gradient ascent over a card spread on sign-only
+   feedback, then reruns it with the magnitude restored and finishes in a quarter of the time.
+
+**The most valuable paragraph in the file is act 7's last section**, and it exists because the
+simulation refused to flatter Robbins-Monro. Majority voting over repeated bisection questions
+**beats** the correcting rule at an equal budget, 0.956 against 0.852 at one lie in ten, and
+designing the questioning for the lie in advance does better still: Berlekamp's bound gives 6
+questions for no lies, 10 for one and 13 for two, and an exact game search confirms 10 suffices. So
+the act states the honest reason the correcting rule exists at all: it needs no noise budget
+declared in advance, it never excludes so no answer is fatal, and above all **you do not get to ask
+the same question twice**, because training gives one noisy answer at a point already left behind.
+
+Three further things a reader of that file must not miss. **Act 3 is a demonstration rather than a
+guaranteed trick**, and its own honesty table shows twenty questions with occasional lies landing on
+36.32 for a secret of 37; the projected staging is the recommended fix, and it has a home already,
+because `initial-states/hs26-bmai-w1-opt-genie-rm/js/scenes/scene4.js` and `scene5.js` are
+registered stubs titled "The sandstorm." and "Two demands on the step.", which are exactly this act
+and its counter-demonstration. **Act 5 collides with an open decision**, item 3 of section 12 of
+`COLD-OPEN-CANDIDATES.md`, because showing the averaging update gives away the discovery mechanic
+that `viz-heron.md` is built around, so it goes after the exercise or not at all. And **every number in
+the menu is output of `lecture-demos-mentalism-reference.py`**, which runs with `python3` and no
+arguments; running it already caught one transcription error in act 3's honesty table, so re-run it
+rather than trusting the prose. It takes a couple of minutes.
 
 ## `viz-heron.md`, "Squaring the rectangle"
 

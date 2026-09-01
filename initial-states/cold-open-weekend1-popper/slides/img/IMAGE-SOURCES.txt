@@ -1,0 +1,158 @@
+Images for the CAS BMAI HS26 weekend-1 cold open, Popper variant
+("Guess, Check, Correct").
+
+READ THIS FIRST
+  UPDATED 2026-09-01. TWO OF THE THREE PLATES ARE NOW PRESENT.
+  turing-1951.jpg and whewell-wellcome.jpg were fetched, licence-checked at the
+  source through the Commons API, opened, inspected and committed. popper-lse.jpg
+  is STILL ABSENT, deliberately, because its rights question is unresolved and
+  the choice is Carlos's: see its block below. The deck rebuilds to 20 pages,
+  zero errors, zero overfull or underfull boxes, and the one remaining dashed box
+  is the Popper slot on frame 1.
+
+  The paragraph below is kept as written, as the contract for any future plate.
+
+  This directory is EMPTY on purpose. Nothing was downloaded during the build,
+  and no stand-in image was invented. The deck compiles and projects as it
+  stands: \plateh in ../beamer-preamble.tex draws a dashed box naming the
+  missing file wherever a plate belongs, so the gap is visible rather than
+  silent. Drop each file in with the exact name below and recompile twice.
+
+  The house rule that makes this file necessary: FILENAMES LIE. Open and look at
+  every candidate before you promise it, and record "opened and inspected before
+  use" here once that is actually true.
+
+  Rights rule for this course: Switzerland is 70 years post mortem auctoris.
+  A pre-1900 engraving is free by age; a modern SCAN of it may still carry a
+  licence, and a 20th century photograph usually carries one.
+
+  THIS DECK IS THE FIRST IN THE FAMILY WHOSE PLATES ARE NOT ALL PUBLIC DOMAIN.
+  Two of the three carry a condition. Read all three blocks.
+
+
+popper-lse.jpg       Frame 1, left column, height 4.0cm inside the hairline
+                     frame.
+
+  Subject   Karl Popper (1902 to 1994), photographic portrait
+  Author    LSE Library
+  Date      About 1980
+  Licence   "No known copyright restrictions", as stated on the Commons file
+            page, sourced from the LSE Library's Flickr Commons stream
+  Commons   https://commons.wikimedia.org/wiki/File:Karl_Popper.jpg
+  Flickr    https://www.flickr.com/photos/lselibrary/3833724834/
+  Recorded  600 x 769 pixels
+  Status    DELIBERATELY NOT ADDED, 2026-09-01, AND THE DECK STILL SHOWS ITS
+            DASHED BOX. The licence line was re-checked at the source on that
+            date and it CONFIRMS the problem rather than clearing it: the
+            Commons API returns LicenseShortName "No restrictions" and
+            UsageTerms "No known copyright restrictions", with no licence
+            template and no public domain determination. That is the LSE
+            Library saying it is unaware of restrictions. It is not a grant.
+            Nothing changed, so the decision below is still open and still
+            Carlos's. The other two plates were added without touching this one.
+
+  THE RIGHTS QUESTION ON THIS ONE, and it is the only real one in the deck.
+  "No known copyright restrictions" is a statement by the holding institution
+  that it is not aware of restrictions. It is NOT a licence and it is NOT a
+  public domain determination. Popper died in 1994; a photograph taken about
+  1980 by an unnamed photographer working for the LSE is very unlikely to be out
+  of copyright in Switzerland. Three options, and the choice is Carlos's:
+    1. Use it, credited as on frame 1, relying on the LSE statement.
+    2. Ask the LSE Library directly. They answer this kind of question.
+    3. Run frame 1 with no plate at all. The frame works without a face: cut the
+       left column and let the two placement lines and the sentence hold it.
+  Whatever is chosen, record the decision on the Status line above.
+
+  Size note. At 600 x 769 the file is small. At 4.0cm high it is about 3.1cm
+  wide and roughly 100 pixels per centimetre, which is thin for projection but
+  acceptable for a plate this size. Do not upscale it.
+
+
+turing-1951.jpg      Frame 3, left column, height 4.0cm inside the hairline
+                     frame.
+
+  Subject   Alan Turing (1912 to 1954), photographic portrait
+  Author    Elliott and Fry, photographic studio
+  Date      29 March 1951
+  Licence   Public domain. The Commons file carries the Public Domain Mark. The
+            ground given is a UK work of unknown authorship made available
+            publicly more than 70 years ago, before 1 January 1956
+  Commons   https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951).jpg
+  Source    Computer History Museum
+  Recorded  800 x 1067 pixels
+  Status    DOWNLOADED, OPENED AND INSPECTED BEFORE USE, 2026-09-01.
+            The Commons API returned LicenseShortName "Public domain",
+            UsageTerms "Public domain", AttributionRequired "false", artist
+            "Elliott & Fry", DateTimeOriginal "1951-03-29", credit Computer
+            History Museum. Verified at the source, not trusted from the notes.
+            Committed at the full 800 x 1067, 91 KB, unmodified.
+            INSPECTED: the familiar half-length studio portrait of Turing as an
+            adult in a tweed jacket and spotted tie, head turned slightly to
+            his right, plain pale background. It is Turing, it is the adult
+            1951 sitting rather than the schoolboy alternative, and it is clean.
+            Frame 3 was rendered at 110 dpi after the plate landed and read.
+
+  This is the cleanest of the three. Note also that Turing died on 7 June 1954,
+  so his WRITING passed into the public domain in Switzerland on 1 January 2025.
+  The quotations on frame 3 therefore need no quotation right at all, unlike
+  Popper's.
+
+  ALTERNATIVE, if a plainly free photograph is wanted with no unknown-author
+  reasoning behind it: File:Alan_Turing_Aged_16.jpg, a passport photograph from
+  1928 or 1929, Public Domain Mark, 675 x 919 pixels, attributed on Commons to
+  "possibly Arthur Reginald Chaffin (1893 to 1954)". It shows a schoolboy, which
+  sits oddly beside a 1950 paper, so the 1951 portrait is the better fit.
+
+
+whewell-wellcome.jpg Frame 4, left column, height 4.0cm inside the hairline
+                     frame.
+
+  Subject   William Whewell (1794 to 1866), portrait
+  Medium    Stipple engraving. The engraver is not named on the Commons record
+  Licence   CC BY 4.0, applied by the Wellcome Collection to the scan
+  Commons   https://commons.wikimedia.org/wiki/File:Portrait_of_W._Whewell;_stipple_engraving_Wellcome_L0014766.jpg
+  Wellcome  Reference L0014766
+  Recorded  1224 x 1532 pixels
+  Status    DOWNLOADED, OPENED AND INSPECTED BEFORE USE, 2026-09-01.
+            The Commons API returned LicenseShortName "CC BY 4.0", UsageTerms
+            "Creative Commons Attribution 4.0", and, importantly,
+            AttributionRequired "true". The condition is real and it is met:
+            frame 4's caption prints "William Whewell, stipple engraving.
+            Wellcome Collection, CC BY 4.0" and the references frame repeats it
+            with the L number. Both were confirmed on the rendered PDF, page 20.
+            Committed as the 1100 px wide rendition, 1100 x 1377, 779 KB.
+            INSPECTED: stipple engraving, head and shoulders, older Whewell,
+            academic gown, facing slightly to his left, cream paper. Correct
+            subject and the right period for an 1858 citation.
+
+  ALTERNATIVE CHECKED AND REJECTED, 2026-09-01. A CC0 file exists,
+  File:Portret van William Whewell, RP-F-2001-7-350-20.jpg from the
+  Rijksmuseum at 5662 x 3936, which would remove the attribution condition
+  entirely. It was downloaded and opened, and it is NOT a portrait: it is a
+  photograph of an open book, a bound album spread showing a small foxed
+  albumen print on the left page and a page of printed biography on the right.
+  Using it would need a heavy crop of a small, stained original. This is the
+  "filenames lie" rule earning its place: the metadata says portrait, the file
+  is a book. Do not re-propose it without opening it.
+
+  ATTRIBUTION IS A CONDITION HERE, not a courtesy. CC BY 4.0 requires credit,
+  which is why frame 4's caption reads "Wellcome Collection, CC BY 4.0" and why
+  the references frame repeats it with the L number. Do not shorten either.
+
+  The engraving itself is old enough to be free by age; the licence attaches to
+  Wellcome's scan. If Carlos would rather avoid the condition entirely, look for
+  a plain photograph of an oil portrait of Whewell in a Trinity College or
+  National Portrait Gallery scan, and check that scan's own licence before
+  promising it.
+
+
+NO OTHER IMAGE BELONGS IN THIS DECK.
+
+  Frame 2 carries the tetradic schema, drawn in TikZ, and no plate. That is
+  deliberate: the house grammar gives a diagram frame the whole frame, and a
+  second portrait of Popper two frames apart would read as a duplicate rather
+  than as a new thinker. Frame 5 is a references page and carries no plate.
+
+  If Carlos wants a portrait on frame 2 as well, reuse popper-lse.jpg small in a
+  corner rather than sourcing a second Popper photograph, and resolve the rights
+  question above once for both frames.

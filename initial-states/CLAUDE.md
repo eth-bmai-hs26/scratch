@@ -37,7 +37,7 @@ The fixed heading order of an issue prompt, from the FS26 convention:
 
 `## Implementation Notes` is optional and goes between Deliverables and File Structure.
 
-## What is here, 2026-08-26
+## What is here, 2026-09-01
 
 | Directory | Session | TAs | Format | State |
 |---|---|---|---|---|
@@ -45,14 +45,21 @@ The fixed heading order of an issue prompt, from the FS26 convention:
 | `hs26-bmai-w1-opt-genie-rm` | Fri 10:00, second of three | Jinlei, Suei-Wen | Multi-file `course-viz` page, click-step, 9 scenes, vendored d3 and KaTeX | **TA-ready initial state.** Scenes 0, 1, 2, 3, 6, 7, 8 built and verified, 4 and 5 stubbed, notebook pair generated and run, 8 issue prompts |
 | `hs26-bmai-w1-opt-rm-house` | Fri 10:00, third of three | Ghali, Suei-Wen | Colab notebook pair plus helper module, seeded generator, reference implementation | **TA-ready.** Built, run, verified, then independently re-verified by a second agent. 6 issue prompts |
 | `cold-open-weekend1` | Fri 08:00 intro block, plus one frame at Fri 16:00 | none, this is Carlos's own | Beamer deck, 4 frames over 13 pages, plain `pdflatex` | **Built and verified.** Compiles clean, every page rendered and read. `slides/img/` is empty on purpose. No `issue-prompts/` |
+| `cold-open-weekend1-popper` | Fri 08:00 intro block. **An alternative to the line above, for the same three minutes** | none, this is Carlos's own | Beamer deck, 5 frames over 20 pages, plain `pdflatex` | **Built and verified.** Compiles clean with no bad boxes, all 20 pages rendered and read, no-shift measured. Two of three plates present, one quotation slot is a marker. No `issue-prompts/` |
+| `cold-open-weekend1-szymborska` | Fri 08:00 intro block. **A third alternative for the same three minutes** | none, this is Carlos's own | Beamer deck, 6 frames over 24 pages, plain `pdflatex` | **Built and verified 2026-09-01.** The Popper deck with a Wislawa Szymborska frame added at the front. Compiles clean with no bad boxes, 24 pages rendered and 7 read (the new frame plus three checks; the rest are the Popper deck unchanged), frame 1 read at 300 DPI, Polish diacritics confirmed, no-shift measured pixel by pixel. Three of four plates present. No `issue-prompts/` |
 
 Five schedule slugs have no directory here yet: `hs26-bmai-w1-gd-grasshopper` (both briefs),
 `hs26-bmai-w1-nn-universal-approx`, `hs26-bmai-w1-nn-pytorch`, `hs26-bmai-w1-validation` and
 `hs26-bmai-w1-project`.
 
-`cold-open-weekend1` is the one directory here that is not a schedule slug. It is the
-philosophical opening of the weekend, it has no CX slot and no TAs, and it is listed above so
-that a reader of this table sees everything the directory holds.
+Three directories here are not schedule slugs: `cold-open-weekend1`, `cold-open-weekend1-popper`
+and `cold-open-weekend1-szymborska`. All three are the philosophical opening of the weekend, they
+have no CX slot and no TAs, and they are listed above so that a reader of this table sees everything
+the directory holds.
+
+**They are alternatives, not a sequence.** Each fills the same three minutes at Friday 08:00, and
+each opens on a numbered structure mapped onto the day, so running both would make the second feel
+like the first again. Carlos chooses one. Until he does, both stay.
 
 ### `hs26-bmai-w1-opt-heron`, "Squaring the rectangle"
 
@@ -151,6 +158,100 @@ python3 precompute/build_notebooks.py  rewrites both notebooks, asserts the sync
 Both scripts end on `All assertions passed.` A later independent pass re-ran the whole chain without
 trusting the README, confirmed all 47 quoted output lines verbatim, mutation tested the assertions
 to prove they fire, and rebuilt both notebooks to their existing MD5.
+
+### `cold-open-weekend1-szymborska`, "Guess, Check, Correct" with a poet in front
+
+**The newest of the three, built 2026-09-01.** It is `cold-open-weekend1-popper` with ONE FRAME
+ADDED AT THE FRONT: Wislawa Szymborska's 1996 Nobel lecture "The poet and the world". Frames 2 to 6
+are the Popper deck apart from their banner numbers and three added lines on the references frame,
+so **a diff between the two directories is meaningful and should stay meaningful.**
+
+Carlos asked for a literary cold open drawn from a Nobel laureate in literature rather than from
+philosophy or science, one that shows the guess, the feedback and the correction. Four candidates
+were pinned against primary sources first, Octavio Paz's *Piedra de sol*, Rabindranath Tagore's
+*Gitanjali* 12, Szymborska's Nobel lecture and Beckett's *Worstward Ho*, and he chose Szymborska.
+The other three are recorded with their provenance at the foot of the deck's `README.md`, so any of
+them can be built without repeating the research.
+
+**The twenty seconds the deck is built around.** Frame 1 ends on Szymborska's `rodzi sie z
+bezustannego "nie wiem"`, born from a continuous "I don't know". Frame 2 opens on Popper's "We do
+not know: we can only guess". The room hears the same sentence twice, once from a poet and once
+from a philosopher of science, and the second one adds the guess. Do not put a frame between them
+and do not reorder them.
+
+**This frame is the best documented in any of the three cold opens.** Szymborska delivered the
+lecture in Polish and nobelprize.org publishes the Polish and the Baranczak and Cavanagh English on
+the same record, so both were pinned and the deck's "original language above the gloss" rule works
+exactly as written for the first time in the family. Everything on the frame is pinned, in both
+languages. Its plate is a CC BY 3.0 photograph by Mariusz Kubik, Krakow 2009, downloaded, opened,
+inspected, and cross-checked against its Commons record through the EXIF.
+
+Its verification chain, all of it run and recorded in `README.md`:
+
+```
+cd slides && pdflatex slides.tex && pdflatex slides.tex   exit 0 twice, no errors, NO bad boxes
+pdftotext slides.pdf - | grep -cP '\x{2014}'              0 em dashes in the rendered PDF
+pdftotext slides.pdf - | grep -cP '\x{2013}'              0 en dashes in the rendered PDF
+pdftotext slides.pdf - | grep -cP '\-\-'                  0 double hyphens in the rendered PDF
+pdftoppm -png -r 130 slides.pdf /tmp/szym                 all 24 pages rendered
+```
+
+plus a 300 DPI read of frame 1, a `pdftotext` read to confirm the Polish diacritics survive into
+the PDF, and a pixel-by-pixel no-shift measurement on frame 1 in which every band changes exactly
+once, at its own overlay, and is byte-identical either side. Three defects were found by rendering
+and fixed.
+
+**Seven of the 24 pages were read in this build**, the four of the new frame plus the hand-off, the
+schema and the rebuilt references page. The other 17 are the Popper deck unchanged and were read
+one by one in its own build of 2026-08-31. The deck's `README.md` says exactly which, because a
+verification table that overstates what was looked at is worse than one that admits a gap.
+
+Four things to know before touching it. **It inherits every unresolved item from the Popper deck**,
+including the unpinned German original and the Popper photograph's rights question, and resolved
+none of them. **A new decision appeared with this build**: house rule 4 wants a quotation pinned
+character for character and house rule 8 wants a dash-free rendered PDF, and Szymborska's printed
+English uses en dashes freely, so one passage worth having is unusable until Carlos settles the
+exemption. `SOURCES.md` section 1a states it. **The Kubik credit on frame 1 is a licence condition**
+and not a courtesy. And **all three cold opens are still on the earlier light Metropolis** while the
+08:00 admin, 09:00 and 11:00 decks were restyled to Paper and Grid the same day, so as things stand
+the first thing the room sees on Friday is in a theme nothing else that day uses.
+
+### `cold-open-weekend1-popper`, "Guess, Check, Correct"
+
+The alternative three minute opening for Friday 08:00, built 2026-08-31 to a slide list Carlos
+gave: Popper with his portrait and "We do not know: we can only guess", then the tetradic schema
+with a diagram, then one frame each for Turing and Whewell, then references. Same house skill, same
+inherited preamble as its sibling plus one added macro.
+
+Popper's `P1 TT EE P2` is Friday morning written as a formula: a problem you cannot answer directly,
+a guess, an attempt to kill the guess, and a new problem, then round again. Turing says the same
+thing about machines that learn in 1950, Whewell says it in 1858 and adds overshooting the mark,
+which is what a step size does at 11:00. Where the Descartes deck has to say out loud that its text
+argues the opposite way from the weekend, this one does not.
+
+It carries `CLAUDE.md`, `README.md`, `SOURCES.md` and `slides/` with its own `CLAUDE.md`,
+`.gitignore`, `beamer-preamble.tex`, `slides.tex`, `slides.pdf` and `img/`. Two subdirectories,
+three CLAUDE.md files.
+
+Its verification chain, all of it run and recorded in `README.md`:
+
+```
+cd slides && pdflatex slides.tex && pdflatex slides.tex   exit 0 twice, no errors, NO bad boxes
+pdftotext slides.pdf - | grep -cP '\x{2014}'              0 em dashes in the rendered PDF
+pdftotext slides.pdf - | grep -cP '\x{2013}'              0 en dashes in the rendered PDF
+pdftoppm -png -r 130 slides.pdf /tmp/pop                  all 20 pages rendered AND read
+```
+
+plus a 300 DPI read of each frame's terminal overlay and a measured no-shift check on the animated
+figure. Three defects were found by rendering and fixed.
+
+Four things to know before touching it. **`SOURCES.md` is not decoration**: two of its quotation
+slots are unresolved, and the deck points at that file by path from a slide. **The German original
+of the frame 1 sentence could not be found**, so that slot draws a dashed marker via the added
+`\origslot` macro; do not fill it from a quotation site. **The Popper photograph has a real rights
+question** that nobody has settled, since Popper is protected in Switzerland until the end of 2064
+and the Commons record carries only an institutional "no known copyright restrictions" statement.
+And **`slides/img/` is empty on purpose**, like its sibling.
 
 ### `cold-open-weekend1`, "The Four Precepts"
 

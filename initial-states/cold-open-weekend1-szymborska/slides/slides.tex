@@ -1,0 +1,462 @@
+% CAS BMAI HS26, weekend 1: the cold open, Szymborska variant.
+% "Guess, Check, Correct".
+%
+% WHAT THIS DECK IS. It is the Popper cold open, ../../cold-open-weekend1-popper/,
+% with ONE FRAME ADDED AT THE FRONT: Wislawa Szymborska's 1996 Nobel lecture.
+% Frames 2 to 6 are that deck byte for byte apart from their banner numbers and
+% three added lines on the references frame. Built 2026-09-01 on Carlos's
+% request, after a search for a literary cold open turned up four candidates
+% (Paz, Tagore, Szymborska, Beckett) and he chose Szymborska.
+% DIFFING AGAINST THE POPPER DECK IS THEREFORE MEANINGFUL. Keep it that way:
+% if you change a shared frame here, change it there in the same pass, or say
+% in this header why the two have been allowed to diverge.
+%
+% Light projection-first Metropolis with the Libertinus serif, inherited from
+% beamer-preamble.tex in this directory (copied on 2026-08-31 from the sibling
+% Descartes deck ../../cold-open-weekend1/slides/, which had already been diffed
+% against the lecture-slides skill; the diff is recorded at the head of that file).
+% NOTE, and it is an open decision rather than an oversight: the HS26 house style
+% was changed to Paper and Grid on 2026-09-01 and the 08:00, 09:00 and 11:00
+% decks were restyled to it. All three cold opens, this one included, are still
+% on this earlier light Metropolis. See ../README.md, "Open decisions".
+%
+% Engine: pdflatex, TWICE.
+% Build:  cd slides && pdflatex slides.tex && pdflatex slides.tex
+%
+% STAGING. Six frames. Frames 1 to 5 are the 08:00 opening on Friday
+% 4 September 2026, inside the "Intro and onboarding" block, before anything
+% administrative. About three and a half minutes. Frame 6 is a reference frame:
+% it is a handout page and a rights record, and it is NOT projected during those
+% minutes. Cut it from the projected run or leave it as the page the deck
+% happens to end on, but do not read it aloud.
+%
+% THE ARGUMENT. Every algorithm on Friday morning is one loop: guess, check
+% against something you can actually compute, read the signed miss, correct,
+% repeat. Szymborska describes that loop from the inside, as the thing a poet
+% does to a poem, and she names the state it starts from: "I don't know".
+% Popper then answers her in the same words, "We do not know", and adds the
+% guess. Popper wrote the loop down as a formula in 1972 and defended it as the
+% whole method of science. Turing said the same thing about machines that learn,
+% one year before Robbins and Monro. Whewell said it in 1858 about inventive
+% minds in general, and threw in overshooting for free. One poet, three
+% witnesses, one loop, and the room has agreed with all four before a single
+% line of code is written.
+%
+% WHY A POET FIRST. The three witnesses all make a claim ABOUT method, from
+% outside it. Szymborska makes no claim at all. She reports what it feels like
+% to finish something, read it back, and find it will not hold, which is an
+% experience every person in the room has had and none of them calls a method.
+% The frame costs about forty seconds and it buys the other three an audience
+% that is already nodding.
+%
+% WHY POPPER RATHER THAN DESCARTES. The sibling deck opens on Descartes, and
+% its own design spec records the objection: Descartes wants certainty by
+% deduction from ideas so clear that doubt is impossible, and weekend 1 offers
+% a guess, a step that can overshoot, and a bound rather than a proof. The
+% Descartes deck answers that by saying the inversion out loud. Popper needs no
+% such repair, because Popper's method IS this weekend's method.
+%
+% HOUSE RULES OBEYED. Dry factual frame titles. Original language above the
+% gloss (see THE ORIGINAL-LANGUAGE PROBLEM below). Source line in muted small
+% type on every quotation frame. One plate per thinker frame, framed and
+% captioned in one line. NO CLOSING PUNCHLINE and no \takeaway. ASCII
+% punctuation only: there is no prose "---" and no prose "--" anywhere in this
+% file, and the TikZ chain is drawn with "to" rather than "--" so that even the
+% diagram is dash free.
+% See /Users/carloscotrini/Documents/git_fdd/projects/.claude/skills/lecture-slides/SKILL.md
+%
+% THE ORIGINAL-LANGUAGE PROBLEM, and how this deck handles it.
+% Carlos asked for the original language above the translation on every frame.
+% Three of the five quotation frames carry text WRITTEN IN ENGLISH: Popper's
+% Conjectures and Refutations (1963) and Objective Knowledge (1972), Turing's
+% Mind paper (1950), and Whewell (1858). For those the original IS the English
+% on the slide, and the muted line underneath is therefore a PARAPHRASE rather
+% than a translation. Each such source line says so in as many words, so that
+% nobody mistakes a gloss for a translation.
+% Frame 1 is the one frame where the rule works exactly as written: Szymborska
+% delivered the lecture in Polish, nobelprize.org carries the Polish and the
+% English side by side, both were pinned, so the Polish is the body text and the
+% Baranczak and Cavanagh English sits under it as a real translation.
+% The one genuinely German-original quotation, "We do not know: we can only
+% guess", could NOT be pinned in the build session: two different German
+% wordings circulate and neither was traceable to a printed page of Logik der
+% Forschung. Its original-language slot on frame 2 therefore draws a dashed
+% marker naming the work and the locus, via \origslot in the preamble. That is
+% the same principle as a missing plate. Do not fill it in from a quotation
+% site.
+%
+% PROVENANCE, and it is NOT uniform across the quotations.
+%   PINNED verbatim in the research session against complete texts:
+%     both Szymborska passages, Polish AND English (frame 1),
+%     the Conjectures and Refutations preface sentence (frame 3),
+%     the whole tetradic-schema passage behind frame 3's diagram,
+%     both Turing sentences (frame 4),
+%     both Whewell sentences (frame 5).
+%   LOCATED but NOT pinned, and carrying a known punctuation variant:
+%     "We do not know: we can only guess" (frame 2). Colon and semicolon
+%     versions both circulate.
+% The full table is in ../SOURCES.md. Read it before projecting anything.
+%
+% IMAGES. Three of the four plates this deck wants are PRESENT in img/ and were
+% licence-checked at the source and inspected: turing-1951.jpg (public domain),
+% whewell-wellcome.jpg (CC BY 4.0) and szymborska-kubik.jpg (CC BY 3.0, added
+% 2026-09-01). img/IMAGE-SOURCES.txt records artist, date, licence and Commons
+% URL for each, and \plateh draws a dashed box naming any file that is missing
+% so the gap is visible rather than silent.
+% ONE PLATE IS STILL ABSENT AND ITS BOX STILL PROJECTS: img/popper-lse.jpg. It
+% carries a rights question that only Carlos can settle, because Popper is
+% protected in Switzerland until the end of 2064 and the Commons record offers
+% only an institutional "no known copyright restrictions" statement rather than
+% a licence. Read that file before filling the slot.
+% Do not "fix" a dashed box by committing a stand-in image: a placeholder that
+% looks like a picture is worse than a box saying a picture is missing.
+
+\documentclass[aspectratio=169]{beamer}
+\input{beamer-preamble}
+
+\title{Guess, Check, Correct}
+\subtitle{Cold open, weekend 1, Szymborska variant}
+\author{Carlos Cotrini}
+\date{Friday 4 September 2026}
+% No \maketitle on purpose: this deck is pasted in front of the intro and
+% onboarding block, which already carries the course title page. Same decision
+% as the sibling Descartes deck, and for the same reason.
+
+\begin{document}
+
+% ================= 1. Szymborska, and the sentence =================
+% Five overlay pages. Same column grammar as the Popper frame that follows it:
+% plate on the left, the placement in two short spoken lines, then the original
+% language, then the gloss underneath in muted small type.
+%
+% WHY SHE OPENS THE DECK, ahead of the three witnesses.
+% Popper, Turing and Whewell are all making a claim ABOUT method, from outside.
+% Szymborska makes no claim at all: she describes what it is like from the
+% inside to finish something, read it back, and find that it will not hold.
+% Every person in that room at 08:00 has done that. Nobody in it has falsified
+% a conjecture. So she is the frame that buys the other three their audience.
+%
+% THE HAND-OFF IS THE WHOLE POINT, AND IT IS FRAGILE. This frame ends on
+%     rodzi sie z bezustannego "nie wiem"
+%     born from a continuous "I don't know"
+% and the very next frame opens on
+%     We do not know: we can only guess.
+% The room hears the same sentence twice inside twenty seconds, once from a poet
+% and once from a philosopher, and the second one adds the guess. DO NOT put a
+% frame between these two and do not reorder them. If the morning runs late,
+% cut overlay 4 (the repeat), never the last overlay.
+%
+% ORIGINAL LANGUAGE, and this frame is better off than its neighbours.
+% The lecture was delivered in Polish at the Swedish Academy on 7 December 1996
+% and nobelprize.org carries the Polish and the English side by side. So unlike
+% the Popper frame, this frame's \origslot takes REAL PINNED TEXT and draws no
+% dashed marker: the Polish was read off the Polish page in the build session
+% and the English off the English page. Both are in ../SOURCES.md.
+%
+% A TRANSLATION NOTE THAT MATTERS. The Polish is SINGULAR, "Poeta rowniez,
+% jesli jest prawdziwym poeta" (the poet too, if he is a true poet), and
+% Baranczak and Cavanagh pluralise it to "Poets, if they're genuine". The gloss
+% on this slide is their published wording and NOT a correction of it. Anyone
+% comparing the two lines will see the number change; that is the translators'
+% choice, and ../SOURCES.md says so.
+%
+% ABRIDGEMENT. Each quotation is cut once and the cut is marked \ldots.
+% The full pinned text, for the record and for anyone restoring it:
+%
+%  PL  Poeta rowniez, jesli jest prawdziwym poeta, musi ciagle powtarzac sobie
+%      "nie wiem". Kazdym utworem probuje na to odpowiedziec, ale kiedy tylko
+%      postawi kropke, juz ogarnia go wahanie, juz zaczyna sobie zdawac sprawe,
+%      ze jest to odpowiedz tymczasowa i absolutnie niewystarczajaca. Wiec
+%      probuje jeszcze raz i jeszcze raz, a potem te kolejne dowody jego
+%      niezadowolenia z siebie historycy literatury zepna wielkim spinaczem i
+%      nazywac beda "dorobkiem" ...
+%
+%  EN  Poets, if they're genuine, must also keep repeating "I don't know." Each
+%      poem marks an effort to answer this statement, but as soon as the final
+%      period hits the page, the poet begins to hesitate, starts to realize that
+%      this particular answer was pure makeshift that's absolutely inadequate to
+%      boot. So the poets keep on trying, and sooner or later the consecutive
+%      results of their self-dissatisfaction are clipped together with a giant
+%      paperclip by literary historians and called their "oeuvre" ...
+%
+% THE CLAUSE THIS DECK DELIBERATELY DOES NOT PROJECT is the paperclip. The poet
+% keeps every past attempt and files it as an oeuvre; the algorithm at 09:00
+% keeps only the current guess and throws the rest away. That is a real
+% disanalogy and it is the one thing here worth saying out loud IF SOMEBODY
+% ASKS. It stays off the slide, because a cold open that argues with itself is
+% four frames too long.
+%
+% POLISH DIACRITICS are written as LaTeX accent commands and not as raw UTF-8,
+% which is the convention the sibling Descartes deck already uses for its
+% French. l with stroke is \l{}, the ogonek is \k{}, the dot above is \.{}.
+% That keeps this file byte-clean under pdflatex with T1 and no assumption
+% about inputenc.
+%
+% QUOTATION MARKS. nobelprize.org sets the Polish with English-style curly
+% quotes rather than the Polish low-opening form, and this frame reproduces
+% what was actually pinned. Do not "correct" it to ,,nie wiem''.
+%
+% THE ALERTS ARE THE SAME CODE AS THE REST OF THE DECK: exactly the clause that
+% carries the loop, and nothing else. Doubt on overlay 3, repetition on overlay
+% 4, the not-knowing on overlay 5. Three alerts, three beats, one per click.
+\begin{frame}{Szymborska, 1996: the answer that will not hold}
+  \vspace{0mm}
+  \begin{columns}[c]
+    \column{0.30\textwidth}\centering
+      \plateh{3.6cm}{3.0cm}{img/szymborska-kubik.jpg}\\[3pt]
+      % The break is FORCED. Left to itself this 0.30 column split the licence
+      % as "CC / BY 3.0", which the 130 dpi render caught and the log did not.
+      {\scriptsize\color{muted}Wis\l{}awa Szymborska, Krak\'ow, 2009.\\[1pt]
+       Mariusz Kubik, CC BY 3.0}
+    \column{0.66\textwidth}
+      \onslide<2->{{\footnotesize Stockholm, 7 December 1996. Szymborska is
+      asked to say what a poet does.}}\\[6pt]
+      % NB: the break between the Polish and its gloss is "\\[2pt]", NEVER
+      % "\par". A \par inside these groups ends the paragraph, and the "\\[8pt]"
+      % that follows the group then fails with "There's no line here to end".
+      % That is what this frame did on its first build.
+      \onslide<3->{{\footnotesize Natchnienie, czymkolwiek ono jest, rodzi
+       si\k{e} z \alert{bezustannego ``nie wiem''}.\\[2pt]
+       {\scriptsize\color{muted}Whatever inspiration is, it's born from a
+        continuous ``I don't know.''}}}\\[6pt]
+      \onslide<4->{{\footnotesize Ka\.zdym utworem pr\'obuje na to
+       odpowiedzie\'c, ale kiedy tylko \alert{postawi kropk\k{e}, ju\.z ogarnia
+       go wahanie} \ldots\ Wi\k{e}c pr\'obuje \alert{jeszcze raz i jeszcze
+       raz}.\\[2pt]
+       {\scriptsize\color{muted}Each poem marks an effort to answer this
+        statement, but as soon as the final period hits the page, the poet
+        begins to hesitate \ldots\ So the poets keep on trying.}}}\\[4pt]
+      {\scriptsize\color{muted}Wis\l{}awa Szymborska, ``The poet and the
+       world'', Nobel Lecture 1996. Polish original; English by Bara\'nczak and
+       Cavanagh. Copyright The Nobel Foundation 1996.}
+  \end{columns}
+\end{frame}
+
+% ================= 2. Popper, and the sentence =================
+% Four overlay pages. Left column is the plate. Right column lands the placement
+% in two short spoken lines, then the original-language slot, then the sentence.
+%
+% The frame ends on the sentence. There is no closing line under it.
+%
+% THIS IS THE FRAME THAT CARRIES THE ROOM. Everything after it is evidence.
+\begin{frame}{Popper, 1934: conjecture and refutation}
+  \vspace{1mm}
+  \begin{columns}[c]
+    \column{0.32\textwidth}\centering
+      \plateh{4.0cm}{3.0cm}{img/popper-lse.jpg}\\[3pt]
+      {\scriptsize\color{muted}Karl Popper, about 1980.\\LSE Library}
+    \column{0.64\textwidth}
+      \onslide<2->{{\footnotesize Vienna, 1934. Popper asks what entitles anyone
+      to believe a general rule drawn from finitely many cases.}}\\[6pt]
+      \onslide<2->{{\footnotesize His answer is that nothing does, and that this
+      is survivable.}}\\[10pt]
+      \onslide<3->{\origslot{}{\textit{Logik der Forschung} (1934), Abschnitt 85}}\\[6pt]
+      \onslide<4->{{\large We do not know: \alert{we can only guess.}}}\\[8pt]
+      {\scriptsize\color{muted}Karl Popper, \textit{The Logic of Scientific
+       Discovery}, chapter 10, section 85 (1959), the authorised English of
+       \textit{Logik der Forschung} (1934).\\
+       Located, not yet pinned: a colon and a semicolon version both circulate.
+       See \texttt{../SOURCES.md}.}
+  \end{columns}
+\end{frame}
+
+% ================= 3. The tetradic schema =================
+% Seven overlay pages. The pinned Conjectures and Refutations sentence at the
+% top, then the four nodes one per click, then the return arrow, then one wave
+% that hangs Friday morning off each node.
+%
+% ABRIDGEMENT. The quotation is cut in two places and each cut is marked \ldots.
+% The full pinned sentence, for the record:
+%
+%   The way in which knowledge progresses, and especially our scientific
+%   knowledge, is by unjustified (and unjustifiable) anticipations, by guesses,
+%   by tentative solutions to our problems, by conjectures. These conjectures
+%   are controlled by criticism; that is, by attempted refutations, which
+%   include severely critical tests.
+%
+% THE DIAGRAM IS DRAWN WITH "to", NEVER "--". A TikZ line segment is the one
+% place the house dash rule allows a double hyphen, and this deck declines even
+% that, so that the dash grep over this source returns nothing at all and the
+% next person does not have to eyeball hits.
+%
+% NO-SHIFT RULE. Every node and every arrow uses "visible on=<n->" rather than
+% \only, so the picture's bounding box is identical on all seven overlays and
+% nothing moves as pieces land. SKILL.md Pattern F.
+%
+% THE RETURN ARROW GOES OVER THE TOP, not underneath. Underneath is where the
+% two caption lines live, and an arc routed below collided with them.
+\begin{frame}{Popper's tetradic schema}
+  \vspace{-3mm}
+  {\footnotesize The way in which knowledge progresses \ldots\ is by
+   \alert{unjustified (and unjustifiable) anticipations, by guesses}, by
+   tentative solutions to our problems, by conjectures. These conjectures are
+   controlled by criticism; that is, \alert{by attempted refutations} \ldots}
+
+  \vspace{1mm}
+  \centering
+  % hyphenpenalty is set OUTSIDE the picture so the caption nodes inherit it:
+  % without it "Square it. Compare with 2026" broke as "Com-pare" inside a
+  % 2.9cm node. Same trick the sibling deck uses on its precept tabular.
+  % ... and it is SCOPED to the picture: left switched on to the end of the
+  % frame it also suppressed hyphenation in the source line below, which then
+  % ran 4.45pt past the right margin.
+  {\hyphenpenalty=10000 \exhyphenpenalty=10000
+  \begin{tikzpicture}
+    % --- the chain ---
+    \node[nodebox, visible on=<2->] (p1) at (0,0)    {$P_1$};
+    \node[nodebox, visible on=<3->] (tt) at (3.5,0)  {TT};
+    \node[nodebox, visible on=<4->] (ee) at (7.0,0)  {EE};
+    \node[nodebox, visible on=<5->] (p2) at (10.5,0) {$P_2$};
+    \draw[edge, visible on=<3->] (p1) to (tt);
+    \draw[edge, visible on=<4->] (tt) to (ee);
+    \draw[edge, visible on=<5->] (ee) to (p2);
+    % --- what each letter stands for ---
+    \node[below=1.5mm of p1, visible on=<2->] (n1) {Problem};
+    \node[below=1.5mm of tt, visible on=<3->] (n2) {Tentative theory};
+    \node[below=1.5mm of ee, visible on=<4->] (n3) {Error elimination};
+    \node[below=1.5mm of p2, visible on=<5->] (n4) {New problem};
+    % --- the loop closes ---
+    \draw[dimedge, visible on=<6->] (p2.north)
+      to[out=90, in=90, looseness=0.26]
+      node[midway, above, font=\scriptsize, text=muted] {and again} (p1.north);
+    % --- Friday morning, hung off the schema, as ONE wave ---
+    \node[below=1mm of n1, text width=3.0cm, align=center, text=muted,
+          font=\scriptsize, visible on=<7->] {You cannot write the answer down};
+    \node[below=1mm of n2, text width=3.0cm, align=center, text=muted,
+          font=\scriptsize, visible on=<7->] {A first guess, $\theta = 45$};
+    \node[below=1mm of n3, text width=3.0cm, align=center, text=muted,
+          font=\scriptsize, visible on=<7->] {Square it, compare with 2026};
+    \node[below=1mm of n4, text width=3.0cm, align=center, text=muted,
+          font=\scriptsize, visible on=<7->] {A smaller miss, and a better question};
+  \end{tikzpicture}}
+
+  \vspace{0mm}
+  {\raggedright\scriptsize\color{muted}\hspace*{0.2cm}Schema after Karl Popper,
+   \textit{Objective Knowledge}, chapter 8 (1972). Quotation: \textit{Conjectures
+   and Refutations}, preface (1963). English original.\par}
+\end{frame}
+
+% ================= 4. Turing =================
+% Four overlay pages. Two quotations, both pinned, then the paraphrase.
+%
+% The second quotation is the bridge to the 11:00 lecture: a search over
+% behaviours, scored by a criterion, is gradient descent with the words changed.
+% If the morning runs late, cut overlay 3 rather than the frame.
+\begin{frame}{Turing, 1950: the child machine}
+  \vspace{1mm}
+  \begin{columns}[c]
+    \column{0.32\textwidth}\centering
+      \plateh{4.0cm}{3.0cm}{img/turing-1951.jpg}\\[3pt]
+      {\scriptsize\color{muted}Alan Turing, 29 March 1951.\\Elliott and Fry}
+    \column{0.64\textwidth}
+      \onslide<2->{{\footnotesize We cannot expect to find a good child-machine
+      at the first attempt. One must experiment with teaching one such machine
+      and see how well it learns. One can then \alert{try another} and see if it
+      is better or worse.}}\\[10pt]
+      \onslide<3->{{\footnotesize Now the learning process may be regarded as
+      \alert{a search for a form of behaviour} which will satisfy the teacher
+      (or some other criterion).}}\\[10pt]
+      \onslide<4->{{\scriptsize\color{muted}You do not get it right the first
+      time. You try, you measure, you try again.}}\\[8pt]
+      {\scriptsize\color{muted}A. M. Turing, ``Computing Machinery and
+       Intelligence'', \textit{Mind} LIX(236), 1950, section 7, Learning
+       Machines.\\
+       English original. The muted line is this deck's paraphrase, not a
+       translation.}
+  \end{columns}
+\end{frame}
+
+% ================= 5. Whewell =================
+% Four overlay pages. Same shape as frame 3.
+%
+% THE SECOND QUOTATION IS THE ONE THAT PAYS FOR THE FRAME. "Overshooting the
+% mark" is what a step size does at 11:00, written in 1858 about inventive minds
+% in general. Do not cut it in favour of the first.
+%
+% MISQUOTATION TRAP, found in the research session and worth keeping in mind
+% every time this line is retyped: the version in general circulation reads
+% "To try wrong guesses is apparently the only way to hit upon right ones."
+% The 1858 text has no "apparently". It reads "is, with most persons,".
+% The wording below was read off the third-edition text, not off a quotation
+% site. Do not "fix" it back.
+%
+% ALTERNATIVE QUOTATION, if Carlos prefers the validation reading to the
+% guessing one, from the aphorisms at the head of the same chapter:
+%   Aphorism XII. It is a test of true theories not only to account for, but to
+%   predict phenomena.
+% That one reaches 16:00 and Saturday's validation block rather than the
+% morning. It is NOT used here because this deck's job is the morning loop.
+\begin{frame}{Whewell, 1858: trying wrong guesses}
+  \vspace{1mm}
+  \begin{columns}[c]
+    \column{0.32\textwidth}\centering
+      \plateh{4.0cm}{3.0cm}{img/whewell-wellcome.jpg}\\[3pt]
+      {\scriptsize\color{muted}William Whewell, stipple engraving.\\Wellcome
+       Collection, CC BY 4.0}
+    \column{0.64\textwidth}
+      \onslide<2->{{\footnotesize To try \alert{wrong guesses} is, with most
+      persons, the only way to hit upon right ones.}}\\[10pt]
+      \onslide<3->{{\footnotesize The tendencies of our speculative nature
+      \ldots\ perpetually show their vigour by \alert{overshooting the mark}.
+      They obtain something, by aiming at much more.}}\\[10pt]
+      \onslide<4->{{\scriptsize\color{muted}Most guesses are wrong, and a step
+      that aims too far is how the right one gets found.}}\\[8pt]
+      {\scriptsize\color{muted}William Whewell, \textit{Novum Organon
+       Renovatum}, third edition (1858), book II, chapter V, section I, page 79.\\
+       English original. The muted line is this deck's paraphrase, not a
+       translation.}
+  \end{columns}
+\end{frame}
+
+% ================= 6. References =================
+% ONE overlay page, static, and deliberately so: this is a handout page and a
+% rights record rather than teaching content, and SKILL.md hard rule 5 is a
+% teaching-content rule. It is NOT part of the three minutes.
+%
+% Every image line carries its licence because two of the three are not plain
+% public domain: the Wellcome scan is CC BY 4.0 and requires the credit that is
+% printed on frame 4, and the Popper photograph carries a Flickr Commons
+% "no known copyright restrictions" statement, which is an institutional
+% assertion rather than a licence. See img/IMAGE-SOURCES.txt.
+\begin{frame}{References}
+  \vspace{-3mm}
+  {\scriptsize
+  \begin{columns}[T]
+    \column{0.53\textwidth}
+      Texts\\[4pt]
+      {\color{muted}
+      Szymborska, Wis\l{}awa. ``The poet and the world''. Nobel Lecture,
+      Stockholm, 7 December 1996. Polish and English (tr. Bara\'nczak and
+      Cavanagh). Copyright The Nobel Foundation 1996.\\[3pt]
+      Popper, Karl R. \textit{The Logic of Scientific Discovery}. London:
+      Hutchinson, 1959. English of \textit{Logik der Forschung}, Vienna:
+      Springer, 1934. Chapter 10, section 85.\\[3pt]
+      Popper, Karl R. \textit{Conjectures and Refutations: The Growth of
+      Scientific Knowledge}. London: Routledge and Kegan Paul, 1963. Preface.\\[3pt]
+      Popper, Karl R. \textit{Objective Knowledge: An Evolutionary Approach}.
+      Oxford: Clarendon Press, 1972. Chapter 8.\\[3pt]
+      Turing, A. M. ``Computing Machinery and Intelligence''. \textit{Mind}
+      LIX(236), 1950, pages 433 to 460. Section 7.\\[3pt]
+      Whewell, William. \textit{Novum Organon Renovatum}. Third edition of
+      \textit{The Philosophy of the Inductive Sciences}, part two. London:
+      John W. Parker, 1858. Book II, chapter V.}
+    \column{0.43\textwidth}
+      Images\\[4pt]
+      {\color{muted}
+      Wis\l{}awa Szymborska, Krak\'ow, 2009. Mariusz Kubik. CC BY 3.0 and
+      GFDL 1.2 or later.\\[3pt]
+      Karl Popper, about 1980. LSE Library, via Flickr Commons. Marked
+      ``no known copyright restrictions''.\\[3pt]
+      Alan Turing, 29 March 1951. Elliott and Fry. Public domain.\\[3pt]
+      William Whewell, stipple engraving. Wellcome Collection L0014766,
+      CC BY 4.0.}\\[5pt]
+      Rights note\\[3pt]
+      {\color{muted}Popper died in 1994 and Szymborska in 2012, so their texts
+      are protected in Switzerland until the end of 2064 and 2082. The
+      quotations run on the quotation right, Art. 25 URG: a published work, an
+      extent justified by the purpose, the quotation marked and its source
+      named.}
+  \end{columns}}
+\end{frame}
+
+\end{document}

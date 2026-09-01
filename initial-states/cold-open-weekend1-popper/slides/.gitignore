@@ -1,0 +1,15 @@
+# LaTeX build artefacts. The PDF is the deliverable and IS committed.
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+# scratch decks used to smoke-test the preamble and measure cell widths
+_smoketest.*
+_measure.*
+_align.*

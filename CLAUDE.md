@@ -24,7 +24,7 @@ Three rows of the master schedule send TAs here by URL, which is why this file e
 A TA arriving from the spreadsheet lands at the repository root with no other context. Everything
 below is written for that person.
 
-## Status, 2026-08-26
+## Status, 2026-08-31
 
 - Committed (`a674fd7`, the only commit): the nine source files at the repository root.
 - Untracked working state: `CLAUDE.md`, `docs/`, `proposals/`, `initial-states/`. Nothing in them
@@ -34,8 +34,11 @@ below is written for that person.
   `hs26-bmai-w1-opt-genie-rm`, `hs26-bmai-w1-opt-rm-house`). The remaining five have neither a
   proposal nor a directory. For the grasshopper pair, `docs/summaries/06` section 5 already holds
   most of what a proposal would say.
-- A fourth built directory, `initial-states/cold-open-weekend1/`, is not a schedule slug. It is the
-  Friday 08:00 philosophical opening, and it belongs to Carlos.
+- Two further built directories, `initial-states/cold-open-weekend1/` and
+  `initial-states/cold-open-weekend1-popper/`, are not schedule slugs. Both are the Friday 08:00
+  philosophical opening and both belong to Carlos. **They are two alternatives for the same three
+  minutes**, one anchored on Descartes' four precepts and one on Popper's tetradic schema with
+  Turing and Whewell as corroborating witnesses. Carlos picks one; until then both stay.
 - There is no root `.gitignore`. `proposals/__pycache__/` is therefore not ignored by anything;
   delete it before staging that directory. The three slug directories each carry their own
   `.gitignore` and handle their own build artefacts.
@@ -140,13 +143,24 @@ anything: they are what stops the same source being re-read from scratch.
 ### `proposals/`
 
 One design spec per exercise, plus one runnable reference implementation per spec, plus the
-cold-open menu. Nothing in a proposal is decided; each ends on a section listing what only Carlos
-can settle. All four proposals have now been built, and the built version binds where the two
+cold-open menu. There are now **two** cold-open menus for the same Friday 08:00 slot,
+`COLD-OPEN-CANDIDATES.md` (philosophical, built twice) and `COLD-OPEN-FUNNY-CANDIDATES.md` (comic,
+written 2026-09-01, nothing built, seven of its eight candidates need nothing built), plus
+`LECTURE-DEMOS-MENTALISM.md`, which is a different thing again: eight stage demos for **inside** the
+09:00 and 11:00 lectures, in the form of a mind-reading act whose method is the lecture. Every act is
+a question-and-answer loop, which is the property Carlos insisted on after a first draft offered
+self-working card principles instead; those four are kept in the menu with the reason they went.
+**None of the eight needs sleight of hand.** Its centrepiece, act 7, runs bisection and
+Robbins-Monro against the same lying spectator and reports honestly that majority voting beats both
+at equal cost, which is what forces the real answer: you never get to ask the same question twice.
+Its act 3 is already specified as the two stub scenes of `hs26-bmai-w1-opt-genie-rm`, and every
+number in it is output of `lecture-demos-mentalism-reference.py`, which takes a couple of minutes to
+run. Nothing in a proposal is decided; each ends on a section listing what only Carlos can settle. All four exercise proposals have now been built, and the built version binds where the two
 disagree. `proposals/CLAUDE.md` has the detail.
 
 ### `initial-states/`
 
-The buildable material, one directory per schedule slug. One line each, as of 2026-08-26:
+The buildable material, one directory per schedule slug. One line each, as of 2026-08-31:
 
 | Directory | Format | State |
 |---|---|---|
@@ -154,6 +168,7 @@ The buildable material, one directory per schedule slug. One line each, as of 20
 | `hs26-bmai-w1-opt-genie-rm` | Multi-file `course-viz` page, click-step, 9 scenes, vendored d3 and KaTeX, plus a Colab notebook pair | **TA-ready initial state.** Scenes 0, 1, 2, 3, 6, 7, 8 built and verified, scenes 4 and 5 stubs. 62 assertions in the rigor gate. 8 issue prompts |
 | `hs26-bmai-w1-opt-rm-house` | Colab notebook pair plus helper module, seeded generator and reference implementation | **TA-ready.** Built, run, verified, then independently re-verified by a second agent. 6 issue prompts |
 | `cold-open-weekend1` | Beamer deck, 4 frames over 13 pages, plain `pdflatex` | **Built and verified.** Not a schedule slug: the Friday 08:00 opening, Carlos's own. `slides/img/` is empty on purpose and the deck draws a dashed placeholder box naming the plate it wants |
+| `cold-open-weekend1-popper` | Beamer deck, 5 frames over 20 pages, plain `pdflatex` | **Built and verified**, no bad boxes, all 20 pages read, no-shift measured. Not a schedule slug: **the alternative Friday 08:00 opening**, on Popper, Turing and Whewell. `slides/img/` is empty, one quotation slot is a marker, and `SOURCES.md` carries the provenance and an unresolved rights question on the Popper photograph |
 
 The per-slug `CLAUDE.md` is the authority for its own directory and overrides the line above.
 `initial-states/CLAUDE.md` has the pickup procedure and the standing cautions for the 10:00 block.
@@ -222,7 +237,9 @@ per item, because the original is usually public domain while the translation us
 (Switzerland is 70 years post mortem auctoris); and dry, factual frame titles. Quotations get pinned
 character for character against a primary scan and recorded in a provenance table. The weekend-1
 answer to that menu is `proposals/COLD-OPEN-CANDIDATES.md`, built as
-`initial-states/cold-open-weekend1/`.
+`initial-states/cold-open-weekend1/`. A second opening, `initial-states/cold-open-weekend1-popper/`,
+was built on 2026-08-31 from a candidate the menu never considered: it has no entry in
+`COLD-OPEN-CANDIDATES.md`, and its own `SOURCES.md` is the provenance record for it.
 
 ## House style, binding
 
@@ -334,7 +351,11 @@ Three traps that have already been hit:
 5. Which repository the notebooks clone from. No `eth-bmai-hs26/coding-exercises` exists.
 6. The five decisions in section 12 of `proposals/COLD-OPEN-CANDIDATES.md`, two of which would
    replace the built cold open outright, plus the plate for its frame 1.
-7. Rights for the Maxfield Parrish plate on the AINIT genie slide. No `IMAGE-SOURCES.txt` exists in
+7. The register of the Friday 08:00 opening: philosophical, comic, or one then the other.
+   `proposals/COLD-OPEN-FUNNY-CANDIDATES.md` section 9 gives the three arrangements and section 11
+   the six decisions that are his. Its first candidate would settle item 6 by letting the room vote
+   between the two built decks.
+8. Rights for the Maxfield Parrish plate on the AINIT genie slide. No `IMAGE-SOURCES.txt` exists in
    the AINIT repository, so there is no rights record for it anywhere that was read.
 
 ## Maintenance contract
