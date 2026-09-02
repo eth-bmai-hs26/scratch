@@ -90,10 +90,17 @@ for p in 4 11 15 19 20; do pdftoppm -png -singlefile -r 300 -f $p -l $p slides.p
 1. **A references frame, which no other deck in this family has.** Four quoted authors, one of them
    in copyright, and two plates carrying licence conditions. The frame is the rights record made
    visible. It is not projected during the three minutes.
-2. **Frame 1 projects its own provenance caveat**, in muted type: "Located, not yet pinned: a colon
-   and a semicolon version both circulate." That is build metadata on a slide, and it is there for
-   the same reason `img/` is empty: a gap that is legible cannot be shipped by accident. Delete
-   that one line when the sentence is pinned.
+2. **NOTHING ON A SLIDE IS ADDRESSED TO THE BUILD, and this entry used to say
+   the opposite.** It read: "Frame N projects its own provenance caveat, in
+   muted type ... that is build metadata on a slide, and it is there for the
+   same reason a missing plate draws a box: a gap that is legible cannot be
+   shipped by accident. Delete that one line when the sentence is pinned."
+   **That was wrong and Carlos struck it on 2026-09-02.** A dashed box stands in
+   for something ABSENT and forces the gap closed before the lecture; a footnote
+   about a quotation that IS on the slide is this deck talking to its own
+   builder in front of a room of managers. The caveat belongs in `SOURCES.md`
+   and in a `%` comment at the frame. Do not put a build note, a repository
+   path, a "not pinned" or a "TBD" on a slide.
 3. **Three of four quotations are English originals, so their second line is a paraphrase rather
    than a translation.** Each source line says which it is. `../SOURCES.md` section 3 has the
    reasoning and the one-line way to drop those paraphrase lines if Carlos prefers.
