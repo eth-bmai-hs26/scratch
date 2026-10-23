@@ -358,8 +358,95 @@ Three traps that have already been hit:
 8. Rights for the Maxfield Parrish plate on the AINIT genie slide. No `IMAGE-SOURCES.txt` exists in
    the AINIT repository, so there is no rights record for it anywhere that was read.
 
+## Root index entry (moved from the root CLAUDE.md, 2026-10-23)
+
+The former root index described this repository as follows, verbatim: `scratch/` github.com/eth-bmai-hs26/scratch, all the teaching material
+
+## 2026hs/scratch is the live iteration
+
+*Moved verbatim from the root `git_bmai/CLAUDE.md` on 2026-10-23. Where it differs from an older passage of this file, the later date wins.*
+
+`/Users/carloscotrini/Documents/git_bmai/2026hs/scratch` (remote
+`https://github.com/eth-bmai-hs26/scratch.git`, org `eth-bmai-hs26`) is the shared drop point the
+master schedule points TAs to. **All new teaching work goes there.** The other three things under
+`2026hs/` are `w1-lecture-material/`, the lecture decks, `BMAI-PAGE/`, the official course website,
+and `lecturers/`, the roster repo, all described below.
+
+Weekend 1 is Sep 4/5 2026, theme "Vapnik's statistical learning theory". What is already in the
+repo:
+
+- Source material at the top level: `bmai_w1_sml_annotated (1).pdf` (60pp, the annotated week-1
+  SLT deck), `ainit_rl-slides.pdf` and `ainit_annotated_rl_slides (1).pdf` (the AINIT RL deck),
+  `bmai_w1_robbins_monro_gradient_descent (1).pdf`, four `bmai_w1_notes_*.jpg` photos of the
+  handwritten lesson plan, and `Minimum Lander Exploration.html`, a single-file 7-mission
+  gradient-descent visualization Carlos wrote himself.
+- `docs/` : `master-schedule-weekend1.csv`, `slide-text-extracts/` (pdftotext -layout dumps of the
+  four PDFs) and `summaries/`. Has its own CLAUDE.md.
+- `proposals/` : design proposals per exercise. Has its own CLAUDE.md.
+- `initial-states/` : the TA-ready starting repos, one directory per Code Expert slug
+  (`hs26-bmai-w1-opt-heron`, `hs26-bmai-w1-opt-genie-rm`, `hs26-bmai-w1-opt-rm-house`), each laid
+  out to the course-viz multi-file standard with `issue-prompts/` for the units of work. It also
+  holds TWO built beamer cold opens for the weekend, `cold-open-weekend1/` (Descartes' four
+  precepts) and `cold-open-weekend1-popper/` (Popper's tetradic schema, with Turing and Whewell),
+  both following the FDD cold-open grammar. **They are alternatives for the same three minutes at
+  Friday 08:00**, and Carlos picks one. Each deck is `slides/slides.tex`, compiles with plain
+  `pdflatex`, and is deliberately incomplete in ways recorded in its own CLAUDE.md: `slides/img/`
+  is empty in both so the plate slots project placeholder boxes, the Descartes English gloss is a
+  working draft, and the Popper deck has one unpinned quotation slot plus an unresolved rights
+  question on its Popper photograph.
+
+Note the standing tension to resolve rather than paper over: `Minimum Lander Exploration.html` is
+single-file, and the course-viz standard requires the multi-file layout.
+
+## Sibling course families
+
+*Moved verbatim from the root `git_bmai/CLAUDE.md` on 2026-10-23. Where it differs from an older passage of this file, the later date wins.*
+
+- `/Users/carloscotrini/Documents/git_bmai_fs26_cx` : previous BMAI iteration, org
+  `eth-bmai-fs26`. HS26 reuses its `adversarial_attacks/` repo as the pattern reference for the
+  "beat" structure and the one-issue-prompt-per-unit-of-work format, and its `coding-exercises/`
+  as the source of the Colab student plus solutions convention.
+- `/Users/carloscotrini/Documents/git_ainit` : the sibling course "AI in Industry" (AINIT), org
+  `eth-ainit-fs26`. **HS26 weekend 1 is porting material out of it.** Specifically, out of
+  `git_ainit/rl-arcade/slides/rl-slides.tex`: the genie game and the Robbins-Monro sequence
+  (section 8, "Learning a number in the dark: Robbins-Monro", from line 530, with the Maxfield
+  Parrish plate `slides/img/epigraph/genie-parrish.jpg`), which becomes the Code Expert exercise
+  `hs26-bmai-w1-opt-genie-rm`; and the Faust cold open as a reusable grammar (lines 52 onward,
+  three frames, the third a mapping table with the `die Kraft` row muted). Both are forks, not
+  live includes. `git_ainit/CLAUDE.md` records the same link from the other side.
+- `/Users/carloscotrini/Documents/git_fdd/projects` : the sibling workshop "From Data to
+  Decisions" (FDD), org `eth-fdd-fs26`. **This repo carries the written house method and is the
+  most authoritative source.** Read before designing or building anything:
+  `.claude/skills/course-viz/SKILL.md` (browser-only visualizations: multi-file layout, `file://`
+  with no fetch and no CDN, vendored libraries, the editorial palette, hash-based scene routing,
+  the "things to never do" list), `.claude/skills/lecture-slides/SKILL.md` (the beamer standard,
+  including "no closing punchline" and "no red/green ever"), and
+  `.claude/skills/lecture-notes/SKILL.md`. The cold-open grammar is written down in
+  `mandatory-weekends-opening/COLD-OPEN-CANDIDATES.md`. HS26 also forks
+  `git_fdd/projects/grasshopper` for the exercise `hs26-bmai-w1-gd-grasshopper`.
+
+## Git workflow: commit and push without asking
+
+*Moved verbatim from the root `git_bmai/CLAUDE.md` on 2026-10-23. The root now carries a short form of this section; this is the original text.*
+
+Carlos's standing instruction, 2026-09-08: once a change in any of these repositories is ready to
+commit, commit it and push it, without stopping to ask for confirmation first, the way the general
+safety guidance on hard-to-reverse or externally visible actions would otherwise call for before a
+`git push`. This note is that advance authorization. It covers every repository nested under
+`git_bmai/`: `2026hs/scratch`, `2026hs/w1-lecture-material`, `2026hs/w2-lecture-material`,
+`2026hs/w3-lecture-material`, `2026hs/w4-lecture-material`, `2026hs/w4-cx-private`, `2026hs/BMAI-PAGE`, `2026hs/lecturers`, and `2026fs`. It does not reach outside this tree; a sibling
+course family (`git_bmai_fs26_cx`, `git_ainit`, `git_fdd/projects`) needs the same instruction
+written into its own CLAUDE.md before it applies there too.
+
+This authorizes an ordinary commit and push, nothing more. Still stop and ask before anything
+actually destructive on these repos: a force push, a history rewrite, deleting a branch, or
+overwriting someone else's unpushed work.
+
 ## Maintenance contract
 
+- History, decisions, gotchas and publication records (commits, sha256 sums, "on Carlos's word")
+  stay in THIS file. The root `git_bmai/CLAUDE.md` is an index of about 8 KB: it gets at most one
+  line per change, and only when the map of repositories changes.
 - This file is the working memory for this directory. After any major change here, meaning a new
   exercise or visualization, a renamed or moved directory, a changed build or run procedure, a
   changed data format, or a change in who owns the work, UPDATE THIS FILE IN THE SAME COMMIT.
